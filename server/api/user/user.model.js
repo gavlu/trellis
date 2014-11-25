@@ -6,8 +6,48 @@ var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
-  name: String,
-  email: { type: String, lowercase: true },
+  picture: { type: String },
+  name: { type: String, required: true },
+  phone: String,                                /**** NOTE: make required for search purposes? ****/
+  email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
+  age: { type: Number, required: true },
+  hometown: { type: String },
+  currentCity: { type: String },
+  // reminders: { type: [String] },
+  relationship: {
+    partner: { type: String, required: true }
+  },
+  family: [{
+    name: { type: String },
+    relation: { type: String }
+  }],
+  education: [{                                 /**** NOTE: Can we use Foursquare or some other places API? ****/
+    level: { type: String, required: true },
+    name: { type: String, required: true },
+  }],
+  employer: { type: String },                   /**** NOTE: Can we use Foursquare or some other places API? ****/
+  importantDates: [{ 
+    eventName: { type: String },
+    date: { type: Date },
+    description: { type: String  }
+  }],
+  interests: [{ 
+    type: { type: String, required: true },
+    tags: { type: [String] }
+  }],                  
+  projects: [{
+    type: { type: String },
+    name: { type: String, required: true },
+    description: { type: String },
+    link: { type: String }
+  }],
+  notes: {
+    body: { type: String }
+  },
+  otherFields: [{
+    title: { type: String },
+    body: { type: String }
+  }],
   role: {
     type: String,
     default: 'user'
