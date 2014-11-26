@@ -23,3 +23,18 @@ $btnGithubBackgroundHighlight:      #ccc;
 .btn-github {
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
+
+.button-accountPage {
+  background: linear-gradient(hsl(200, 50%, 50%), hsl(200,50%, 45%));
+  border-bottom: 3px solid hsl(200, 60%, 25%);
+  font-size: 1em;
+}
+
+.button-accountPage:hover {
+  background: linear-gradient(hsl(200, 50%, 45%), hsl(200,50%, 40%));
+}
+
+.button-accountPage:active {
+  background: linear-gradient(hsl(200, 60%, 30%), hsl(200, 60%, 25%));
+  box-shadow: 0 0 0 0 black;
+}

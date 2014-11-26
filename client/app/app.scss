@@ -21,18 +21,20 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 .button {
   position: relative;
   cursor: pointer;
-  color: hsl(0,0%, 100%);
+  color: hsl(0, 0%, 100%);
   font-size: 1.1em;
   padding: 1em 2.5em;
   display: inline-block;
   border: 0;
   background: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%));
-  border-bottom: 3px solid hsl(110, 60%, 25%);
+  border-bottom: 2px solid hsl(110, 60%, 25%);
   border-radius:.4em;
-  box-shadow: 0px 3px 4px -4px black;
+  box-shadow: 0px 2px 3px -3px black;
 }
 
 .button:hover {
+  text-decoration: none;
+  color: hsl(0, 0%, 100%);
   background: linear-gradient(hsl(110, 50%, 45%), hsl(110,50%, 40%));
 }
 
