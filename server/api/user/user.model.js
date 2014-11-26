@@ -10,20 +10,20 @@ var UserSchema = new Schema({
   name: { type: String, required: true },
   phone: String,                                /**** NOTE: make required for search purposes? ****/
   email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
-  age: { type: Number, required: true },
+  age: { type: Number },
   hometown: { type: String },
   currentCity: { type: String },
   // reminders: { type: [String] },
   relationship: {
-    partner: { type: String, required: true }
+    partner: { type: String }
   },
   family: [{
     name: { type: String },
     relation: { type: String }
   }],
   education: [{                                 /**** NOTE: Can we use Foursquare or some other places API? ****/
-    level: { type: String, required: true },
-    name: { type: String, required: true },
+    level: { type: String },
+    name: { type: String },
   }],
   employer: { type: String },                   /**** NOTE: Can we use Foursquare or some other places API? ****/
   importantDates: [{ 
@@ -32,12 +32,12 @@ var UserSchema = new Schema({
     description: { type: String  }
   }],
   interests: [{ 
-    type: { type: String, required: true },
+    type: { type: String },
     tags: { type: [String] }
   }],                  
   projects: [{
     type: { type: String },
-    name: { type: String, required: true },
+    name: { type: String },
     description: { type: String },
     link: { type: String }
   }],
@@ -48,6 +48,7 @@ var UserSchema = new Schema({
     title: { type: String },
     body: { type: String }
   }],
+  plants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
   role: {
     type: String,
     default: 'user'
