@@ -35,19 +35,13 @@ var UserSchema = new Schema({
     type: { type: String },
     tags: { type: [String] }
   }],                  
-  // projects: [{
-  //   type: { type: String },
-  //   name: { type: String },
-  //   description: { type: String },
-  //   link: { type: String }
-  // }],
-  // notes: {
-  //   body: { type: String }
-  // },
-  // otherFields: [{
-  //   title: { type: String },
-  //   body: { type: String }
-  // }],
+  projects: [{
+    type: { type: String },
+    name: { type: String },
+    description: { type: String },
+    link: { type: String }
+  }],
+  plants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
   role: {
     type: String,
     default: 'user'
