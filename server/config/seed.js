@@ -3,10 +3,20 @@
  * to disable, edit config/environment/index.js, and set `seedDB: false`
  */
 
+ //seedDB is set to false after the first seed
+
 'use strict';
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Plant = require('../api/plant/plant.model');
+
+Plant.find({}).remove(function(){
+  Plant.create({
+    name: 'Gavin',
+    hometown: 'Staten Island'
+  });
+});
 
 Thing.find({}).remove(function() {
   Thing.create({
