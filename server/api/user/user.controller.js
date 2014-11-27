@@ -47,6 +47,21 @@ exports.show = function (req, res, next) {
   });
 };
 
+exports.findUser = function(req, res, next){
+  var query;
+  if(req.body.phone){
+    query = User.where({ phone: req.body.phone });
+  } else if(req.body.email){
+    query = User.where({ email: req.body.email });
+  } else return res.send('Please enter a phone number or email address');
+  query.findOne(function (err, user) {
+    if (err) return res.send(err);
+    if (user) {
+      res.json(user);
+    }
+  });
+};
+
 /**
  * Deletes a user
  * restriction: 'admin'
