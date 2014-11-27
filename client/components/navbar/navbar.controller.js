@@ -4,7 +4,7 @@ angular.module('trellisApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/trellis'
     }];
 
     $scope.isCollapsed = true;
