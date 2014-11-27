@@ -1,0 +1,42 @@
+/**** FRAME ****/
+
+.navbar {
+	margin-bottom: 0px !important;
+}
+
+.sidebar {
+	position: absolute;
+	width: 18%;
+	height: 95vh;
+	border-right: 1px solid black;
+
+	.searchBox {
+		margin: 1em auto;
+	}
+
+	.submitBtn {
+		width: 2em;
+		margin: 0.5em;
+		border: none;
+		background-color: #30D825;
+	}
+}
+
+.window {
+	margin-left: 18%;
+	width: 82%;
+	padding-top: 1em;
+}
+
+
+/**** INSIDE WINDOW ****/
+
+.profilePreviews {
+	float: left;
+	height: 20em;
+	width: 16em;
+	margin: 1em 1.2em;
+	border: 1px solid black;
+	border-radius: 6px;
+	background-color: #FFF;
+}
