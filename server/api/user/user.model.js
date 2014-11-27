@@ -7,7 +7,11 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   picture: { type: String },
-  name: { type: String },
+  name: [{ 
+    first: {type: String },
+    middle: {type: String},
+    last: {type: String} 
+  }],
   phone: String,                                /**** NOTE: make required for search purposes? ****/
   email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
   age: { type: Number },
