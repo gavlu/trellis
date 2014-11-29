@@ -10,9 +10,11 @@ var router = express.Router();
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
+router.get('/populateTrellis', auth.isAuthenticated(), controller.populateTrellis);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/userSearch/', auth.isAuthenticated(), controller.findUser);
 router.post('/', controller.create);
+
 
 module.exports = router;
