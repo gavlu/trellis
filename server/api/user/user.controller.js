@@ -55,6 +55,7 @@ exports.populateTrellis = function (req, res, next) {
     if (!user) return res.send(401);
     console.log("user found: " + user);
   })
+  // This has not been truly tested because there aren't any plants in any users yet (11/29)
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
