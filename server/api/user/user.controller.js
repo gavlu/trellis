@@ -47,6 +47,28 @@ exports.show = function (req, res, next) {
   });
 };
 
+exports.populateTrellis = function (req, res, next) {
+  console.log("populate, hit!!")
+  var userId = req.user._id;
+  User.findById(userId, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    console.log("user found: " + user);
+  })
+  // This has not been truly tested because there aren't any plants in any users yet (11/29)
+  .populate('plants')
+  .exec(function (err, user) {
+    if (err) return res.send("Could not populate!");
+    if (user.plants.length == 0) { 
+      console.log("Plants[] is empty!")
+      return res.send(err);
+    } 
+    console.log('plants are: ', user.plants);
+    res.json(user.plants);
+    // prints current users plants array
+  });
+};
+
 exports.findUser = function(req, res, next){
   var query;
   if(req.body.phone){

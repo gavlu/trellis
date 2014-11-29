@@ -11,14 +11,19 @@
 	border-right: 1px solid black;
 
 	.searchBox {
-		margin: 1em auto;
-	}
 
-	.submitBtn {
-		width: 2em;
-		margin: 0.5em;
-		border: none;
-		background-color: #30D825;
+		margin: 1em auto;
+
+		.search {
+			margin: none;
+		}
+
+		.submitBtn {
+			width: 2em;
+			border: 1px solid #30D825;
+			border-radius: 0 5px 5px 0;
+			background-color: #30D825;
+		}
 	}
 }
 
