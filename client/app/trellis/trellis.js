@@ -8,8 +8,8 @@ angular.module('trellisApp')
         templateUrl: 'app/trellis/trellis.html',
         controller: 'TrellisCtrl'
       })
-      .state('search', {
-      	url: '/search/:input',
+      .state('searchView', {
+      	url: '/search/:inputType/:input',
       	templateUrl: 'app/search/search.html',
       	controller: 'SearchCtrl'
       })
