@@ -71,11 +71,15 @@ exports.populateTrellis = function (req, res, next) {
 
 exports.findUser = function(req, res, next){
   var query;
+  console.log(req.body);
   if(req.body.phone){
+    console.log("phone, hit");
     query = User.where({ phone: req.body.phone });
   } else if(req.body.email){
+    console.log("email, hit");
     query = User.where({ email: req.body.email });
   } else return res.send('Please enter a phone number or email address');
+  console.log(query);
   query.findOne(function (err, user) {
     if (err) return res.send(err);
     if (user) {

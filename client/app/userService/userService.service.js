@@ -5,7 +5,7 @@ angular.module('trellisApp')
     // Public API here
     return {
 
-    	/**** NOTE: This (and getAllUsers) works without passing a cb,
+    	/**** NOTE: This works without passing a cb,
     	is it just best practices? ****/
 
     	getPlants: function () {
@@ -13,7 +13,8 @@ angular.module('trellisApp')
     	},
 
     	searchUserByPhoneOrEmail: function (search, cb) {
-    		$http.post('/api/user/userSearch/', search, cb);
+    		$http.post('/api/users/userSearch/', search)
+    			.success(cb);
     	}
     };
   });
