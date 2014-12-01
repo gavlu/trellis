@@ -1,13 +1,15 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="col-md-12">
-	<div class="pictureBox">PIC</div>
-	<h2 class="name">{{user.name}}</h2>
-	<div class="userId">{{user._id}}</div>
-	<div class="reminder">{{user.reminder}}</div>
-	<div class="age">{{user.age}}</div>
-	<div class="phone">{{user.phone}}</div>
-	<div class="email">{{user.email}}</div>
-	<div class="important">*IMPORTANT*</div>
-	<button class="btn-success cloneBtn" ng-if="inPlants" ng-click="clone()">Clone</button>
+<div class="searchWindow col-md-12">
+	<div class="searchResult card">
+		<img class="pictureBox" src="http://placekitten.com/g/300/300">
+		<h2 class="name">{{user.name}}</h2>
+		<div class="userId">{{user._id}}</div>
+		<div class="reminder">{{user.reminder}}</div>
+		<div class="age">{{user.age}}</div>
+		<div class="phone">{{user.phone}}</div>
+		<div class="email">{{user.email}}</div>
+		<div class="important">*IMPORTANT*</div>
+		<button class="cloneButton button" ng-if="inPlants" ng-click="clone()">Clone</button>
+	</div>
 </div>
