@@ -8,10 +8,21 @@
 .searchResult {
   margin: auto;
   padding: 3em 4em;
-  width: 45%;
+  width: 85%;
 }
 
 .cloneButton {
   font-size: 1em;
   margin-top: 1.5em;
+}
+
+@media (min-width: 720px) {
+  .searchResult {
+    width: 65%;
+  }
+}
+@media (min-width: 992px) {
+  .searchResult {
+    width: 45%;
+  }
 }
