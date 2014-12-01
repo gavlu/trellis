@@ -4,13 +4,11 @@ angular.module('trellisApp')
   .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state) {
   	console.log("TrellisCtrl, hit");
 
-  	// userService.getPlants()
-  	// 	.success(function(plants, status){
-  	// 		console.log(plants);
-  	// 	})
-  	// 	.error(function(err, status) {
-  	// 		console.log("You have no plants!");
-  	// 	});	
+    var cb = function (plants) {
+      $scope.plants = plants
+    };
+
+  	userService.getPlants(cb);
 
   	$scope.search = function(emailOrPhone) {
   		var email = new RegExp("@"),

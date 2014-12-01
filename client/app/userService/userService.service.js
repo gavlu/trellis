@@ -8,8 +8,9 @@ angular.module('trellisApp')
     	/**** NOTE: This works without passing a cb,
     	is it just best practices? ****/
 
-    	getPlants: function () {
+    	getPlants: function (cb) {
     		$http.get('/api/users/populateTrellis/')
+                .success(cb);
     	},
 
     	searchUserByPhoneOrEmail: function (search, cb) {
