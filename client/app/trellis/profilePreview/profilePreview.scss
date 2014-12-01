@@ -1,16 +1,19 @@
 
 .previewContainer {
-	padding: 5px;
+	padding: 0.5em;
 	line-height: 1.5em;
+	float: left;
+	height: 20em;
+	width: 16em;
+	margin: 1em 1.2em;
 }
 
 .pictureBox {
 	height: 8em;
-	width: 65%;
 	margin: 1em auto;
 	background-color: #444;
-	border: 2px solid #30D825;
-	border-radius: 10em;
-	text-align: center;
+	border-radius: 50%;
 	color: #FFF;
+	display: block;
+	box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
 }

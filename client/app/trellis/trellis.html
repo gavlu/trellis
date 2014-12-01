@@ -1,8 +1,8 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-md-12 sidebar">
 	<form class="searchBox">
-		<input type="text" class="search" ng-model="emailOrPhone" placeholder="Search for user"/>
-		<button class="submitBtn" ng-click="search(emailOrPhone)"> + </button>
+		<input type="text" ng-model="emailOrPhone" placeholder="Search for user"/>
+		<button class="submitBtn " ng-click="search(emailOrPhone)"> + </button>
 	</form>
 	<div class="upcomingEvents" ng-repeat="numbers in urgent">
 		<!-- This element can be seen in the sidebar under the input box -->
@@ -12,9 +12,7 @@
 
 
 <div class="col-md-12 window">
-	<div class="profilePreviews" ng-repeat="user in plants">
 		<!-- This is the element that you can see repeated (ng-repeat) in the large window underneath the navbar -->
 		<!-- it is repeated as many times as there are items in $scope.test (located on the trellis.controller) -->
-		<profile-preview></profile-preview>
-	</div>
+		<profile-preview ng-repeat="plant in plants"></profile-preview>
 </div>

@@ -10,13 +10,15 @@ angular.module('trellisApp')
 
   	userService.getPlants(cb);
 
+    console.log(Auth.getCurrentUser());
+
   	$scope.search = function(emailOrPhone) {
   		var email = new RegExp("@"),
   			  input = {};
   		// console.log(email.test(emailOrPhone) + "!!")
   		if(email.test(emailOrPhone)) {
   			input.email = emailOrPhone;
-        
+
   			// console.log(input);
   			$state.go('searchView', {
   				"inputType": "email",
@@ -31,7 +33,7 @@ angular.module('trellisApp')
   				"input": input.phone
   			});
   		}
-  		
+
   		// console.log(emailOrPhone);
   		// $state.go('searchView', {"input": emailOrPhone});
   	}
