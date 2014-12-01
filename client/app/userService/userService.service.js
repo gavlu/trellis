@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .factory('userService', function ($http){
+  .factory('userService', function ($http, Auth){
     // Public API here
     return {
 
@@ -19,7 +19,7 @@ angular.module('trellisApp')
 
     	},
 
-        clone: function (plantId, cb) {
+        addToPlants: function (plantId, cb) {
             $http.put('/api/users/clone/', plantId)
                 .success(cb);
         }
