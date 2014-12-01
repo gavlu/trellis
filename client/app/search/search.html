@@ -9,5 +9,5 @@
 	<div class="phone">{{user.phone}}</div>
 	<div class="email">{{user.email}}</div>
 	<div class="important">*IMPORTANT*</div>
-	<button class="btn-success cloneBtn" ng-click="clone()">Clone</button>
+	<button class="btn-success cloneBtn" ng-if="inPlants" ng-click="clone()">Clone</button>
 </div>

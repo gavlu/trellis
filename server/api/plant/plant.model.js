@@ -51,7 +51,8 @@ var PlantSchema = new Schema({
   dateAdded: {
   	type: Date,
   	default: Date.now()
-  }
+  },
+  userId: { type: String }
 });
 
 module.exports = mongoose.model('Plant', PlantSchema);
