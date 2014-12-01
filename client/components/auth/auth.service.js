@@ -98,6 +98,7 @@ angular.module('trellisApp')
        * @return {Object} user
        */
       getCurrentUser: function() {
+        
         return currentUser;
       },
 

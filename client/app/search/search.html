@@ -9,6 +9,7 @@
 		<div class="age">{{user.age}}</div>
 		<div class="phone">{{user.phone}}</div>
 		<div class="email">{{user.email}}</div>
-		<button class="cloneButton button" ng-click="clone()">Clone</button>
+		<div class="important">*IMPORTANT*</div>
+		<button class="cloneButton button" ng-if="!inPlants" ng-click="clone()">Clone</button>
 	</div>
 </div>

@@ -65,18 +65,11 @@ exports.clone = function (req, res, next) {
 exports.populateTrellis = function (req, res, next) {
   console.log("populate, hit!!");
   var userId = req.user._id;
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(401);
-  })
+  User.findById(userId)
   // This has not been truly tested because there aren't any plants in any users yet (11/29)
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
-    if (user.plants.length == 0) {
-      console.log("Plants[] is empty!")
-      return res.send(err);
-    }
     console.log('plants are: ', user.plants);
     res.json(user.plants);
     // prints current users plants array
@@ -89,7 +82,6 @@ exports.populateTrellis = function (req, res, next) {
  */
 exports.findUser = function(req, res, next){
   User.findOne(req.body, {
-    _id: 0,
     hashedPassword: 0,
     plants: 0,
     provider: 0,
@@ -140,11 +132,14 @@ exports.me = function(req, res, next) {
 
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword').populate('plants').exec(function(err, user) { // don't ever give out the password or salt
-  if (err) return next(err);
-  if (!user) return res.json(401);
-  res.json(user);
-});
+  }, '-salt -hashedPassword')
+  .populate('plants')
+  .exec(function (err, user) {
+    if (err) return res.send("Could not populate!");
+    console.log("!!!!!!")
+    console.log(user);
+    res.json(user);
+  });
 };
 
 /**
