@@ -73,10 +73,10 @@ exports.populateTrellis = function (req, res, next) {
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
-    if (user.plants.length == 0) { 
+    if (user.plants.length == 0) {
       console.log("Plants[] is empty!")
       return res.send(err);
-    } 
+    }
     console.log('plants are: ', user.plants);
     res.json(user.plants);
     // prints current users plants array
@@ -137,13 +137,14 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
   var userId = req.user._id;
+
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
-    if (err) return next(err);
-    if (!user) return res.json(401);
-    res.json(user);
-  });
+  }, '-salt -hashedPassword').populate('plants').exec(function(err, user) { // don't ever give out the password or salt
+  if (err) return next(err);
+  if (!user) return res.json(401);
+  res.json(user);
+});
 };
 
 /**
