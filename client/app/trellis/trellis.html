@@ -4,10 +4,8 @@
 		<input type="text" ng-model="emailOrPhone" placeholder="Search for user"/>
 		<button class="submitBtn " ng-click="search(emailOrPhone)"> + </button>
 	</form>
-	<div class="upcomingEvents" ng-repeat="numbers in urgent">
 		<!-- This element can be seen in the sidebar under the input box -->
-		<trellis-reminder></trellis-reminder>
-	</div>
+		<trellis-reminder ng-repeat="numbers in urgent"></trellis-reminder>
 </div>
 
 
