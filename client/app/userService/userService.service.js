@@ -14,7 +14,13 @@ angular.module('trellisApp')
 
     	searchUserByPhoneOrEmail: function (search, cb) {
     		$http.post('/api/users/userSearch/', search)
-    			.success(cb);
-    	}
+    			.success(cb)
+
+    	},
+
+        clone: function (plantId, cb) {
+            $http.put('/api/users/clone/', plantId)
+                .success(cb);
+        }
     };
   });

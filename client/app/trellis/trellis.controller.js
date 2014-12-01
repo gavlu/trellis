@@ -14,10 +14,11 @@ angular.module('trellisApp')
 
   	$scope.search = function(emailOrPhone) {
   		var email = new RegExp("@"),
-  			input = {};
+  			  input = {};
   		// console.log(email.test(emailOrPhone) + "!!")
   		if(email.test(emailOrPhone)) {
   			input.email = emailOrPhone;
+        
   			// console.log(input);
   			$state.go('searchView', {
   				"inputType": "email",

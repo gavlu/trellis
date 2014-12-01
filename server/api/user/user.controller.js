@@ -47,13 +47,27 @@ exports.show = function (req, res, next) {
   });
 };
 
+/**
+ * Adds the userId to the plants array
+ */
+exports.clone = function (req, res, next) {
+  console.log("clone, hit!");
+  console.log(req.user);
+  var userId = req.user._id;
+
+  User.findByIdAndUpdate(userId, { $push: { plants: req.body.id } }, function (err, user) {
+    if(err) throw err ;
+    console.log(user);
+    res.send(200);
+  });
+}
+
 exports.populateTrellis = function (req, res, next) {
-  console.log("populate, hit!!")
+  console.log("populate, hit!!");
   var userId = req.user._id;
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
-    console.log("user found: " + user);
   })
   // This has not been truly tested because there aren't any plants in any users yet (11/29)
   .populate('plants')
@@ -69,23 +83,21 @@ exports.populateTrellis = function (req, res, next) {
   });
 };
 
+
+/**
+ * Finds a user based on email or phone
+ */
 exports.findUser = function(req, res, next){
-  var query;
-  console.log(req.body);
-  if(req.body.phone){
-    console.log("phone, hit");
-    query = User.where({ phone: req.body.phone });
-  } else if(req.body.email){
-    console.log("email, hit");
-    query = User.where({ email: req.body.email });
-  } else return res.send('Please enter a phone number or email address');
-  console.log(query);
-  query.findOne(function (err, user) {
-    if (err) return res.send(err);
-    if (user) {
-      res.json(user);
-    }
-  });
+  User.findOne(req.body, {
+    _id: 0,
+    hashedPassword: 0,
+    plants: 0,
+    provider: 0,
+    role: 0,
+    salt: 0
+  }, function(err, user) {
+    res.json(user);
+  })
 };
 
 /**

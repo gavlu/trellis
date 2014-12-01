@@ -23,6 +23,7 @@ exports.show = function(req, res) {
 // Creates a new plant in the DB.
 exports.create = function(req, res) {
   Plant.create(req.body, function(err, plant) {
+    console.log(req.body);
     if(err) { return handleError(res, err); }
     return res.json(201, plant);
   });

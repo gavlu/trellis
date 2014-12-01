@@ -51,10 +51,6 @@ var PlantSchema = new Schema({
   dateAdded: {
   	type: Date,
   	default: Date.now()
-  },
-  role: {
-    type: String,
-    default: 'plant'
   }
 });
 
