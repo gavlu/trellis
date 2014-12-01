@@ -35,9 +35,6 @@ angular.module('trellisApp')
     var searchCB = function (data){
     	$scope.user = data;
 
-
-    	/**** HELP TICKET ****/
-
     	$scope.currentUser = Auth.getCurrentUser();
     	
     	console.log($scope.currentUser);
@@ -46,7 +43,8 @@ angular.module('trellisApp')
     		console.log(el);
     		console.log($scope.user._id);
     		if($scope.user._id == el.userId) {
-    			$scope.inPlants = false;
+    			/**** NOTE: fix the flicker ****/
+    			$scope.inPlants = true;
 			};
     	})
     	

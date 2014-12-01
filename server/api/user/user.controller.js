@@ -70,10 +70,6 @@ exports.populateTrellis = function (req, res, next) {
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
-    if (user.plants.length == 0) {
-      console.log("Plants[] is empty!")
-      return res.send(err);
-    }
     console.log('plants are: ', user.plants);
     res.json(user.plants);
     // prints current users plants array

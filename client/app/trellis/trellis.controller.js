@@ -6,6 +6,7 @@ angular.module('trellisApp')
 
     var cb = function (plants) {
       $scope.plants = plants
+      console.log($scope.plants)
       Auth.getCurrentUser().plants = $scope.plants;
     };
 
