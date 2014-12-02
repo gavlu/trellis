@@ -48,6 +48,13 @@ angular.module('trellisApp')
       });
     };
 
+    $scope.plantFilter = function(plantName) {
+      var query = new RegExp($scope.name, "i");
+      if(query.test(plantName)){
+        return true;
+      }
+    };
+
     $scope.test = [1,2,3,4,5,6,7];
     $scope.urgent = [1,2,3,4,5,6];
   });
