@@ -12,7 +12,7 @@ angular.module('trellisApp')
     delete $scope.me.facebook;
     delete $scope.me.role;
     delete $scope.me.plants;
-    // $scope.me.interests = [{'name': 'gaming'}, {'name':'photography'}];
+    $scope.me.interests = [{'tags': 'gaming'}, {'tags':'photography'}];
     // console.log($scope.me);
 
     $scope.checkType = function( val ) {
