@@ -1,9 +1,9 @@
 
 .previewContainer {
-	padding: 0.5em;
+	padding: 1em;
 	line-height: 1.5em;
 	float: left;
-	height: 20em;
+	height: 21em;
 	width: 16em;
 	margin: 1em 1.2em;
 }
@@ -16,4 +16,19 @@
 	color: #FFF;
 	display: block;
 	box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+}
+
+.deleteButton {
+	font-size: 0.8em;
+	padding: .5em 1.25em;
+	background: linear-gradient(hsl(0, 50%, 50%), hsl(0,50%, 45%));
+	border-bottom: 2px solid hsl(0, 60%, 25%);
+}
+
+.deleteButton:hover {
+	background: linear-gradient(hsl(0, 50%, 45%), hsl(0,50%, 40%));
+}
+
+.deleteButton:active {
+	background: linear-gradient(hsl(0, 60%, 30%), hsl(0, 60%, 25%));
 }

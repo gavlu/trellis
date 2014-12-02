@@ -9,13 +9,15 @@
 }
 
 .sidebar {
-	position: absolute;
-	width: 18%;
 	border-right: 1px solid #434343;
 
 	.searchBox {
 
 		margin: 1em auto;
+
+		input[type=text] {
+			margin: auto;
+		}
 
 		.submitBtn {
 			width: 2em;
@@ -27,8 +29,7 @@
 }
 
 .window {
-	margin-left: 18%;
-	width: 82%;
+
 }
 
 
