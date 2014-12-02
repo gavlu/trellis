@@ -1,6 +1,4 @@
 <div class="col-md-12">
-	<input type="checkbox" ng-model="advanced" name="advanced">
-	<label for="advanced">Advanced</label>
 	<form class="newPlantForm">
 		<label for="name">Name:</label>
 		<input type="text" ng-model="plant.name" name="name"/>
@@ -8,6 +6,17 @@
 		<input type="text" ng-model="plant.phone" name="phone"/>
 		<label for="email">Email:</label>
 		<input type="text" ng-model="plant.email" name="email"/>
+	</form>
+	
+	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="icon.value as icon.label for icon in icons" bs-select>
+	  Action <span class="caret"></span>
+	</button>
+
+
+
+	<!-- <input type="checkbox" ng-model="advanced" name="advanced">
+	<label for="advanced">Advanced</label>
+	
 		<label for="age">Age:</label>
 		<input type="text" ng-model="plant.age" name="age"/>
 		<label for="hometown" ng-show="advanced">Hometown:</label>
@@ -27,5 +36,5 @@
 		<label>Interests:</label>
 			<input type="text" ng-model="plant.interests.type" name="interestType">
 			<input type="text" ng-model="plant.interests.tags" name="interestTags"/>
-	</form>
+	 --></form>
 </div>
