@@ -1,14 +1,15 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="col-md-12 sidebar">
-	<form class="searchBox">
-		<input type="text" ng-model="emailOrPhone" placeholder="Search for user"/>
-		<button class="submitBtn " ng-click="search(emailOrPhone)"> + </button>
+<div class="col-lg-3 sidebar">
+	<form class="trellisForm">
+		<label for="trellisSearch">Filter</label>
+	  	<input ng-model="name" ng-model-options="{ debounce: 250 }" type="text" name="trellisSearch" placeholder="Find plants"></input>
+	  	<!-- <button ng-click="plantsSearch(name)" type="button">Se</button> -->
 	</form>
 		<!-- This element can be seen in the sidebar under the input box -->
 		<trellis-reminder ng-repeat="numbers in urgent"></trellis-reminder>
 </div>
 
 
-<div class="col-md-12 window">
+<div class="col-lg-9 window">
 	<div ui-view=""></div>
 </div>

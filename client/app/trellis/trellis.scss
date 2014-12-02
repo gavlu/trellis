@@ -9,26 +9,36 @@
 }
 
 .sidebar {
-	position: absolute;
-	width: 18%;
 	border-right: 1px solid #434343;
 
-	.searchBox {
+	.trellisForm {
 
 		margin: 1em auto;
 
-		.submitBtn {
-			width: 2em;
-			border: 1px solid #30D825;
-			border-radius: 0 5px 5px 0;
-			background-color: #30D825;
+		input[type=text] {
+			margin: auto;
 		}
 	}
 }
 
+
+
+.nav.navbar-nav.searchBox {
+	display: inline-block;
+	width: 40%;
+	margin: .5em 8%;
+	button {
+		float: right;
+		padding: 6px 0;
+	}
+	input {
+		float: right;
+		width: 90%;
+	}
+}
+
 .window {
-	margin-left: 18%;
-	width: 82%;
+
 }
 
 

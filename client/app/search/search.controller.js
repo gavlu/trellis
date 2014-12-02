@@ -45,7 +45,7 @@ angular.module('trellisApp')
     		if($scope.user._id == el.userId || 
     		   $scope.user._id == $scope.currentUser._id) {
     			/**** NOTE: fix the flicker ****/
-    			$scope.noClone = true;
+    			$scope.noClone = false;
 			};
     	})
     	
