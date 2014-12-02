@@ -60,7 +60,7 @@ exports.clone = function (req, res, next) {
     console.log(user);
     res.send(200);
   });
-}
+};
 
 exports.populateTrellis = function (req, res, next) {
   console.log("populate, hit!!");

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state) {
+  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService) {
   	console.log("TrellisCtrl, hit");
 
     var cb = function (plants) {
@@ -35,10 +35,13 @@ angular.module('trellisApp')
   				"input": input.phone
   			});
   		}
+  	};
 
-  		// console.log(emailOrPhone);
-  		// $state.go('searchView', {"input": emailOrPhone});
-  	}
+    $scope.deletePlant = function(plantId, index){
+      plantService.deletePlant(plantId, function(){
+        $scope.plants.splice(index,1)
+      });
+    };
 
     $scope.test = [1,2,3,4,5,6,7];
     $scope.urgent = [1,2,3,4,5,6];
