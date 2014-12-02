@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $state) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/trellis'
@@ -11,6 +11,10 @@ angular.module('trellisApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $scope.createNewPlant = function() {
+      $state.go('trellis.newPlant');
+    }
 
     $scope.logout = function() {
       Auth.logout();

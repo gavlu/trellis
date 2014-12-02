@@ -1,4 +1,3 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="searchWindow col-md-12">
 	<div class="searchResult card">
@@ -10,6 +9,6 @@
 		<div class="phone">{{user.phone}}</div>
 		<div class="email">{{user.email}}</div>
 		<div class="important">*IMPORTANT*</div>
-		<button class="cloneButton button" ng-if="!inPlants" ng-click="clone()">Clone</button>
+		<button class="cloneButton button" ng-if="!noClone" ng-click="clone()">Clone</button>
 	</div>
 </div>
