@@ -5,7 +5,9 @@ angular.module('trellisApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap',
+  'ngAnimate',
+  'ngSanitize'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
