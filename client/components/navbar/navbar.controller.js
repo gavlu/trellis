@@ -12,10 +12,6 @@ angular.module('trellisApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
-    $scope.createNewPlant = function() {
-      $state.go('trellis.newPlant');
-    }
-
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');

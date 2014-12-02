@@ -1,0 +1,23 @@
+<div class="col-md-12">
+
+  <div class="searchResult card">
+    <img src="http://placekitten.com/g/300/300" alt="" />
+    <div ng-repeat='(key, val) in me'>
+      <h1>{{key[0] | uppercase}}{{key.slice(1)}}</h1>
+      <input type="text" name="{{key}}" ng-if="checkType( val )" ng-model="me[key]">
+      <div ng-if="!checkType( val )">
+        <div ng-repeat="field in val">
+          <label>{{$index+1}}.</label>
+          <input type="text" ng-model="val[$index].name">
+          <button class="button deleteButton" ng-if="val[$index].name.length > 0" ng-click="deleteField( key, $index )">Delete Field</button>
+        </div>
+        <button class="button deleteButton" ng-click="addField( key, $index )">Add Field</button>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <button class="button" ng-click="updateUser()">Update</button>
+  </div
+  >
+</div>
