@@ -7,4 +7,6 @@
 	<div class="age">{{plant.age}}</div>
 	<div class="phone">{{plant.phone}}</div>
 	<div class="email">{{plant.email}}</div>
+	<!-- $index for each ng-repeat -->
+	<button ng-click="deletePlant(plant._id, $index)">Delete</button>
 </div>

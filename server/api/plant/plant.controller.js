@@ -44,6 +44,7 @@ exports.update = function(req, res) {
 
 // Deletes a plant from the DB.
 exports.destroy = function(req, res) {
+  console.log(req.params);
   Plant.findById(req.params.id, function (err, plant) {
     if(err) { return handleError(res, err); }
     if(!plant) { return res.send(404); }

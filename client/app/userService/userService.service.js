@@ -15,8 +15,7 @@ angular.module('trellisApp')
 
     	searchUserByPhoneOrEmail: function (search, cb) {
     		$http.post('/api/users/userSearch/', search)
-    			.success(cb)
-
+    			.success(cb);
     	},
 
         addToPlants: function (plantId, cb) {
