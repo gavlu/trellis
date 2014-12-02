@@ -7,7 +7,7 @@ angular.module('trellisApp')
     var cb = function (plants) {
       $scope.plants = plants
       console.log($scope.plants)
-      Auth.getCurrentUser().plants = $scope.plants;
+      Auth.getCurrentUser().plants = $scope.plants || [];
     };
 
   	userService.getPlants(cb);
@@ -15,6 +15,7 @@ angular.module('trellisApp')
     console.log(Auth.getCurrentUser());
 
   	$scope.search = function(emailOrPhone) {
+      $scope.emailOrPhone = "";
   		var email = new RegExp("@"),
   			  input = {};
   		// console.log(email.test(emailOrPhone) + "!!")
@@ -22,7 +23,7 @@ angular.module('trellisApp')
   			input.email = emailOrPhone;
 
   			// console.log(input);
-  			$state.go('searchView', {
+  			$state.go('trellis.searchView', {
   				"inputType": "email",
   				"input": input.email
   			});
@@ -30,7 +31,7 @@ angular.module('trellisApp')
   		else {
   			input.phone = emailOrPhone.split(" ").join("_");
   			// console.log(input);
-  			$state.go('searchView', {
+  			$state.go('trellis.searchView', {
   				"inputType": "phone",
   				"input": input.phone
   			});

@@ -42,9 +42,10 @@ angular.module('trellisApp')
     	$scope.currentUser.plants.forEach(function(el) {
     		console.log(el);
     		console.log($scope.user._id);
-    		if($scope.user._id == el.userId) {
+    		if($scope.user._id == el.userId || 
+    		   $scope.user._id == $scope.currentUser._id) {
     			/**** NOTE: fix the flicker ****/
-    			$scope.inPlants = true;
+    			$scope.noClone = true;
 			};
     	})
     	
@@ -63,7 +64,7 @@ angular.module('trellisApp')
     		console.log("Successfully added plant!")
     	});
     	
-    	$state.go('trellis');
+    	$state.go('trellis.plants');
     }
     $scope.clone = function() {
     	console.log("client: clone(), hit!")

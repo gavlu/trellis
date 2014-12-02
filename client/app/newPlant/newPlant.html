@@ -1,0 +1,40 @@
+<div class="col-md-12">
+	<form class="newPlantForm">
+		<label for="name">Name:</label>
+		<input type="text" ng-model="plant.name" name="name"/>
+		<label for="phone">Phone:</label>
+		<input type="text" ng-model="plant.phone" name="phone"/>
+		<label for="email">Email:</label>
+		<input type="text" ng-model="plant.email" name="email"/>
+	</form>
+	
+	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="icon.value as icon.label for icon in icons" bs-select>
+	  Action <span class="caret"></span>
+	</button>
+
+
+
+	<!-- <input type="checkbox" ng-model="advanced" name="advanced">
+	<label for="advanced">Advanced</label>
+	
+		<label for="age">Age:</label>
+		<input type="text" ng-model="plant.age" name="age"/>
+		<label for="hometown" ng-show="advanced">Hometown:</label>
+		<input type="text" ng-model="plant.hometown" ng-show="advanced" name="hometown"/>
+		<label for="currentCity" ng-show="advanced">Current city:</label>
+		<input type="text" ng-model="plant.currentCity" ng-show="advanced" name="currentCity"/>
+		<label for="relationship" ng-show="advanced">Relationship</label>
+		<input type="text" ng-model="plant.relationship" ng-show="advanced" name="relationship"/>
+		<label for="family" ng-show="advanced">Family:</label>
+		<input type="text" ng-model="plant.family" ng-show="advanced" name="family"/>
+		<label for="education" ng-show="advanced">Education:</label>
+		<input type="text" ng-model="plant.education" ng-show="advanced" name="education"/>
+		<label for="employer" ng-show="advanced">Employer</label>
+		<input type="text" ng-model="plant.employer" ng-show="advanced" name="employer"/>
+		<label for="importantDates">Important dates:</label>
+		<input type="text" ng-model="plant.importantDates" name="importantDates"/>
+		<label>Interests:</label>
+			<input type="text" ng-model="plant.interests.type" name="interestType">
+			<input type="text" ng-model="plant.interests.tags" name="interestTags"/>
+	 --></form>
+</div>
