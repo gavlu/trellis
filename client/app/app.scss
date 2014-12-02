@@ -47,6 +47,17 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
   outline: 0;
 }
 
+input[type=text], input[type=password] {
+  padding: 0.5em;
+  transition: all .3s ease-in-out;
+  border: 1px solid hsl(110, 0%, 80%);
+  border-radius: 2px;
+
+  &:focus {
+    outline-color: hsl(110, 50%, 50%);
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

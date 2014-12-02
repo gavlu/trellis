@@ -11,16 +11,11 @@
 .sidebar {
 	position: absolute;
 	width: 18%;
-	border-right: 2px inset #434343;
+	border-right: 1px solid #434343;
 
 	.searchBox {
 
 		margin: 1em auto;
-
-		input {
-			margin: none;
-			padding: 0 0.2em;
-		}
 
 		.submitBtn {
 			width: 2em;
