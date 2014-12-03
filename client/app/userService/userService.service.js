@@ -18,9 +18,15 @@ angular.module('trellisApp')
     			.success(cb);
     	},
 
-        addToPlants: function (plantId, cb) {
-            $http.put('/api/users/clone/', plantId)
-                .success(cb);
-        }
+      addToPlants: function (plantId, cb) {
+        $http.put('/api/users/clone/', plantId)
+          .success(cb);
+      },
+
+      updateUser: function ( updateObj, cb ) {
+        $http.patch('/api/users/', updateObj)
+          .success(cb);
+      }
+
     };
   });

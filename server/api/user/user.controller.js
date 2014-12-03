@@ -89,7 +89,17 @@ exports.findUser = function(req, res, next){
     salt: 0
   }, function(err, user) {
     res.json(user);
-  })
+  });
+};
+
+/**
+ * Updates a user based on an update object sent to server
+ */
+exports.update = function( req, res, next ) {
+  console.log(req.body, 'update object');
+  User.findByIdAndUpdate(req.user._id, req.body, function(err, user) {
+    res.json(user);
+  });
 };
 
 /**
