@@ -1,1 +1,9 @@
-<profile-preview ng-repeat="plant in plants" ng-show="plantFilter(plant.name)"></profile-preview>
+<!-- <form class="trellisForm">
+	<label for="trellisSearch">Filter</label>
+	<input ng-model="name" ng-model-options="{ debounce: 250 }" type="text" name="trellisSearch" placeholder="Find plants"></input>
+</form> -->
+<button class="btn btn-default" type="button" data-animation="am-flip-x" bs-dropdown="dropdown">
+Sort
+	<span class="caret"></span>
+</button>
+<profile-preview ng-repeat="plant in plants | orderBy: criteria" ng-show="plantFilter(plant.name)"></profile-preview>
