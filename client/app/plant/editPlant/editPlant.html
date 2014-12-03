@@ -1,0 +1,88 @@
+<div class="col-md-12">
+
+
+	<div class="name">
+		<label for="name">Name: </label>
+		<input type="text" ng-model="editPlant.name" name="name"/>
+	</div>
+	<div class="email">
+		<label for="name">Email: </label>
+		<input type="text" ng-model="editPlant.email" name="email">
+	</div>	
+	<div class="phone">
+		<label for="name">Phone: </label>
+		<input type="text" ng-model="editPlant.phone" name="phone">
+	</div>
+	<div class="age">
+		<label for="name">Age: </label>
+		<input type="text" ng-model="editPlant.age" name="age">
+	</div>
+	<div class="relationship">
+		<label>Relationship: </label>
+		<input type="text" ng-model="editPlant.relationship.partner">
+	</div>
+	<div class="family">
+		<label for="name">Family: </label>
+		<div>
+		<div ng-repeat="member in editPlant.family">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Name:&nbsp;</label><input type="text" ng-model="editPlant.family[$index].name" name="memberName">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Relation:&nbsp;</label><input type="text" ng-model="editPlant.family[$index].relation" name="memberRelation">
+		</div>
+		<button ng-click="addField(familyMember)"> ++ </button>
+	</div>
+	<div class="hometown">
+		<label for="name">Hometown: </label>
+		<input type="text" ng-model="editPlant.hometown" name="hometown">
+	</div>
+	<div class="currentCity">
+		<label for="name">Current City: </label>
+		<input type="text" ng-model="editPlant.currentCity" name="currentCity">
+	</div>
+	<div class="employer">
+		<label for="name">Employer: </label>
+		<input type="text" ng-model="editPlant.employer" name="employer">
+	</div>
+	<div class="projects">
+		<label for="name">Projects: </label>
+		<div ng-repeat="project in editPlant.projects">
+			<input type="text" ng-model="editPlant.projects[$index].name" name="projects" placeholder="Name">
+			<div>
+				<input type="text" ng-model="editPlant.projects[$index].type" name="projects" placeholder="Type">
+				<input type="text" ng-model="editPlant.projects[$index].description" name="projects" placeholder="Description">
+				<input type="text" ng-model="editPlant.projects[$index].link" name="projects" placeholder="Link">
+			</div>
+			
+		</div>
+		<button ng-click="addField(projects)"> ++ </button>
+	</div>
+	<div class="interests">
+		<label for="name">Interests: </label>
+		<div ng-repeat="interest in editPlant.interests" ng-init="outer=$index">
+			<input type="text" ng-model="editPlant.interests[$index].type" name="interests">
+			<span ng-repeat="tag in interest.tags" ng-init="inner = $index">
+				<input type="text" ng-model="editPlant.interests[outer].tags[inner]" name="tags">
+			</span>
+		</div>
+		<button ng-click="addField(interests)"> ++ </button>
+	</div>
+	<div class="importantDates">
+		<label for="name">Important Dates: </label>
+		<div ng-repeat="date in editPlant.importantDates">
+			<input type="text" ng-model="editPlant.importantDates[$index].eventName" name="importantDates">
+			<input type="text" ng-model="editPlant.importantDates[$index].date">
+			<input type="text" ng-model="editPlant.importantDates[$index].description">
+		</div>
+		<button ng-click="addField(importantDates)"> ++ </button>
+	</div>
+	<div class="notes">
+		<label for="name">Notes: </label>
+		<input ng-model="editPlant.notes" name="notes">
+	</div>
+	<div class="reminders">
+		<label for="name">Reminders: </label>
+		<input type="text" class="reminders" ng-model="editPlant.reminders[$index]">
+		<button ng-click="addField(reminders)"> ++ </button>
+	</div>
+
+	{{editPlant | json: pretty}}
+</div>
