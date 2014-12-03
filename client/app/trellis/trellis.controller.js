@@ -60,6 +60,18 @@ angular.module('trellisApp')
       }
     };
 
+    $scope.criteria = "name";
+    $scope.sortPlants = function(criteria){
+      $scope.criteria = criteria;
+    };
+
+
+    $scope.dropdown = [
+      {text: "Name", click: "sortPlants('name')"},
+      {text: "Date: newest to oldest", click: "sortPlants(date)"},
+      {text: "Date: oldest to newest", click: "sortPlants('date')"}
+    ];
+
     $scope.test = [1,2,3,4,5,6,7];
     $scope.urgent = [1,2,3,4,5,6];
   });
