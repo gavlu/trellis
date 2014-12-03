@@ -6,6 +6,7 @@ angular.module('trellisApp')
       .state('trellis.newPlant', {
         url: '/newPlant',
         templateUrl: 'app/newPlant/newPlant.html',
-        controller: 'NewplantCtrl'
+        controller: 'NewplantCtrl',
+        authenticate: true
       });
   });
