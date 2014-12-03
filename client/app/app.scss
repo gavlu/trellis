@@ -21,9 +21,13 @@ $bgDefault      : #57c032;
 $bgHighlight    : #459929;
 $colDefault     : #ffffff;
 $colHighlight   : #bffcc1;
+$bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
+
 .navbar-default {
   background-color: $bgDefault;
   border-color: $bgHighlight;
+  background-image: $bgGradient;
+  box-shadow: 0px 2px 3px -3px black;
   .navbar-brand {
     color: $colDefault;
     &:hover, &:focus {
@@ -110,10 +114,6 @@ input[type=text], input[type=password] {
   &:focus {
     outline-color: hsl(110, 50%, 50%);
   }
-}
-
-.trellis-navbar{
-  background-color: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%)) !important;
 }
 
 // Component styles are injected through grunt
