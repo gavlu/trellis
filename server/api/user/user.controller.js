@@ -9,6 +9,23 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
+var sendEmail = function(to, subject, text){
+  var options = {
+    from: 'reminder.trellis@gmail.com',
+    to: to,
+    subject: subject,
+    text: text
+  }
+  config.email.transporter.sendMail(options, function(err, info){
+    if(err){
+      console.log(err);
+    }else{
+      console.log('Message sent: ' + info.response);
+    }
+  config.email.transporter.close();
+  });
+}
+
 /**
  * Get list of users
  * restriction: 'admin'
@@ -52,12 +69,14 @@ exports.show = function (req, res, next) {
  */
 exports.clone = function (req, res, next) {
   console.log("clone, hit!");
-  console.log(req.user);
   var userId = req.user._id;
 
   User.findByIdAndUpdate(userId, { $push: { plants: req.body.id } }, function (err, user) {
     if(err) throw err ;
-    console.log(user);
+      sendEmail(user.email, 
+        'You have a new plant to tend to!', 
+        'Water your plant, make sure it gets an adequate amount of sunlight, and keep it away from the dog.'
+      ); 
     res.send(200);
   });
 };
