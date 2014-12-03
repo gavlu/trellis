@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+var nodemailer = require('nodemailer');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -9,6 +10,14 @@ function requiredProcessEnv(name) {
   }
   return process.env[name];
 }
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail', 
+    auth: {
+        user: process.env.NODEMAILER_USER, 
+        pass: process.env.NODEMAILER_PASSWORD
+    }    
+});
 
 // All configurations will extend these options
 // ============================================
@@ -51,11 +60,16 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+  },
+
+  email: {
+    transporter: transporter
   }
 };
 
 // Export the config object based on the NODE_ENV
 // ==============================================
+
 module.exports = _.merge(
   all,
   require('./' + process.env.NODE_ENV + '.js') || {});
