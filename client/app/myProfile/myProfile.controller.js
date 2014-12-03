@@ -14,6 +14,21 @@ angular.module('trellisApp')
     $scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
     console.log($scope.me);
 
+    $scope.edLevel = ['high school', 'undergradate', 'graduate'];
+    $scope.typeObj = {
+      'interest': {
+        type: ''
+      },
+      'family': {
+        name: '',
+        relation: ''
+      },
+      'education': {
+        level: '',
+        name: ''
+      }
+    };
+
     $scope.checkType = function( val ) {
       return typeof val === 'string' ? true : false;
     };
@@ -23,16 +38,20 @@ angular.module('trellisApp')
       console.log($scope.me);
       if ( $scope.me[key].length > 0 && $scope.me[key][index] !== '' ) {
         console.log('first');
-        $scope.me[key].push({'name': ''});
+        $scope.me[key].push($scope.typeObj[key]);
       } else if ( $scope.me[key].length === 0 ){
         console.log('second');
-        $scope.me[key].push({'name': ''});
+        $scope.me[key].push($scope.typeObj[key]);
       }
     };
 
     $scope.deleteField = function( key, index ) {
       console.log($scope.me[key]);
       $scope.me[key].splice(index, 1);
+    };
+
+    $scope.editUser = function( ) {
+      $scope.editable = !$scope.editable;
     };
 
     $scope.updateUser = function() {
