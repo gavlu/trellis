@@ -2,18 +2,32 @@
   <h2>Your Profile</h2>
   <div class="searchResult card">
     <img src="http://placekitten.com/g/300/300" alt="" />
-    <div ng-repeat='(key, val) in me'>
-      <h1>{{key[0] | uppercase}}{{key.slice(1)}}</h1>
-      <input type="text" name="{{key}}" ng-if="checkType( val )" ng-model="me[key]">
-      <div ng-if="!checkType( val )">
-        <div ng-repeat="field in val">
-          <label>{{$index+1}}.</label>
-          <input type="text" ng-model="val[$index].name">
-          <button class="button deleteButton" ng-if="val[$index].name.length > 0" ng-click="deleteField( key, $index )">Delete Field</button>
-        </div>
-        <button class="button deleteButton" ng-click="addField( key, $index )">Add Field</button>
-      </div>
-    </div>
+    <h2>Name</h2>
+    <p>{{me.name}}</p>
+    <h2>Email</h2>
+    <p>{{me.email}}</p>
+    <h2>Education</h2>
+    <ul>
+      <li ng-repeat="school in me.education">
+        <h5>{{school.level}}</h5>
+        <p>{{school.name}}</p>
+      </li>
+    </ul>
+    <h2>Family</h2>
+    <ul>
+      <li ng-repeat="member in me.family">
+        <h5>{{member.name}}</h5>
+        <p>{{member.relation}}</p>    
+      </li>
+    </ul>
+    <h2>Interests</h2>
+    <ul>
+      <li ng-repeat="interest in me.interests">
+        <p>{{interest.type}}</p>
+      </li>
+    </ul>
+
+    {{me.interests}}
 
     <br>
     <br>

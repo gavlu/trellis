@@ -7,13 +7,12 @@ angular.module('trellisApp')
     delete $scope.me._id;
     delete $scope.me['$promise'];
     delete $scope.me['$resolved'];
-    delete $scope.me.email;
     delete $scope.me.provider;
     delete $scope.me.facebook;
-    delete $scope.me.role;
     delete $scope.me.plants;
-    $scope.me.interests = [{'tags': 'gaming'}, {'tags':'photography'}];
-    // console.log($scope.me);
+    delete $scope.me.role;
+    $scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
+    console.log($scope.me);
 
     $scope.checkType = function( val ) {
       return typeof val === 'string' ? true : false;
