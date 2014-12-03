@@ -67,6 +67,75 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
+  }, {
+    provider: 'local',
+    name: 'Brendhan Haas',
+    email: 'bhassawesomeness@gmail.com',
+    password: 'bhaas',
+    phone: '2032585619',
+    age: '25',
+    hometown: 'Fairfield, CT',
+    currentCity: 'Norwalk, CT',
+    relationship: {
+      partner: 'Christina Whittaker'
+    },
+    family: [{
+      name: 'Jim',
+      relation: 'father'
+    },{
+      name: 'Bailey',
+      relation: 'mother'
+    },{
+      name: 'Dylan',
+      relation: 'brother'
+    },{
+      name: 'Galen',
+      relation: 'sister'
+    }],
+    education: [{
+      level: "High School",
+      name: "Greens Farms Academy"
+    },{
+      level: "College",
+      name: "Georgetown University"
+    }],
+    employer: "AIG",
+    importantDates: [{
+      eventName: "Birthday",
+      date: "September 19, 1989",
+      description: "It is his birthday"
+    },{
+      eventName: "Engagement party",
+      date: "December 5, 2014",
+      description: "Formal event at a restaurant in Westport"
+    },{
+      eventName: "Wedding",
+      date: "July 11, 2015",
+      description: "Big man is getting married at the Whittaker church."
+    }],
+    interests: [{
+      type: "Video games",
+      tags: ["halo", "call of duty", "red dead redemption", "xbox"]
+    },{
+      type: "Beer",
+      tags: ["brewing", "drinking", "IPA", "craft"]
+    }],
+    projects: [{
+      type: "Offline",
+      name: "Home brewing",
+      description: "Brewing a batch of cider in his closet",
+      link: "none"
+    }],
+    notes: {
+      body: "Great guy"
+    },
+    otherFields: [{
+      title: "Test title",
+      body: "Test body"
+    },{
+      title: "Second title",
+      body: "Second body"
+    }]
   }, function() {
       console.log('finished populating users');
     }

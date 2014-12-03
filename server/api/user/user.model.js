@@ -26,11 +26,11 @@ var UserSchema = new Schema({
     name: { type: String },
   }],
   employer: { type: String },                   /**** NOTE: Can we use Foursquare or some other places API? ****/
-  // importantDates: [{
-  //   eventName: { type: String },
-  //   date: { type: Date },
-  //   description: { type: String  }
-  // }],
+  importantDates: [{
+    eventName: { type: String },
+    date: { type: Date },
+    description: { type: String  }
+  }],
   interests: [{
     type: { type: String },
     tags: { type: [String] }

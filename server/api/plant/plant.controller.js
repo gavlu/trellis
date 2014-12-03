@@ -6,6 +6,7 @@ var Plant = require('./plant.model');
 // Get list of plants
 exports.index = function(req, res) {
   Plant.find(function (err, plants) {
+    console.log("getPlant got to show!");
     if(err) { return handleError(res, err); }
     return res.json(200, plants);
   });
@@ -14,6 +15,8 @@ exports.index = function(req, res) {
 // Get a single plant
 exports.show = function(req, res) {
   Plant.findById(req.params.id, function (err, plant) {
+    console.log("getPlant got to show!");
+    console.log(req.params.id);
     if(err) { return handleError(res, err); }
     if(!plant) { return res.send(404); }
     return res.json(plant);

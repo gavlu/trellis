@@ -20,16 +20,32 @@ angular.module('trellisApp')
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate'];
     $scope.typeObj = {
-      'interest': {
-        type: ''
+      "family": {
+        name: "",
+        relation: ""
       },
-      'family': {
-        name: '',
-        relation: ''
+      "education": {
+        level: "",
+        name: ""
       },
-      'education': {
-        level: '',
-        name: ''
+      "importantDates": {
+        eventName: "",
+        date: "",
+        description: ""
+      },
+      "interests": {
+        type: "",
+        tags: ""
+      },
+      "projects": {
+        type: "",
+        name: "",
+        description: "",
+        link: ""
+      },
+      "otherFields": {
+        title: "",
+        body: ""
       }
     };
 

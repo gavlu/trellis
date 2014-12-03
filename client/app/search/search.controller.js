@@ -33,26 +33,28 @@ angular.module('trellisApp')
     /**** NOTE: this should be changed. Limit functions on scope
     			Can we add it into searchHelper? ****/
     var searchCB = function (data){
-    	$scope.user = data;
+    	$scope.emailOrPhone = "";
+        
+        $scope.user = data;
 
     	$scope.currentUser = Auth.getCurrentUser();
     	
-    	console.log($scope.currentUser);
-    	
     	$scope.currentUser.plants.forEach(function(el) {
-    		console.log(el);
-    		console.log($scope.user._id);
     		if($scope.user._id == el.userId || 
     		   $scope.user._id == $scope.currentUser._id) {
     			/**** NOTE: fix the flicker ****/
-    			$scope.noClone = false;
+    			$scope.noClone = true;
+
+                console.log("Searched user already exists in trellis")
+                console.log(el.userId == $scope.user._id);
 			};
     	})
-    	
+    	console.log("Searched user:")
     	console.log($scope.user)
     };
     userService.searchUserByPhoneOrEmail(searchInput, searchCB);
     //	--end of autoload--
+
 
     //	--Cloning feature--
     var addToPlantCB = function (newPlant){

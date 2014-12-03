@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $state) {
+  .controller('NavbarCtrl', function ($scope, $location, $http, Auth, $state, userService) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/trellis'
@@ -20,4 +20,5 @@ angular.module('trellisApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
   });
