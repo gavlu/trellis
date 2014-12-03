@@ -48,6 +48,21 @@ User.find({}).remove(function() {
     password: 'test'
   }, {
     provider: 'local',
+    name: 'Moe',
+    email: 'moe@stooges.com',
+    password: 'test'
+  }, {
+    provider: 'local',
+    name: 'Larry',
+    email: 'larry@stooges.com',
+    password: 'test'
+  }, {
+    provider: 'local',
+    name: 'Curly',
+    email: 'curly@stooges.com',
+    password: 'test'
+  }, {
+    provider: 'local',
     role: 'admin',
     name: 'Admin',
     email: 'admin@admin.com',
