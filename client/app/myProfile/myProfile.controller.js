@@ -2,17 +2,21 @@
 
 angular.module('trellisApp')
   .controller('MyprofileCtrl', function ($scope, Auth, userService) {
-    $scope.me = Auth.getCurrentUser();
-    delete $scope.me['__v'];
+    $scope.me = {};
+    for (var variable in Auth.getCurrentUser()) {
+      if (Auth.getCurrentUser().hasOwnProperty(variable)) {
+        $scope.me[variable] = Auth.getCurrentUser()[variable];
+      }
+    }
+    delete $scope.me.__v;
     delete $scope.me._id;
-    delete $scope.me['$promise'];
-    delete $scope.me['$resolved'];
+    delete $scope.me.$promise;
+    delete $scope.me.$resolved;
     delete $scope.me.provider;
     delete $scope.me.facebook;
     delete $scope.me.plants;
     delete $scope.me.role;
     $scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
-    console.log($scope.me);
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate'];
     $scope.typeObj = {

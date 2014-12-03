@@ -6,6 +6,7 @@ angular.module('trellisApp')
       .state('trellis.myProfile', {
         url: '/myProfile',
         templateUrl: 'app/myProfile/myProfile.html',
-        controller: 'MyprofileCtrl'
+        controller: 'MyprofileCtrl',
+        authenticate: true
       });
   });
