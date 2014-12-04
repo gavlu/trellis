@@ -50,5 +50,20 @@
 	}
 }
 
+.reminderButton {
+	font-size: 0.8em;
+	padding: .5em 1.25em;
+	background: linear-gradient(hsl(90, 50%, 50%), hsl(90,50%, 45%));
+	border-bottom: 2px solid hsl(90, 60%, 25%);
+
+	&:hover {
+	background: linear-gradient(hsl(90, 50%, 45%), hsl(90,50%, 40%));
+	}
+
+	&:active {
+		background: linear-gradient(hsl(90, 60%, 30%), hsl(90, 60%, 25%));
+	}
+}
+
 
 
