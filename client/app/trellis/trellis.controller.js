@@ -45,6 +45,9 @@ angular.module('trellisApp')
       }
     };
 
+
+    /**** Profile Preview ****/
+
     $scope.editPlant = function(plantId){
       $state.go('trellis.editPlant', {
         id: plantId
@@ -58,6 +61,8 @@ angular.module('trellisApp')
         $scope.plants.splice(index,1);
       });
     };
+    /**** END Profile Preview ****/
+
 
     $scope.plantFilter = function(plantName) {
       var query = new RegExp($scope.name, "i");
@@ -78,6 +83,26 @@ angular.module('trellisApp')
       {text: "Date: oldest to newest", click: "sortPlants('date')"}
     ];
 
-    $scope.test = [1,2,3,4,5,6,7];
-    $scope.urgent = [1,2,3,4,5,6];
+
+    $scope.fakeReminders = [1,2,3,4,5,6];
   });
+
+
+
+/****   MINI REMINDER FEATURE
+          maybe add later
+
+$scope.makeNewReminder = false;
+$scope.addReminder = function(action, plantId, newReminder) {
+  if(action == 'adding'){
+    $scope.makeNewReminder = true;
+  }
+  else if( action == 'saving') {
+    $scope.makeNewReminder = false;
+    userService.updateUser(newReminder, function(){
+      
+    })
+  }
+}
+
+****/

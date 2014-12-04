@@ -46,7 +46,7 @@ angular.module('trellisApp')
     $scope.selectedIcon = "";
 	$scope.selectedIcons = [];
 	$scope.icons = [
-	    {value: 'name', label: '<i class="fa fa-user"></i> Name'},
+	    // {value: 'name', label: '<i class="fa fa-user"></i> Name'},
 	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
 	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
 	    {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
@@ -62,6 +62,10 @@ angular.module('trellisApp')
 	    {value: 'notes', label: '<i class="fa fa-pencil"></i> Notes'},
 	    {value: 'reminders', label: '<i class="fa fa-star"></i> Reminders'}
 	];
+
+	$scope.show = function(inputField) {
+		return $scope.selectedIcons.indexOf(inputField) > -1;
+	}
 
 
 	$scope.typeObj = {
