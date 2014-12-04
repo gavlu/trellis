@@ -51,8 +51,10 @@ angular.module('trellisApp')
       })
     }
 
-    $scope.deletePlant = function(plantId, index){
-      plantService.deletePlant(plantId, function(){
+    $scope.deletePlant = function(plant){
+      var index = $scope.plants.indexOf(plant);
+      plantService.deletePlant(plant._id, function(){
+        console.log($scope.plants)
         $scope.plants.splice(index,1);
       });
     };
