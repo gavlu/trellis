@@ -2,12 +2,27 @@
 	<!-- Replace kitten photos with plant photos -->
 	<img src="http://placekitten.com/g/300/300" class="pictureBox" alt="Profile Photo">
 	<h2 class="name">{{plant.name}}</h2>
-	<div class="userId">{{plant._id}}</div>
-	<div class="reminder">{{plant.reminder}}</div>
-	<div class="age">{{plant.age}}</div>
+	<!-- <div class="userId">{{plant._id}}</div> -->
+	<!-- <div class="age">{{plant.age}}</div> -->
 	<div class="phone">{{plant.phone}}</div>
 	<div class="email">{{plant.email}}</div>
-	<!-- $index for each ng-repeat -->
+	<div class="reminder">{{plant.reminder}}</div>
+	
 	<button class='button editButton' ng-click="editPlant(plant._id)">EDIT</button>
-	<button class='button deleteButton' ng-click="deletePlant(plant._id, $index)">DELETE</button>
+	<button class='button deleteButton' ng-click="deletePlant(plant)">DELETE</button>
 </div>
+
+
+
+<!-- 	MINI REMINDER FEATURE
+			maybe add later
+
+
+	<div class="reminder" ng-show="!makeNewReminder">{{plant.reminder}}</div>
+	<input type="text" class="reminderInput" ng-model="newReminder" placeholder="Reminder" ng-show="makeNewReminder"/>
+	
+	<button class='button reminderButton' ng-if="!makeNewReminder" ng-click="addReminder('adding')"> ++ </button>
+
+	<button class='button reminderButton' ng-if="makeNewReminder" ng-click="addReminder('saving', plant._id, newReminder)"> &#x2713&#x2713 </button>
+
+ -->

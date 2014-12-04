@@ -33,15 +33,10 @@ exports.create = function(req, res) {
 
 // Updates an existing plant in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Plant.findById(req.params.id, function (err, plant) {
-    if (err) { return handleError(res, err); }
-    if(!plant) { return res.send(404); }
-    var updated = _.merge(plant, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, plant);
-    });
+  console.log("Update, hit!")
+  console.log(req.body._id);
+  Plant.findByIdAndUpdate(req.body._id, req.body, function(err, plant) {
+    res.json(plant);
   });
 };
 
