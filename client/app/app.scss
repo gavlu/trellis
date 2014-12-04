@@ -40,6 +40,8 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
   box-shadow: 0px 2px 3px -3px black;
   .navbar-brand {
     color: $colDefault;
+    font-family: 'Antic Slab', serif;
+    letter-spacing: 2px;
     &:hover, &:focus {
       color: $colHighlight; }}
   .navbar-text {
