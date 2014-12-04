@@ -1,17 +1,131 @@
 <div class="col-md-12">
-	<form class="newPlantForm">
+	<!-- <form class="newPlantForm">
 		<label for="name">Name:</label>
 		<input type="text" ng-model="plant.name" name="name"/>
 		<label for="phone">Phone:</label>
 		<input type="text" ng-model="plant.phone" name="phone"/>
 		<label for="email">Email:</label>
 		<input type="text" ng-model="plant.email" name="email"/>
-	</form>
+	</form> -->
 	
-	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="icon.value as icon.label for icon in icons" bs-select>
+	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" ng-options="icon.value as icon.label for icon in icons" bs-select>
 	  Action <span class="caret"></span>
 	</button>
+	
+	<div class="col-md-12">
+		<form novalidate class="editPlantForm" name="form">
+			<div class="name">
+				<label for="name">Name: </label>
+				<input type="text" ng-model="newPlant.name" name="name"/>
+			</div>
+			<div class="email">
+				<label for="name">Email: </label>
+				<input type="text" ng-model="newPlant.email" name="email">
+			</div>
 
+			<div class="phone">
+				<label for="name">Phone: </label>
+				<input type="text" ng-model="newPlant.phone" name="phone" placeholder="(###) ###-####">
+			</div>
+
+			<div class="age">
+				<label for="name">Age: </label>
+				<input type="text" ng-model="newPlant.age" name="age">
+			</div>
+
+			<div class="relationship">
+				<label>Relationship: </label>
+				<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
+			</div>
+
+			<div class="family">
+				<label for="name">Family: </label>
+				<div ng-repeat="member in newPlant.family track by $index">
+					<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
+					<input type="text" ng-model="member.relation" name="memberRelation" placeholder="Relation">
+				</div>
+				<button ng-click="addField('family')"> ++ </button>
+				<button ng-click="deleteField('family')"> -- </button>
+			</div>
+
+			<div class="hometown">
+				<label for="name">Hometown: </label>
+				<input type="text" ng-model="newPlant.hometown" name="hometown">
+			</div>
+
+			<div class="currentCity">
+				<label for="name">Current City: </label>
+				<input type="text" ng-model="newPlant.currentCity" name="currentCity">
+			</div>
+			<div class="employer">
+				<label for="name">Employer: </label>
+				<input type="text" ng-model="newPlant.employer" name="employer">
+			</div>
+
+			<div class="projects">
+				<label for="name">Projects: </label>
+				<div ng-repeat="project in newPlant.projects track by $index">
+					<input type="text" ng-model="project.name" name="projects" placeholder="Title/Goal">
+					<div>
+						<input type="text" ng-model="project.type" name="projects" placeholder="Type">
+						<input type="text" ng-model="project.description" name="projects" placeholder="Description">
+						<input type="text" ng-model="project.link" name="projects" placeholder="Link">
+					</div>
+					
+				</div>
+				<button ng-click="addField('projects')"> ++ </button>
+				<button ng-click="deleteField('projects')"> -- </button>
+			</div>
+
+			<div class="interests">
+				<label for="name">Interests: </label>
+				<div ng-repeat="interest in newPlant.interests track by $index" ng-init="outer=$index">
+					<input type="text" ng-model="interest.type" name="interests" placeholder="Category/Name">
+					<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
+						<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
+					</span>
+					<button ng-click="addField('tags', outer)"> +Tag </button>
+					<button ng-click="deleteField('tags', outer)"> -Tag </button>
+
+				</div>
+				<button ng-click="addField('interests')"> ++ </button>
+				<button ng-click="deleteField('interests')"> -- </button>
+			</div>
+
+			<div class="importantDates">
+				<label for="name">Important Dates: </label>
+				<div ng-repeat="date in newPlant.importantDates">
+					<input type="text" ng-model="date.eventName" name="importantDates" placeholder="Event">
+					<input type="text" ng-model="date.date" placeholder="Date">
+					<input type="text" ng-model="date.description" placeholder="Description/Notes">
+				</div>
+				<button ng-click="addField('importantDates')"> ++ </button>
+				<button ng-click="deleteField('importantDates')"> -- </button>
+			</div>
+
+			<div class="notes">
+				<label for="name">Notes: </label>
+				<input ng-model="newPlant.notes" name="notes">
+			</div>
+
+			<div class="reminders">
+				<label for="name">Reminders: </label>
+				<span ng-repeat="reminder in newPlant.reminders track by $index">
+					<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
+				</span>
+				<button ng-click="addField('reminders')"> ++ </button>
+				<button ng-click="deleteField('reminders')"> -- </button>
+			</div>
+		
+			<button ng-click="create('cancel')">Cancel</button>
+			<button ng-click="create('save'); form.$setPristine()">Create</button>
+			<span class="updated" ng-if="show()">
+				<i class="fa fa-floppy-o"></i>
+				<i class="fa fa-check"></i>
+			</span>
+		</form>
+		{{newPlant}}
+	</div>
 
 
 	<!-- <input type="checkbox" ng-model="advanced" name="advanced">
@@ -36,5 +150,5 @@
 		<label>Interests:</label>
 			<input type="text" ng-model="plant.interests.type" name="interestType">
 			<input type="text" ng-model="plant.interests.tags" name="interestTags"/>
-	 --></form>
+	 -->
 </div>

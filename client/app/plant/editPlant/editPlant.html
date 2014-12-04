@@ -1,4 +1,5 @@
 <div class="col-md-12">
+	<form novalidate class="editPlantForm" name="form">
 	<div class="card myProfile">
 		<div class="name">
 			<h2>
@@ -6,7 +7,6 @@
 			</h2>
 		</div>
 		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
-
 		<div class="email">
 			<label for="name">Email: </label>
 			<input type="text" ng-model="editPlant.email" name="email">
@@ -29,13 +29,14 @@
 
 		<div class="family">
 			<label for="name">Family: </label>
-			<div>
 			<div ng-repeat="member in editPlant.family track by $index">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Name:&nbsp;</label><input type="text" ng-model="member.name" name="memberName">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Relation:&nbsp;</label><input type="text" ng-model="member.relation" name="memberRelation">
 			</div>
+
 			<button class="button editButton" ng-click="addField('family')"> ++ </button>
 			<button class="button deleteButton" ng-click="deleteField('family')"> -- </button>
+
 		</div>
 
 		<div class="hometown">
@@ -65,6 +66,7 @@
 			</div>
 			<button class="button editButton" ng-click="addField('projects')"> ++ </button>
 			<button class="button deleteButton" ng-click="deleteField('projects')"> -- </button>
+
 		</div>
 
 		<div class="interests">
@@ -74,12 +76,14 @@
 				<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
 					<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="tag">
 				</span>
+
 				<button class="button editButton" ng-click="addField('tags', outer)"> +tag </button>
 				<button class="button deleteButton" ng-click="deleteField('tags', outer)"> -- </button>
 
 			</div>
 			<button class="button editButton" ng-click="addField('interests')"> ++ </button>
 			<button class="button deleteButton" ng-click="deleteField('interests')"> -- </button>
+
 		</div>
 
 		<div class="importantDates">
@@ -89,8 +93,10 @@
 				<input type="text" ng-model="date.date">
 				<input type="text" ng-model="date.description">
 			</div>
+
 			<button class="button editButton" ng-click="addField('importantDates')"> ++ </button>
 			<button class="button deleteButton" ng-click="deleteField('importantDates')"> -- </button>
+
 		</div>
 
 		<div class="notes">
@@ -103,10 +109,20 @@
 			<span ng-repeat="reminder in editPlant.reminders track by $index">
 				<input type="text" class="reminders" ng-model="editPlant.reminders[$index]">
 			</span>
+
 			<button class="button editButton" ng-click="addField('reminders')"> ++ </button>
 			<button class="button deleteButton" ng-click="deleteField('reminders')"> -- </button>
 		</div>
 	</div>
-
-	{{editPlant}}
+	
+		<button ng-click="update('reset')">Undo</button>
+		<button ng-click="update('save'); form.$setPristine()">Update</button>
+		<span class="updated" ng-if="show()">
+			<i class="fa fa-floppy-o"></i>
+			<i class="fa fa-check"></i>
+		</span>
+		<div>
+			<button ng-click="trellisView()"> <- Trellis </button>
+		</div>
+	</form>
 </div>

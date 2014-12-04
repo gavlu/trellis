@@ -69,9 +69,12 @@ exports.show = function (req, res, next) {
  */
 exports.clone = function (req, res, next) {
   console.log("clone, hit!");
+  console.log(req.user._id);
   var userId = req.user._id;
-
-  User.findByIdAndUpdate(userId, { $push: { plants: req.body.id } }, function (err, user) {
+  console.log(userId);
+  console.log("---------------------")
+  console.log(req.body);
+  User.findByIdAndUpdate(userId, { $push: { plants: req.body._id } }, function (err, user) {
     if(err) throw err ;
       sendEmail(user.email, 
         'You have a new plant to tend to!', 
