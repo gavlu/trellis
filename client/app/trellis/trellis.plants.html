@@ -1,10 +1,9 @@
-<!-- <form class="trellisForm">
-	<label for="trellisSearch">Filter</label>
-	<input ng-model="name" ng-model-options="{ debounce: 250 }" type="text" name="trellisSearch" placeholder="Find plants"></input>
-</form> -->
-<button class="btn btn-default" type="button" data-animation="am-flip-x" bs-dropdown="dropdown">
-Sort
-	<span class="caret"></span>
-</button>
+<div class="filterBar">
+  <button class="btn btn-default" type="button" data-animation="am-flip-x" bs-dropdown="dropdown">
+  	Sort
+  	<span class="caret"></span>
+  </button>
+	<input ng-model="name" ng-model-options="{ debounce: 250 }" type="text" name="trellisSearch" placeholder="Filter your plants..."></input>
+</div>
 <profile-preview ng-repeat="plant in plants | orderBy: criteria" ng-show="plantFilter(plant.name)"></profile-preview>
 <button class="floatButton plus" ui-sref="trellis.newPlant"><span class="glyphicon glyphicon-plus"></span></button>
