@@ -1,101 +1,105 @@
 <div class="col-md-12">
-  <div class="myProfile card" ng-if="!editable">
-    <h2>{{me.name}}</h2>
-    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
-    <h3>Email</h3>
-    <p class='profileDetails'>{{me.email}}</p>
-    <ul ng-if="me.education.length > 0">
-      <h3>Education</h3>
-      <li ng-repeat="school in me.education">
-        <h5>{{school.level}}</h5>
-        <p class='profileDetails'>{{school.name}}</p>
-      </li>
-    </ul>
-    <ul ng-if="me.family.length > 0">
-      <h3>Family</h3>
-      <li ng-repeat="member in me.family">
-        <h5>{{member.name}}</h5>
-        <p class='profileDetails'>{{member.relation}}</p>
-      </li>
-    </ul>
-    <ul ng-if="me.interests.length > 0">
-      <h3>Interests</h3>
-      <li ng-repeat="interest in me.interests">
-        <p class='profileDetails'>{{interest.type}}</p>
-      </li>
-    </ul>
-    <br>
-    <br>
-    <button class="button" ng-click="editUser()">Edit</button>
-  </div>
+	<div class="myProfile card" ng-if="!editable">
+		<h2>{{me.name}}</h2>
+		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
+		<h3>Email</h3>
+		<p class='profileDetails'>{{me.email}}</p>
+		<ul ng-if="me.education.length > 0">
+			<h3>Education</h3>
+			<li ng-repeat="school in me.education">
+				<h5>{{school.level}}</h5>
+				<p class='profileDetails'>{{school.name}}</p>
+			</li>
+		</ul>
+		<ul ng-if="me.family.length > 0">
+			<h3>Family</h3>
+			<li ng-repeat="member in me.family">
+				<h5>{{member.name}}</h5>
+				<p class='profileDetails'>{{member.relation}}</p>
+			</li>
+		</ul>
+		<ul ng-if="me.interests.length > 0">
+			<h3>Interests</h3>
+			<li ng-repeat="interest in me.interests">
+				<p class='profileDetails'>{{interest.type}}</p>
+			</li>
+		</ul>
+		<br>
+		<br>
+		<button class="button" ng-click="editUser()">Edit</button>
+	</div>
 
-  <div class="myProfile card" ng-if="editable">
-    <h2>
-      <input type="text" ng-model="me.name" placeholder="Ezekiel">
-    </h2>
-    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
-    <h3>Email</h3>
-    <p class='profileDetails'>
-      <input type="text" ng-model="me.email" placeholder="me@me.com">
-    </p>
-    <h3>Phone Number</h3>
-    <p class='profileDetails'>
-      <input type="text" ng-model="me.phone" placeholder="555-555-5555">
-    </p>
-    <h3>Age</h3>
-    <p class='profileDetails'>
-      <input type="number" min="0" max="120" ng-model="me.age" placeholder="18">
-    </p>
-    <h3>Hometown</h3>
-    <p class='profileDetails'>
-      <input type="text" ng-model="me.hometown" placeholder="Guam">
-    </p>
-    <h3>Current City</h3>
-    <p class='profileDetails'>
-      <input type="text" ng-model="me.currentCity" placeholder="New York City">
-    </p>
-    <h3>Employer</h3>
-    <p class='profileDetails'>
-      <input type="text" ng-model="me.employer" placeholder="Dunder Mifflin">
-    </p>
-    <ul>
-      <h3>Education</h3>
-      <li ng-repeat="school in me.education">
-        <div ng-repeat="level in edLevel">
-          <input type="radio" name="education_level"  value="{{level}}" ng-model="school.level">{{level}}
-        </div>
-        <p class='profileDetails'>
-          <label>School Name:</label>
-          <input type="text" ng-model="school.name" placeholder="Test University">
-        </p>
-      </li>
-      <button class="button deleteButton" ng-click="addField( 'education', $index )">Add</button>
-    </ul>
-    <ul>
-      <h3>Family</h3>
-      <li ng-repeat="member in me.family">
-        <p class='profileDetails'>
-          <label>Name:</label>
-          <input type="text" ng-model="member.name" placeholder="James">
-        </p>
-        <p class='profileDetails'>
-          <label>Relation:</label>
-          <input type="text" ng-model="members.relation" placeholder="Cousin">
-        </p>
-      </li>
-      <button class="button deleteButton" ng-click="addField( 'family', $index )">Add</button>
-    </ul>
-    <ul>
-      <h3>Interests</h3>
-      <li ng-repeat="interest in me.interests track by $index">
-        <p class='profileDetails'>
-          <input type="text" ng-model="interest.type" placeholder="Tennis">
-        </p>
-      </li>
-      <button class="button deleteButton" ng-click="addField( 'interests', $index)">Add</button>
-    </ul>
-    <br>
-    <br>
-    <button class="button" ng-click="updateUser()">Update</button>
-  </div>
+	<div class="myProfile card" ng-if="editable">
+		<h2>
+			<input type="text" ng-model="me.name" placeholder="Ezekiel">
+		</h2>
+		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
+		<h3>Email</h3>
+		<p class='profileDetails'>
+			<input type="text" ng-model="me.email" placeholder="me@me.com">
+		</p>
+		<h3>Phone Number</h3>
+		<p class='profileDetails'>
+			<input type="text" ng-model="me.phone" placeholder="555-555-5555">
+		</p>
+		<h3>Age</h3>
+		<p class='profileDetails'>
+			<input type="number" min="0" max="120" ng-model="me.age" placeholder="18">
+		</p>
+		<h3>Hometown</h3>
+		<p class='profileDetails'>
+			<input type="text" ng-model="me.hometown" placeholder="Guam">
+		</p>
+		<h3>Current City</h3>
+		<p class='profileDetails'>
+			<input type="text" ng-model="me.currentCity" placeholder="New York City">
+		</p>
+		<h3>Employer</h3>
+		<p class='profileDetails'>
+			<input type="text" ng-model="me.employer" placeholder="Dunder Mifflin">
+		</p>
+		<ul>
+			<h3>Education</h3>
+			<li ng-repeat="school in me.education track by $index" ng-init="edIndex = $index">
+				<div ng-repeat="level in edLevel">
+					<input type="radio" name="education_level_{{school.name}}" value="{{level}}" ng-model="school.level" ng-change="otherEd(level, edIndex)">{{level}}
+				</div>
+				<p ng-show="school.level!==edLevel[0]&&school.level!==edLevel[1]&&school.level!==edLevel[2]" class='profileDetails'>
+					<label for="customLevel">Level:</label>
+					<input ng-model="school.level" type="text" name="customLevel">
+				</p>
+				<p class='profileDetails'>
+					<label>School Name:</label>
+					<input type="text" ng-model="school.name" placeholder="Test University">
+				</p>
+			</li>
+			<button class="button deleteButton" ng-click="addField( 'education', $index )">Add</button>
+		</ul>
+		<ul>
+			<h3>Family</h3>
+			<li ng-repeat="member in me.family">
+				<p class='profileDetails'>
+					<label>Name:</label>
+					<input type="text" ng-model="member.name" placeholder="James">
+				</p>
+				<p class='profileDetails'>
+					<label>Relation:</label>
+					<input type="text" ng-model="members.relation" placeholder="Cousin">
+				</p>
+			</li>
+			<button class="button deleteButton" ng-click="addField( 'family', $index )">Add</button>
+		</ul>
+		<ul>
+			<h3>Interests</h3>
+			<li ng-repeat="interest in me.interests track by $index">
+				<p class='profileDetails'>
+					<input type="text" ng-model="interest.type" placeholder="Tennis">
+				</p>
+			</li>
+			<button class="button deleteButton" ng-click="addField( 'interests', $index)">Add</button>
+		</ul>
+		<br>
+		<br>
+		<button class="button" ng-click="updateUser()">Update</button>
+	</div>
 </div>
