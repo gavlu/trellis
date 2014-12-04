@@ -1,7 +1,7 @@
 <div class="col-md-12">
-  <div class="myProfile card" ng-if="!editable">
+  <div class="singleProfile card" ng-if="!editable">
     <h2>{{me.name}}</h2>
-    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
+    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="singleProfilePhoto" />
     <h3>Email</h3>
     <p class='profileDetails'>{{me.email}}</p>
     <ul ng-if="me.education.length > 0">
@@ -30,11 +30,11 @@
     <button class="floatButton edit" ng-click="editUser()"><span class="glyphicon glyphicon-pencil"></span></button>
   </div>
 
-  <div class="myProfile card" ng-if="editable">
+  <div class="singleProfile card" ng-if="editable">
     <h2>
       <input type="text" ng-model="me.name" placeholder="Ezekiel">
     </h2>
-    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
+    <img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="singleProfilePhoto" />
     <h3>Email</h3>
     <p class='profileDetails'>
       <input type="text" ng-model="me.email" placeholder="me@me.com">
