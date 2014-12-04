@@ -1,108 +1,115 @@
 <div class="col-md-12">
-
-	<div class="name">
-		<label for="name">Name: </label>
-		<input type="text" ng-model="editPlant.name" name="name"/>
-	</div>
-	<div class="email">
-		<label for="name">Email: </label>
-		<input type="text" ng-model="editPlant.email" name="email">
-	</div>
-
-	<div class="phone">
-		<label for="name">Phone: </label>
-		<input type="text" ng-model="editPlant.phone" name="phone">
-	</div>
-
-	<div class="age">
-		<label for="name">Age: </label>
-		<input type="text" ng-model="editPlant.age" name="age">
-	</div>
-
-	<div class="relationship">
-		<label>Relationship: </label>
-		<input type="text" ng-model="editPlant.relationship.partner">
-	</div>
-
-	<div class="family">
-		<label for="name">Family: </label>
-		<div>
-		<div ng-repeat="member in editPlant.family track by $index">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Name:&nbsp;</label><input type="text" ng-model="member.name" name="memberName">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Relation:&nbsp;</label><input type="text" ng-model="member.relation" name="memberRelation">
+	<form novalidate class="editPlantForm" name="form">
+		<div class="name">
+			<label for="name">Name: </label>
+			<input type="text" ng-model="editPlant.name" name="name"/>
 		</div>
-		<button ng-click="addField('family')"> ++ </button>
-		<button ng-click="deleteField('family')"> -- </button>
-	</div>
+		<div class="email">
+			<label for="name">Email: </label>
+			<input type="text" ng-model="editPlant.email" name="email">
+		</div>
 
-	<div class="hometown">
-		<label for="name">Hometown: </label>
-		<input type="text" ng-model="editPlant.hometown" name="hometown">
-	</div>
+		<div class="phone">
+			<label for="name">Phone: </label>
+			<input type="text" ng-model="editPlant.phone" name="phone">
+		</div>
 
-	<div class="currentCity">
-		<label for="name">Current City: </label>
-		<input type="text" ng-model="editPlant.currentCity" name="currentCity">
-	</div>
-	<div class="employer">
-		<label for="name">Employer: </label>
-		<input type="text" ng-model="editPlant.employer" name="employer">
-	</div>
+		<div class="age">
+			<label for="name">Age: </label>
+			<input type="text" ng-model="editPlant.age" name="age">
+		</div>
 
-	<div class="projects">
-		<label for="name">Projects: </label>
-		<div ng-repeat="project in editPlant.projects track by $index">
-			<input type="text" ng-model="project.name" name="projects" placeholder="Name">
+		<div class="relationship">
+			<label>Relationship: </label>
+			<input type="text" ng-model="editPlant.relationship.partner">
+		</div>
+
+		<div class="family">
+			<label for="name">Family: </label>
 			<div>
-				<input type="text" ng-model="project.type" name="projects" placeholder="Type">
-				<input type="text" ng-model="project.description" name="projects" placeholder="Description">
-				<input type="text" ng-model="project.link" name="projects" placeholder="Link">
+			<div ng-repeat="member in editPlant.family track by $index">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Name:&nbsp;</label><input type="text" ng-model="member.name" name="memberName">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Relation:&nbsp;</label><input type="text" ng-model="member.relation" name="memberRelation">
 			</div>
-			
+			<button ng-click="addField('family')"> ++ </button>
+			<button ng-click="deleteField('family')"> -- </button>
 		</div>
-		<button ng-click="addField('projects')"> ++ </button>
-		<button ng-click="deleteField('projects')"> -- </button>
-	</div>
 
-	<div class="interests">
-		<label for="name">Interests: </label>
-		<div ng-repeat="interest in editPlant.interests track by $index" ng-init="outer=$index">
-			<input type="text" ng-model="interest.type" name="interests">
-			<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
-				<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="tag">
+		<div class="hometown">
+			<label for="name">Hometown: </label>
+			<input type="text" ng-model="editPlant.hometown" name="hometown">
+		</div>
+
+		<div class="currentCity">
+			<label for="name">Current City: </label>
+			<input type="text" ng-model="editPlant.currentCity" name="currentCity">
+		</div>
+		<div class="employer">
+			<label for="name">Employer: </label>
+			<input type="text" ng-model="editPlant.employer" name="employer">
+		</div>
+
+		<div class="projects">
+			<label for="name">Projects: </label>
+			<div ng-repeat="project in editPlant.projects track by $index">
+				<input type="text" ng-model="project.name" name="projects" placeholder="Name">
+				<div>
+					<input type="text" ng-model="project.type" name="projects" placeholder="Type">
+					<input type="text" ng-model="project.description" name="projects" placeholder="Description">
+					<input type="text" ng-model="project.link" name="projects" placeholder="Link">
+				</div>
+				
+			</div>
+			<button ng-click="addField('projects')"> ++ </button>
+			<button ng-click="deleteField('projects')"> -- </button>
+		</div>
+
+		<div class="interests">
+			<label for="name">Interests: </label>
+			<div ng-repeat="interest in editPlant.interests track by $index" ng-init="outer=$index">
+				<input type="text" ng-model="interest.type" name="interests">
+				<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
+					<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="tag">
+				</span>
+				<button ng-click="addField('tags', outer)"> +tag </button>
+				<button ng-click="deleteField('tags', outer)"> -- </button>
+
+			</div>
+			<button ng-click="addField('interests')"> ++ </button>
+			<button ng-click="deleteField('interests')"> -- </button>
+		</div>
+
+		<div class="importantDates">
+			<label for="name">Important Dates: </label>
+			<div ng-repeat="date in editPlant.importantDates">
+				<input type="text" ng-model="date.eventName" name="importantDates">
+				<input type="text" ng-model="date.date">
+				<input type="text" ng-model="date.description">
+			</div>
+			<button ng-click="addField('importantDates')"> ++ </button>
+			<button ng-click="deleteField('importantDates')"> -- </button>
+		</div>
+
+		<div class="notes">
+			<label for="name">Notes: </label>
+			<input ng-model="editPlant.notes" name="notes">
+		</div>
+
+		<div class="reminders">
+			<label for="name">Reminders: </label>
+			<span ng-repeat="reminder in editPlant.reminders track by $index">
+				<input type="text" class="reminders" ng-model="editPlant.reminders[$index]">
 			</span>
-			<button ng-click="addField('tags', outer)"> +tag </button>
-			<button ng-click="deleteField('tags', outer)"> -- </button>
-
+			<button ng-click="addField('reminders')"> ++ </button>
+			<button ng-click="deleteField('reminders')"> -- </button>
 		</div>
-		<button ng-click="addField('interests')"> ++ </button>
-		<button ng-click="deleteField('interests')"> -- </button>
-	</div>
-
-	<div class="importantDates">
-		<label for="name">Important Dates: </label>
-		<div ng-repeat="date in editPlant.importantDates">
-			<input type="text" ng-model="date.eventName" name="importantDates">
-			<input type="text" ng-model="date.date">
-			<input type="text" ng-model="date.description">
-		</div>
-		<button ng-click="addField('importantDates')"> ++ </button>
-		<button ng-click="deleteField('importantDates')"> -- </button>
-	</div>
-
-	<div class="notes">
-		<label for="name">Notes: </label>
-		<input ng-model="editPlant.notes" name="notes">
-	</div>
-
-	<div class="reminders">
-		<label for="name">Reminders: </label>
-		<span ng-repeat="reminder in editPlant.reminders track by $index">
-			<input type="text" class="reminders" ng-model="editPlant.reminders[$index]">
+	
+		<button ng-click="update('reset')">Undo</button>
+		<button ng-click="update('save'); form.$setPristine()">Update</button>
+		<span class="updated" ng-if="show()">
+			<i class="fa fa-floppy-o"></i>
+			<i class="fa fa-check"></i>
 		</span>
-		<button ng-click="addField('reminders')"> ++ </button>
-		<button ng-click="deleteField('reminders')"> -- </button>
-	</div>
-
-	{{editPlant}}
+		<div><button ng-click="trellisView()"> <- Trellis </button></div>
+	</form>
 </div>

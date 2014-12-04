@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('EditplantCtrl', function ($scope, $stateParams, plantService) {
+  .controller('EditplantCtrl', function ($scope, $stateParams, plantService, $state) {
+    $scope.master = {};
     var plantId = $stateParams.id;
     $scope.editPlant;
     plantService.getPlant(plantId, function(plant) {
     	console.log("RETURNED plant");
     	console.log(plant);
     	$scope.editPlant = plant;	
+    	$scope.master = angular.copy(plant);
     })
     
     $scope.typeObj = {
@@ -61,4 +63,33 @@ angular.module('trellisApp')
       	$scope.editPlant[key].splice($scope.editPlant[key].length-1, 1);
       }
     };
+
+    $scope.update = function (input) {
+    	console.log($scope.editPlant);
+    	if(input === 'save'){
+	    	plantService.updatePlant($scope.editPlant, function(updated) {
+	    		$scope.plantUpdated = true;
+	    		console.log("Here's your updated plant: ");
+	    		console.log(updated);
+	    		$scope.saved = true;
+	    	})
+	    }
+	    else if(input === 'reset'){
+	    	console.log("save @ reset, hit");
+	    	$scope.saved = false;
+	    	$scope.editPlant = angular.copy($scope.master);
+	    }
+    }
+
+    $scope.trellisView = function(){
+    	$state.go('trellis.plants');
+    }
+
+    /**** Icon functionality ****/
+    $scope.saved = false;
+    $scope.show = function(){
+    	if($scope.saved && $scope.form.$pristine){
+    		return true;
+    	}
+    }
   });

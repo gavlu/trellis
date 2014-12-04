@@ -61,7 +61,7 @@ angular.module('trellisApp')
     	console.log("this is your plant:")
     	console.log(newPlant);
     	
-    	var plantId = { id: newPlant._id };
+    	var plantId = { _id: newPlant._id };
     	userService.addToPlants(plantId, function(data){
     		console.log("Successfully added plant!")
     	});

@@ -12,6 +12,11 @@ angular.module('trellisApp')
     		$http.post("/api/plants/", plant)
     			.success(cb);
     	},
+
+        updatePlant: function (updatePlant, cb) {
+            $http.patch("/api/plants/", updatePlant)
+                .success(cb);
+        },
     	deletePlant: function(plantId, cb){
     		$http.delete("/api/plants/" + plantId + "/")
     			.success(cb);
