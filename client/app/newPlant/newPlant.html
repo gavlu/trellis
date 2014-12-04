@@ -8,7 +8,7 @@
 		<input type="text" ng-model="plant.email" name="email"/>
 	</form> -->
 	
-	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" ng-options="icon.value as icon.label for icon in icons" bs-select>
+	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
 	  Action <span class="caret"></span>
 	</button>
 	
@@ -18,27 +18,27 @@
 				<label for="name">Name: </label>
 				<input type="text" ng-model="newPlant.name" name="name"/>
 			</div>
-			<div class="email">
+			<div class="email" ng-if="show('email')">
 				<label for="name">Email: </label>
 				<input type="text" ng-model="newPlant.email" name="email">
 			</div>
 
-			<div class="phone">
+			<div class="phone" ng-if="show('phone')">
 				<label for="name">Phone: </label>
 				<input type="text" ng-model="newPlant.phone" name="phone" placeholder="(###) ###-####">
 			</div>
 
-			<div class="age">
+			<div class="age" ng-if="show('age')">
 				<label for="name">Age: </label>
 				<input type="text" ng-model="newPlant.age" name="age">
 			</div>
 
-			<div class="relationship">
+			<div class="relationship" ng-if="show('relationship')">
 				<label>Relationship: </label>
 				<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
 			</div>
 
-			<div class="family">
+			<div class="family" ng-if="show('family')">
 				<label for="name">Family: </label>
 				<div ng-repeat="member in newPlant.family track by $index">
 					<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
@@ -48,21 +48,21 @@
 				<button ng-click="deleteField('family')"> -- </button>
 			</div>
 
-			<div class="hometown">
+			<div class="hometown" ng-if="show('hometown')">
 				<label for="name">Hometown: </label>
 				<input type="text" ng-model="newPlant.hometown" name="hometown">
 			</div>
 
-			<div class="currentCity">
+			<div class="currentCity" ng-if="show('currentCity')">
 				<label for="name">Current City: </label>
 				<input type="text" ng-model="newPlant.currentCity" name="currentCity">
 			</div>
-			<div class="employer">
+			<div class="employer" ng-if="show('employer')">
 				<label for="name">Employer: </label>
 				<input type="text" ng-model="newPlant.employer" name="employer">
 			</div>
 
-			<div class="projects">
+			<div class="projects" ng-if="show('projects')">
 				<label for="name">Projects: </label>
 				<div ng-repeat="project in newPlant.projects track by $index">
 					<input type="text" ng-model="project.name" name="projects" placeholder="Title/Goal">
@@ -77,22 +77,24 @@
 				<button ng-click="deleteField('projects')"> -- </button>
 			</div>
 
-			<div class="interests">
+			<div class="interests" ng-if="show('interests')">
 				<label for="name">Interests: </label>
 				<div ng-repeat="interest in newPlant.interests track by $index" ng-init="outer=$index">
 					<input type="text" ng-model="interest.type" name="interests" placeholder="Category/Name">
 					<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
 						<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
 					</span>
-					<button ng-click="addField('tags', outer)"> +Tag </button>
-					<button ng-click="deleteField('tags', outer)"> -Tag </button>
+					<div>
+						<button ng-click="addField('tags', outer)"> +Tag </button>
+						<button ng-click="deleteField('tags', outer)"> -Tag </button>
+					</div>
 
 				</div>
 				<button ng-click="addField('interests')"> ++ </button>
 				<button ng-click="deleteField('interests')"> -- </button>
 			</div>
 
-			<div class="importantDates">
+			<div class="importantDates" ng-if="show('importantDates')">
 				<label for="name">Important Dates: </label>
 				<div ng-repeat="date in newPlant.importantDates">
 					<input type="text" ng-model="date.eventName" name="importantDates" placeholder="Event">
@@ -103,12 +105,12 @@
 				<button ng-click="deleteField('importantDates')"> -- </button>
 			</div>
 
-			<div class="notes">
+			<div class="notes" ng-if="show('notes')">
 				<label for="name">Notes: </label>
 				<input ng-model="newPlant.notes" name="notes">
 			</div>
 
-			<div class="reminders">
+			<div class="reminders" ng-if="show('reminders')">
 				<label for="name">Reminders: </label>
 				<span ng-repeat="reminder in newPlant.reminders track by $index">
 					<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
