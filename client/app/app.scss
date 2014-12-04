@@ -3,8 +3,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
-
-/**
+@import url(http://fonts.googleapis.com/css?family=Lato|Antic+Slab|Titillium+Web|Raleway);/**
  * App-wide Styles
  */
 
@@ -13,6 +12,16 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+// Font classes
+
+*{
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Antic Slab', serif;
 }
 
 // NAVBAR COLOR BLOCK
