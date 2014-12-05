@@ -114,14 +114,14 @@
 				<button class="button deleteButton" ng-click="deleteField('reminders')"> - </button>
 			</div>
 			<div class="buttonBox">
-				<button class="flatButton" ng-click="trellisView()">Cancel</button>
+				<button class="flatButton" ui-sref="trellis.plants">Cancel</button>
 				<button class="flatButton" ng-click="update('reset')">Undo</button>
 				<span class="updated" ng-if="show()">
 					<i class="fa fa-floppy-o"></i>
 					<i class="fa fa-check"></i>
 				</span>
+				<button class="button save" ng-click="update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			</div>
-			<button class="floatButton save" ng-click="update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
 		</div>
 	</form>
 </div>
