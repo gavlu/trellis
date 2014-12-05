@@ -4,6 +4,26 @@
 		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="singleProfilePhoto" />
 		<h3>Email</h3>
 		<p class='profileDetails'>{{me.email}}</p>
+		<div class="phone" ng-if="me.phone">
+			<h3>Phone Number</h3>
+			<p class='profileDetails'>{{me.phone}}</p>
+		</div>
+		<div class="age" ng-if="me.age">
+			<h3>Age</h3>
+			<p class='profileDetails'>{{me.age}}</p>
+		</div>
+		<div class="hometown" ng-if="me.hometown">
+			<h3>Hometown</h3>
+			<p class='profileDetails'>{{me.hometown}}</p>
+		</div>
+		<div class="currentCity" ng-if="me.currentCity">
+			<h3>Current City</h3>
+			<p class='profileDetails'>{{me.currentCity}}</p>
+		</div>
+		<div class="employer" ng-if="me.employer">
+			<h3>Employer</h3>
+			<p class='profileDetails'>{{me.employer}}</p>
+		</div>
 		<ul ng-if="me.education.length > 0">
 			<h3>Education</h3>
 			<li ng-repeat="school in me.education">
@@ -12,7 +32,7 @@
 			</li>
 		</ul>
 		<ul ng-if="me.family.length > 0">
-			<h3>Family</h3>
+			<h3>Family {{me.family.length}} </h3>
 			<li ng-repeat="member in me.family">
 				<h5>{{member.name}}</h5>
 				<p class='profileDetails'>{{member.relation}}</p>
@@ -29,11 +49,12 @@
 		<!-- <button class="button" ng-click="editUser()">Edit</button> -->
 		<button class="floatButton edit" ng-click="editUser()"><span class="glyphicon glyphicon-pencil"></span></button>
 	</div>
-	<div class="myProfile card" ng-if="editable">
+
+	<div class="singleProfile card" ng-if="editable">
 		<h2>
 			<input type="text" ng-model="me.name" placeholder="Ezekiel">
 		</h2>
-		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="myPhoto" />
+		<img src="http://placekitten.com/g/300/300" alt="Profile Picture" class="singleProfilePhoto" />
 		<h3>Email</h3>
 		<p class='profileDetails'>
 			<input type="text" ng-model="me.email" placeholder="me@me.com">
