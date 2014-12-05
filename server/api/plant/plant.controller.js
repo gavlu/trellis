@@ -1,7 +1,25 @@
 'use strict';
 
 var _ = require('lodash');
+var config = require('../../config/environment');
 var Plant = require('./plant.model');
+
+var sendEmail = function(to, subject, text){
+  var options = {
+    from: 'reminder.trellis@gmail.com',
+    to: to,
+    subject: subject,
+    text: text
+  }
+  config.email.transporter.sendMail(options, function(err, info){
+    if(err){
+      console.log(err);
+    }else{
+      console.log('Message sent: ' + info.response);
+    }
+  config.email.transporter.close();
+  });
+}
 
 // Get list of plants
 exports.index = function(req, res) {
@@ -27,6 +45,11 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Plant.create(req.body, function(err, plant) {
     if(err) { return handleError(res, err); }
+    console.log(req.user);
+    sendEmail(req.user.email, 
+      'You have a new plant to tend to!', 
+      'Tend to your plant and make sure it gets an adequate amount of attention so that ' + req.body.name + ' can grow strong!'
+    );
     return res.json(201, plant);
   });
 };
