@@ -58,15 +58,7 @@ angular.module('trellisApp')
 	};
 
 	$scope.addField = function( key, index ) {
-		// console.log(key);
-		// console.log($scope.me);
 		$scope.me[key].push(new $scope[key]);
-		// if ( $scope.me[key].length > 0 && $scope.me[key][index] !== '' ) {
-		// 	// console.log('first');
-		// 	$scope.me[key].push($scope.typeObj[key]);
-		// } else if ( $scope.me[key].length === 0 ){
-		// 	// console.log('second');
-		// }
 	};
 
 	$scope.deleteField = function( key, index ) {
@@ -94,8 +86,8 @@ angular.module('trellisApp')
 			console.log($scope.other);
 			console.log($scope.other[edIndex]);
 		}else{
-			console.log('false!!!!!!!!!!!!!'); 
-			$scope.other[edIndex] = false;	
+			console.log('false!!!!!!!!!!!!!');
+			$scope.other[edIndex] = false;
 		}
 	};
 

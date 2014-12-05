@@ -105,7 +105,7 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
   border: 0;
   background: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%));
   border-bottom: 2px solid hsl(110, 60%, 25%);
-  border-radius:.4em;
+  border-radius:.2em;
   box-shadow: 0px 2px 3px -3px black;
 
   &:hover {
@@ -123,6 +123,12 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
     outline: 0;
   }
 
+}
+
+.button.save {
+  font-size: 1.33em;
+  padding: .3em 2em .1em;
+  float: right;
 }
 
 
@@ -174,17 +180,76 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
   padding: .5em .64em .3em .7em;
 }
 
+//Flat Button Styles
+
+.flatButton {
+  font-size: 1.3em;
+  transition: all 0.1s ease-in-out;
+  border: 0px solid hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(0, 60%, 60%);
+  text-transform: uppercase;
+  margin: 0 .5em 0 0;
+  /* box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.8); */
+  border-radius: .2em;
+  padding: .3em .9em;
+  &:hover {
+    color: hsl(0, 100%, 60%);
+  }
+  &:active {
+    color: hsl(0, 80%, 40%);
+    /* box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8); */
+  }
+}
 // Green highlight for text input boxes
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], textarea {
   padding: 0.5em;
   transition: all .3s ease-in-out;
   border: 1px solid hsl(110, 0%, 80%);
   border-radius: 2px;
-
+  box-shadow: 0px 1px 2px -1px hsla(0, 0%, 0%, 0.5) inset;
   &:focus {
     outline-color: hsl(110, 50%, 50%);
   }
+}
+
+// Single profile view
+
+.singleProfile{
+  position: relative;
+  padding: 3em 15%;
+  margin: auto;
+  margin-bottom: 2em;
+  width: 80%;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .profileDetails {
+    font-size: 1.3em;
+    margin-left: 2em;
+  }
+
+  label {
+    display:block;
+  }
+
+  input, textarea {
+    width: 100%;
+  }
+}
+
+.singleProfilePhoto {
+  max-height: 15em;
+  margin: 1em auto;
+  background-color: #444;
+  border-radius: 2px;
+  color: #FFF;
+  display: block;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
 }
 
 // Component styles are injected through grunt

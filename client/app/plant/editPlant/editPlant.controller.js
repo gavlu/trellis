@@ -8,10 +8,10 @@ angular.module('trellisApp')
     plantService.getPlant(plantId, function(plant) {
     	console.log("RETURNED plant");
     	console.log(plant);
-    	$scope.editPlant = plant;	
+    	$scope.editPlant = plant;
     	$scope.master = angular.copy(plant);
     })
-    
+
     $scope.typeObj = {
     	"family": {
     		name: "",
@@ -45,7 +45,7 @@ angular.module('trellisApp')
     $scope.addField = function( key, index ) {
         if( key == "tags" ){
         	$scope.editPlant.interests[index].tags.push("")
-        } 
+        }
         else if ( key == "reminders" ) {
         	$scope.editPlant.reminders.push("");
         }
@@ -58,7 +58,7 @@ angular.module('trellisApp')
       console.log($scope.editPlant[key]);
       if( key == "tags" ){
       	$scope.editPlant.interests[index].tags.splice($scope.editPlant.interests[index].tags.length-1, 1);
-      } 
+      }
       else {
       	$scope.editPlant[key].splice($scope.editPlant[key].length-1, 1);
       }
@@ -79,10 +79,6 @@ angular.module('trellisApp')
 	    	$scope.saved = false;
 	    	$scope.editPlant = angular.copy($scope.master);
 	    }
-    }
-
-    $scope.trellisView = function(){
-    	$state.go('trellis.plants');
     }
 
     /**** Icon functionality ****/
