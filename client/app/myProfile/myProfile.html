@@ -62,10 +62,16 @@
 		<ul>
 			<h3>Education</h3>
 			<li ng-repeat="school in me.education track by $index" ng-init="edIndex = $index">
+				<!-- Education radio buttons -->
 				<div ng-repeat="level in edLevel">
 					<input type="radio" name="education_level_{{school.name}}" value="{{level}}" ng-model="school.level" ng-change="otherEd(level, edIndex)">{{level}}
 				</div>
-				<p ng-show="school.level!==edLevel[0]&&school.level!==edLevel[1]&&school.level!==edLevel[2]" class='profileDetails'>
+				<!-- Education select boxes -->
+				<!-- <label for="levelSelect">Level:</label>
+				<select ng-model="school.level" name="levelSelect">
+					<option ng-repeat="level in edLevel" value="{{level}}">{{level}}</option>
+				</select> -->
+				<p ng-show="showBox(school.level)" class='profileDetails'>
 					<label for="customLevel">Level:</label>
 					<input ng-model="school.level" type="text" name="customLevel">
 				</p>
@@ -85,7 +91,7 @@
 				</p>
 				<p class='profileDetails'>
 					<label>Relation:</label>
-					<input type="text" ng-model="members.relation" placeholder="Cousin">
+					<input type="text" ng-model="member.relation" placeholder="Cousin">
 				</p>
 			</li>
 			<button class="button deleteButton" ng-click="addField( 'family', $index )">Add</button>
@@ -94,7 +100,8 @@
 			<h3>Interests</h3>
 			<li ng-repeat="interest in me.interests track by $index">
 				<p class='profileDetails'>
-					<input type="text" ng-model="interest.type" placeholder="Tennis">
+					<input type="text" ng-model="interest.type" placeholder="interest">
+					<input type="text" ng-model="interest.tags" placeholder="tags"></input>
 				</p>
 			</li>
 			<button class="button deleteButton" ng-click="addField( 'interests', $index)">Add</button>
