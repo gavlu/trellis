@@ -125,6 +125,12 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
 
 }
 
+.button.save {
+  font-size: 1.33em;
+  padding: .3em 2em .1em;
+  float: right;
+}
+
 
 // Float buttons are absolutely positioned make sure to nest
 // inside of a relatively positioned element
@@ -159,6 +165,21 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
 
 }
 
+// Different padding for the different glyphicons because they are sized differently
+
+.floatButton.edit, .floatButton.save {
+  bottom: 5%;
+  right: 10%;
+}
+
+.floatButton.edit, .floatButton.save {
+  padding: .5em .66em .3em;
+}
+
+.floatButton.plus {
+  padding: .5em .64em .3em .7em;
+}
+
 //Flat Button Styles
 
 .flatButton {
@@ -180,22 +201,6 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
     /* box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8); */
   }
 }
-
-// Different padding for the different glyphicons because they are sized differently
-
-.floatButton.edit, .floatButton.save {
-  bottom: 5%;
-  right: 10%;
-}
-
-.floatButton.edit, .floatButton.save {
-  padding: .5em .66em .3em;
-}
-
-.floatButton.plus {
-  padding: .5em .64em .3em .7em;
-}
-
 // Green highlight for text input boxes
 
 input[type=text], input[type=password], textarea {
