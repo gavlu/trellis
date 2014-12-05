@@ -16,7 +16,7 @@ angular.module('trellisApp')
 	delete $scope.me.facebook;
 	delete $scope.me.plants;
 	delete $scope.me.role;
-	$scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
+	// $scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
 
 	$scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
 
@@ -53,35 +53,6 @@ angular.module('trellisApp')
 		this.body = body;
 	};
 
-	// $scope.typeObj = {
-	// 	"family": {
-	// 		name: "",
-	// 		relation: ""
-	// 	},
-	// 	"education": {
-	// 		level: "",
-	// 		name: ""
-	// 	},
-	// 	"importantDates": {
-	// 		eventName: "",
-	// 		date: "",
-	// 		description: ""
-	// 	},
-	// 	"interests": {
-	// 		type: "",
-	// 		tags: ""
-	// 	},
-	// 	"projects": {
-	// 		type: "",
-	// 		name: "",
-	// 		description: "",
-	// 		link: ""
-	// 	},
-	// 	"otherFields": {
-	// 		title: "",
-	// 		body: ""
-	// 	}
-
 	$scope.checkType = function( val ) {
 		return typeof val === 'string' ? true : false;
 	};
@@ -105,6 +76,7 @@ angular.module('trellisApp')
 		});
 	};
 
+	//For education radio buttons
 	$scope.other = {};
 	$scope.otherEd = function(edLevel, edIndex){
 		console.log($scope.other);
@@ -117,5 +89,15 @@ angular.module('trellisApp')
 			console.log('false!!!!!!!!!!!!!');
 			$scope.other[edIndex] = false;
 		}
-	}
+	};
+
+	//For education select boxes
+	$scope.showBox = function(school){
+		console.log(school, "Stufffffffff");
+		if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
+			return true;
+		} else {
+			return false;
+		}
+	};
 });
