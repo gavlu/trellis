@@ -6,7 +6,7 @@
 	<!-- <div class="age">{{plant.age}}</div> -->
 	<div class="phone">{{plant.phone}}</div>
 	<div class="email">{{plant.email}}</div>
-	<div class="reminder">{{plant.reminder}}</div>
+	<div class="reminder">{{plant.reminders[plant.reminders.length-1]}}</div>
 	
 	<button class='button editButton' ng-click="editPlant(plant._id)">EDIT</button>
 	<button class='button deleteButton' ng-click="deletePlant(plant)">DELETE</button>
@@ -24,5 +24,25 @@
 	<button class='button reminderButton' ng-if="!makeNewReminder" ng-click="addReminder('adding')"> ++ </button>
 
 	<button class='button reminderButton' ng-if="makeNewReminder" ng-click="addReminder('saving', plant._id, newReminder)"> &#x2713&#x2713 </button>
+
+
+An application that allows users to find other users, copy other users profiles, and then edit and store the copied profiles in a personal repository. Allows people to maintain and reference information about people that they find pertinent.
+
+
+Having the ability to pre-fill certain fields would make it much easier for users. It would mean less manual data input. This is really just a project for school (Fullstack Academy in New York)
+
+
+1) User logs in by clicking on 'Connect with Facebook'.
+2) A Facebook Graph API call is made, getting info from user_about_me, and copying to object on client-side controller
+3) User then selects the "My Profile" tab in the navbar
+4) New state change displays prepopulated user information provided by Facebook api call
+5) User can click on the pencil icon in the lower right hand corner of the page (assuming large window size) and is able to edit information
+--
+6) User 1 can search for another user (user2) by submitting the user2's correct/associated email address in the 'Search for user' text box located on the sidebar (assuming large window size).
+7) User2's profile preview page is displayed with certain data fields populated by Graph API call.
+8) Clicking on 'Clone' makes a copy of the data made available by user2 and saves the copy into user1's "trellis", where existing fields can be edited and more fields added as desired.
+
+
+When a user signs in, their profile would be pre-populated with the information made available in user_about_me
 
  -->

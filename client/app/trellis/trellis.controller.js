@@ -64,6 +64,8 @@ angular.module('trellisApp')
     /**** END Profile Preview ****/
 
 
+
+
     $scope.plantFilter = function(plantName) {
       var query = new RegExp($scope.name, "i");
       if(query.test(plantName)){
@@ -76,16 +78,33 @@ angular.module('trellisApp')
       $scope.criteria = criteria;
     };
 
-
     $scope.dropdown = [
       {text: "Name", click: "sortPlants('name')"},
       {text: "Date: newest to oldest", click: "sortPlants(date)"},
       {text: "Date: oldest to newest", click: "sortPlants('date')"}
     ];
 
+    /**** REMINDERS CARDS ****/
+    $scope.remindersArray = [
+      {plantName: "Brendhan Haas", reminder: "Don't forget this", plantEvent: "Birthday"},
+      {plantName: "James Kelly", reminder: "Facebook sucks", plantEvent: "Kill Facebook"},
+      {plantName: "Gavin Lue", reminder: "Make Chronjob work", plantEvent: "Code Trellis"},
+      {plantName: "Gavin Lue", reminder: "Make Chronjob work", plantEvent: "Code Trellis"}
+    ];
 
-    $scope.fakeReminders = [1,2,3,4,5,6];
-  });
+  })
+  .directive('ngEnter', function(){
+    return function(scope, element, attrs){
+      element.bind('keydown keypress', function(event){
+        if (event.which === 13){
+          scope.$apply(function(){
+            scope.$eval(attrs.ngEnter, {'event': event});
+            });
+          event.preventDefault();
+        }
+      });
+    };
+  })
 
 
 

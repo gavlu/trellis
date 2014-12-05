@@ -2,29 +2,11 @@
 
 var User = require('./user.model');
 var passport = require('passport');
-var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
 var validationError = function(res, err) {
   return res.json(422, err);
 };
-
-var sendEmail = function(to, subject, text){
-  var options = {
-    from: 'reminder.trellis@gmail.com',
-    to: to,
-    subject: subject,
-    text: text
-  }
-  config.email.transporter.sendMail(options, function(err, info){
-    if(err){
-      console.log(err);
-    }else{
-      console.log('Message sent: ' + info.response);
-    }
-  config.email.transporter.close();
-  });
-}
 
 /**
  * Get list of users
@@ -75,11 +57,7 @@ exports.clone = function (req, res, next) {
   console.log("---------------------")
   console.log(req.body);
   User.findByIdAndUpdate(userId, { $push: { plants: req.body._id } }, function (err, user) {
-    if(err) throw err ;
-      sendEmail(user.email, 
-        'You have a new plant to tend to!', 
-        'Water your plant, make sure it gets an adequate amount of sunlight, and keep it away from the dog.'
-      ); 
+    if(err) throw err ; 
     res.send(200);
   });
 };
