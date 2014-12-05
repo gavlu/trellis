@@ -58,7 +58,17 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   console.log("Update, hit!")
   console.log(req.body._id);
-  Plant.findByIdAndUpdate(req.body._id, req.body, function(err, plant) {
+  var objectId = req.body._id;
+
+  var newObject = req.body;
+
+  delete newObject._id;
+
+
+  Plant.findByIdAndUpdate(objectId, {$set: newObject}, function(err, plant, numModified) {
+    console.log("this is err", err);
+    console.log("newly updated plant", plant);
+    console.log("this is nummdofied", numModified);
     res.json(plant);
   });
 };
