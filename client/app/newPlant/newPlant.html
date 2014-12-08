@@ -7,132 +7,130 @@
 		<label for="email">Email:</label>
 		<input type="text" ng-model="plant.email" name="email"/>
 	</form> -->
-	
 	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
 	  Action <span class="caret"></span>
 	</button>
-	
-	<div class="col-md-12">
-		<form novalidate class="editPlantForm" name="form">
-			<div class="name">
-				<label for="name">Name: </label>
-				<input type="text" ng-model="newPlant.name" name="name"/>
-			</div>
-			<div class="email" ng-if="show('email')">
-				<label for="name">Email: </label>
-				<input type="text" ng-model="newPlant.email" name="email">
-			</div>
 
-			<div class="phone" ng-if="show('phone')">
-				<label for="name">Phone: </label>
-				<input type="text" ng-model="newPlant.phone" name="phone" placeholder="(###) ###-####">
-			</div>
+	<form novalidate class="newPlantForm card" name="form">
+		<div class="name">
+			<label for="name">Name: </label>
+			<input type="text" ng-model="newPlant.name" name="name" placeholder="James"/>
+		</div>
+		<div class="email" ng-if="show('email')">
+			<label for="name">Email: </label>
+			<input type="text" ng-model="newPlant.email" name="email" placeholder="james@gmail.com">
+		</div>
 
-			<div class="age" ng-if="show('age')">
-				<label for="name">Age: </label>
-				<input type="text" ng-model="newPlant.age" name="age">
-			</div>
+		<div class="phone" ng-if="show('phone')">
+			<label for="name">Phone: </label>
+			<input type="text" ng-model="newPlant.phone" name="phone" placeholder="(###) ###-####">
+		</div>
 
-			<div class="relationship" ng-if="show('relationship')">
-				<label>Relationship: </label>
-				<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
-			</div>
+		<div class="age" ng-if="show('age')">
+			<label for="name">Age: </label>
+			<input type="text" ng-model="newPlant.age" name="age" placeholder="18">
+		</div>
 
-			<div class="family" ng-if="show('family')">
-				<label for="name">Family: </label>
-				<div ng-repeat="member in newPlant.family track by $index">
-					<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
-					<input type="text" ng-model="member.relation" name="memberRelation" placeholder="Relation">
+		<div class="relationship" ng-if="show('relationship')">
+			<label>Relationship: </label>
+			<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
+		</div>
+
+		<div class="family" ng-if="show('family')">
+			<label for="name">Family: </label>
+			<div ng-repeat="member in newPlant.family track by $index">
+				<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
+				<input type="text" ng-model="member.relation" name="memberRelation" placeholder="Relation">
+			</div>
+			<button class="button editButton" ng-click="addField('family')"> + </button>
+			<button class="button deleteButton" ng-click="deleteField('family')"> - </button>
+		</div>
+
+		<div class="hometown" ng-if="show('hometown')">
+			<label for="name">Hometown: </label>
+			<input type="text" ng-model="newPlant.hometown" name="hometown" placeholder="Guam">
+		</div>
+
+		<div class="currentCity" ng-if="show('currentCity')">
+			<label for="name">Current City: </label>
+			<input type="text" ng-model="newPlant.currentCity" name="currentCity" placeholder="New York City">
+		</div>
+		<div class="employer" ng-if="show('employer')">
+			<label for="name">Employer: </label>
+			<input type="text" ng-model="newPlant.employer" name="employer" placeholder="Dunder Mifflin">
+		</div>
+
+		<div class="projects" ng-if="show('projects')">
+			<label for="name">Projects: </label>
+			<div ng-repeat="project in newPlant.projects track by $index">
+				<input type="text" ng-model="project.name" name="projects" placeholder="Title/Goal">
+				<div>
+					<input type="text" ng-model="project.type" name="projects" placeholder="Type">
+					<input type="text" ng-model="project.description" name="projects" placeholder="Description">
+					<input type="text" ng-model="project.link" name="projects" placeholder="Link">
 				</div>
-				<button ng-click="addField('family')"> ++ </button>
-				<button ng-click="deleteField('family')"> -- </button>
-			</div>
 
-			<div class="hometown" ng-if="show('hometown')">
-				<label for="name">Hometown: </label>
-				<input type="text" ng-model="newPlant.hometown" name="hometown">
 			</div>
+			<button class="button editButton" ng-click="addField('projects')"> + </button>
+			<button class="button deleteButton" ng-click="deleteField('projects')"> - </button>
+		</div>
 
-			<div class="currentCity" ng-if="show('currentCity')">
-				<label for="name">Current City: </label>
-				<input type="text" ng-model="newPlant.currentCity" name="currentCity">
-			</div>
-			<div class="employer" ng-if="show('employer')">
-				<label for="name">Employer: </label>
-				<input type="text" ng-model="newPlant.employer" name="employer">
-			</div>
-
-			<div class="projects" ng-if="show('projects')">
-				<label for="name">Projects: </label>
-				<div ng-repeat="project in newPlant.projects track by $index">
-					<input type="text" ng-model="project.name" name="projects" placeholder="Title/Goal">
-					<div>
-						<input type="text" ng-model="project.type" name="projects" placeholder="Type">
-						<input type="text" ng-model="project.description" name="projects" placeholder="Description">
-						<input type="text" ng-model="project.link" name="projects" placeholder="Link">
-					</div>
-					
-				</div>
-				<button ng-click="addField('projects')"> ++ </button>
-				<button ng-click="deleteField('projects')"> -- </button>
-			</div>
-
-			<div class="interests" ng-if="show('interests')">
-				<label for="name">Interests: </label>
-				<div ng-repeat="interest in newPlant.interests track by $index" ng-init="outer=$index">
-					<input type="text" ng-model="interest.type" name="interests" placeholder="Category/Name">
-					<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
-						<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
-					</span>
-					<div>
-						<button ng-click="addField('tags', outer)"> +Tag </button>
-						<button ng-click="deleteField('tags', outer)"> -Tag </button>
-					</div>
-
-				</div>
-				<button ng-click="addField('interests')"> ++ </button>
-				<button ng-click="deleteField('interests')"> -- </button>
-			</div>
-
-			<div class="importantDates" ng-if="show('importantDates')">
-				<label for="name">Important Dates: </label>
-				<div ng-repeat="date in newPlant.importantDates">
-					<input type="text" ng-model="date.eventName" name="importantDates" placeholder="Event">
-					<input type="text" ng-model="date.date" placeholder="Date">
-					<input type="text" ng-model="date.description" placeholder="Description/Notes">
-				</div>
-				<button ng-click="addField('importantDates')"> ++ </button>
-				<button ng-click="deleteField('importantDates')"> -- </button>
-			</div>
-
-			<div class="notes" ng-if="show('notes')">
-				<label for="name">Notes: </label>
-				<input ng-model="newPlant.notes" name="notes">
-			</div>
-
-			<div class="reminders" ng-if="show('reminders')">
-				<label for="name">Reminders: </label>
-				<span ng-repeat="reminder in newPlant.reminders track by $index">
-					<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
+		<div class="interests" ng-if="show('interests')">
+			<label for="name">Interests: </label>
+			<div ng-repeat="interest in newPlant.interests track by $index" ng-init="outer=$index">
+				<input type="text" ng-model="interest.type" name="interests" placeholder="Category/Name">
+				<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
+					<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
 				</span>
-				<button ng-click="addField('reminders')"> ++ </button>
-				<button ng-click="deleteField('reminders')"> -- </button>
+				<div>
+					<button class="button editButton" ng-click="addField('tags', outer)"> +Tag </button>
+					<button class="button deleteButton" ng-click="deleteField('tags', outer)"> -Tag </button>
+				</div>
+
 			</div>
-		
-			<button ng-click="create('cancel')">Cancel</button>
-			<button ng-click="create('save'); form.$setPristine()">Create</button>
+			<button class="button editButton" ng-click="addField('interests')"> + </button>
+			<button class="button deleteButton" ng-click="deleteField('interests')"> - </button>
+		</div>
+
+		<div class="importantDates" ng-if="show('importantDates')">
+			<label for="name">Important Dates: </label>
+			<div ng-repeat="date in newPlant.importantDates">
+				<input type="text" ng-model="date.eventName" name="importantDates" placeholder="Event">
+				<input type="text" ng-model="date.date" placeholder="Date">
+				<input type="text" ng-model="date.description" placeholder="Description/Notes">
+			</div>
+			<button class="button editButton" ng-click="addField('importantDates')"> + </button>
+			<button class="button deleteButton" ng-click="deleteField('importantDates')"> - </button>
+		</div>
+
+		<div class="notes" ng-if="show('notes')">
+			<label for="name">Notes: </label>
+			<textarea type="text" g-model="newPlant.notes" name="notes" placeholder="This person loves basejumping"></textarea>
+		</div>
+
+		<div class="reminders" ng-if="show('reminders')">
+			<label for="name">Reminders: </label>
+			<span ng-repeat="reminder in newPlant.reminders track by $index">
+				<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
+			</span>
+			<button class="button editButton" ng-click="addField('reminders')"> + </button>
+			<button class="button deleteButton" ng-click="deleteField('reminders')"> - </button>
+		</div>
+
+		<div class="buttonBox">
+			<button class="flatButton" ng-click="create('cancel')">Cancel</button>
+			<button class="button save" ng-click="create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			<span class="updated" ng-if="show()">
 				<i class="fa fa-floppy-o"></i>
 				<i class="fa fa-check"></i>
 			</span>
-		</form>
-		{{newPlant}}
-	</div>
-
+		</div>
+	</form>
+	<!-- {{newPlant}} -->
 
 	<!-- <input type="checkbox" ng-model="advanced" name="advanced">
 	<label for="advanced">Advanced</label>
-	
+
 		<label for="age">Age:</label>
 		<input type="text" ng-model="plant.age" name="age"/>
 		<label for="hometown" ng-show="advanced">Hometown:</label>

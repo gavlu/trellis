@@ -26,7 +26,7 @@ $btnGithubBackgroundHighlight:      #ccc;
 
 .button-accountPage {
   background: linear-gradient(hsl(200, 50%, 50%), hsl(200,50%, 45%));
-  border-bottom: 3px solid hsl(200, 60%, 25%);
+  border-bottom: 1px solid hsl(200, 60%, 25%);
   font-size: 1em;
 }
 
@@ -65,7 +65,7 @@ $btnGithubBackgroundHighlight:      #ccc;
 
 .button-facebook {
   background: linear-gradient(hsl(230, 50%, 45%), hsl(230,50%, 40%));
-  border-bottom: 2px solid hsl(230, 60%, 25%);
+  border-bottom: 1px solid hsl(230, 60%, 25%);
   &:hover {
     background: linear-gradient(hsl(230, 50%, 40%), hsl(230,50%, 35%));
   }
@@ -76,7 +76,7 @@ $btnGithubBackgroundHighlight:      #ccc;
 
 .button-google-plus {
   background: linear-gradient(hsl(5, 60%, 55%), hsl(5,60%, 50%));
-  border-bottom: 2px solid hsl(5, 60%, 25%);
+  border-bottom: 1px solid hsl(5, 60%, 25%);
   &:hover {
     background: linear-gradient(hsl(5, 60%, 50%), hsl(5,60%, 45%));
   }
