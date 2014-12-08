@@ -22,7 +22,7 @@
 	font-size: 0.8em;
 	padding: .5em 1.25em;
 	background: linear-gradient(hsl(0, 50%, 50%), hsl(0,50%, 45%));
-	border-bottom: 2px solid hsl(0, 60%, 25%);
+	border-bottom: 1px solid hsl(0, 60%, 25%);
 
 	&:hover {
 	background: linear-gradient(hsl(0, 50%, 45%), hsl(0,50%, 40%));
@@ -37,7 +37,7 @@
 	font-size: 0.8em;
 	padding: .5em 1.25em;
 	background: linear-gradient(hsl(220, 50%, 50%), hsl(220,50%, 45%));
-	border-bottom: 2px solid hsl(220, 60%, 25%);
+	border-bottom: 1px solid hsl(220, 60%, 25%);
 
 	&:hover {
 	background: linear-gradient(hsl(220, 50%, 45%), hsl(220,50%, 40%));
@@ -52,7 +52,7 @@
 	font-size: 0.8em;
 	padding: .5em 1.25em;
 	background: linear-gradient(hsl(90, 50%, 50%), hsl(90,50%, 45%));
-	border-bottom: 2px solid hsl(90, 60%, 25%);
+	border-bottom: 1px solid hsl(90, 60%, 25%);
 
 	&:hover {
 	background: linear-gradient(hsl(90, 50%, 45%), hsl(90,50%, 40%));
