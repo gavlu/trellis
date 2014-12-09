@@ -71,6 +71,7 @@ angular.module('trellisApp')
 	    		console.log("Here's your updated plant: ");
 	    		console.log(updated);
 	    		$scope.saved = true;
+          $state.go('trellis.plants');
 	    	})
 	    }
 	    else if(input === 'reset'){

@@ -3,11 +3,7 @@
 angular.module('trellisApp')
 .controller('MyprofileCtrl', function ($scope, Auth, userService) {
 	$scope.me = {};
-	for (var variable in Auth.getCurrentUser()) {
-		if (Auth.getCurrentUser().hasOwnProperty(variable)) {
-			$scope.me[variable] = Auth.getCurrentUser()[variable];
-		}
-	}
+	angular.copy( Auth.getCurrentUser(), $scope.me );
 	delete $scope.me.__v;
 	delete $scope.me._id;
 	delete $scope.me.$promise;
@@ -16,7 +12,7 @@ angular.module('trellisApp')
 	delete $scope.me.facebook;
 	delete $scope.me.plants;
 	delete $scope.me.role;
-	// $scope.me.interests = [{'type': 'gaming'}, {'type':'photography'}];
+	console.log($scope.me);
 
 	$scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
 
@@ -73,6 +69,7 @@ angular.module('trellisApp')
 	$scope.updateUser = function() {
 		userService.updateUser($scope.me, function(data){
 			console.log(data);
+			$scope.editable = !$scope.editable;
 		});
 	};
 
