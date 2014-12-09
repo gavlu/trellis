@@ -70,7 +70,7 @@ User.find({}).remove(function() {
   }, {
     provider: 'local',
     name: 'Brendhan Haas',
-    email: 'bhassawesomeness@gmail.com',
+    email: 'bhaas@gmail.com',
     password: 'bhaas',
     phone: '2032585619',
     age: '25',
@@ -112,6 +112,10 @@ User.find({}).remove(function() {
       eventName: "Wedding",
       date: "July 11, 2015",
       description: "Big man is getting married at the Whittaker church."
+    },{
+      eventName: "Cron test",
+      date: "December 09, 2014",
+      description: "Please allow me to reintroduce myself! My name is James."
     }],
     interests: [{
       type: "Video games",

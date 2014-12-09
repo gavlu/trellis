@@ -13,19 +13,21 @@
 	</button>
 	
 	<div class="col-md-12">
-		<form novalidate class="editPlantForm" name="form">
+		<form novalidate class="newPlantForm card" name="form">
 			<div class="name">
 				<label for="name">Name: </label>
-				<input type="text" ng-model="newPlant.name" name="name"/>
+				<input type="text" ng-model="newPlant.name" name="name" placeholder="James"/>
 			</div>
 			<div class="email" ng-if="show('email')">
 				<label for="name">Email: </label>
-				<input type="text" ng-model="newPlant.email" name="email">
+				<input type="text" ng-model="newPlant.email" name="email" placeholder="james@gmail.com">
 			</div>
 
 			<div class="phone" ng-if="show('phone')">
 				<label for="name">Phone: </label>
-				<input type="text" ng-model="newPlant.phone" name="phone" placeholder="(###) ###-####">
+				<div ng-repeat="phone in phones track by $index">
+					<input type="text" ng-model="phone" name="phone" placeholder="(###) ###-####">
+				</div>
 			</div>
 
 			<div class="age" ng-if="show('age')">
@@ -33,10 +35,17 @@
 				<input type="text" ng-model="newPlant.age" name="age">
 			</div>
 
+			<div class="contactFrequency" ng-if="show('contactFrequency')">
+				<label for="contactFrequency">Contact Frequency: </label>
+				<input type="text" name="contactFrequency" ng-model="newPlant.contactFrequency">
+			</div>
+
 			<div class="relationship" ng-if="show('relationship')">
 				<label>Relationship: </label>
+				<input type="text" ng-model="newPlant.relationship.status">
 				<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
 			</div>
+
 
 			<div class="family" ng-if="show('family')">
 				<label for="name">Family: </label>
@@ -55,12 +64,14 @@
 
 			<div class="currentCity" ng-if="show('currentCity')">
 				<label for="name">Current City: </label>
-				<input type="text" ng-model="newPlant.currentCity" name="currentCity">
+				<input type="text" ng-model="newPlant.currentCity" name="currentCity" placeholder="New York City">
 			</div>
-			<div class="employer" ng-if="show('employer')">
-				<label for="name">Employer: </label>
-				<input type="text" ng-model="newPlant.employer" name="employer">
+			<div class="employment" ng-if="show('employment')">
+				<label for="name">Employment: </label>
+				<input type="text" ng-model="newPlant.employment.employer" name="employer" placeholder="Dunder Mifflin">
+				<input type="text" ng-model="newPlant.employment.position" name="position" placeholder="Asst to Regional Manager">
 			</div>
+
 
 			<div class="projects" ng-if="show('projects')">
 				<label for="name">Projects: </label>

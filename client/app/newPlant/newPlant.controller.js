@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('NewplantCtrl', function ($scope, $state, plantService, userService) {
+  .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
     $scope.newPlant = {
     	name: "",
     	email: "",
-    	phone: "",
+    	phone: [""],
     	age: "",
+    	contactFrequency: "",
     	relationship: {
+    		status: "",
     		partner: ""
     	},
     	hometown: "",
@@ -25,6 +27,10 @@ angular.module('trellisApp')
 			date: "",
 			description: ""
 		}],
+		employment: {
+			employer: "",
+			position: ""
+		},
 		interests: [{
 			type: "",
 			tags: [""]
@@ -39,7 +45,8 @@ angular.module('trellisApp')
 			title: "",
 			body: ""
 		}],
-		reminders: []
+		reminders: [],
+		ownerId: Auth.getCurrentUser._id
     };
     $scope.newMaster = angular.copy($scope.newPlant);
 
@@ -48,13 +55,14 @@ angular.module('trellisApp')
 	$scope.icons = [
 	    // {value: 'name', label: '<i class="fa fa-user"></i> Name'},
 	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
-	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
+	    {value: 'phones', label: '<i class="fa fa-phone"></i> Phone'},
 	    {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+	    {value: 'contactFrequency', label: '<i class="fa fa-paper-plane-o"></i> Contact Frequency'},
 	    {value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
 	    {value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
 	    {value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
 	    {value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
-	    {value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
+	    {value: 'employment', label: '<i class="fa fa-briefcase"></i> Employer'},
 	    {value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
 	    {value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
 	    {value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
@@ -69,6 +77,8 @@ angular.module('trellisApp')
 
 
 	$scope.typeObj = {
+		// "phone": "",
+		// "reminders": "",
 		"family": {
 			name: "",
 			relation: ""
@@ -102,11 +112,7 @@ angular.module('trellisApp')
 		console.log(key, index)
 	    if( key == "tags" ){
 	    	$scope.newPlant.interests[index].tags.push("")
-	    } 
-	    else if ( key == "reminders" ) {
-	    	$scope.newPlant.reminders.push("");
-	    }
-	    else {
+	    } else {
 	    	$scope.newPlant[key].push(angular.copy($scope.typeObj[key]));
 	    }
 	};

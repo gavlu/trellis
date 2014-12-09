@@ -8,13 +8,14 @@ var mongoose = require('mongoose'),
 var PlantSchema = new Schema({
   picture: { type: String },
   name: { type: String },
-  phone: String,                                /**** NOTE: make required for search purposes? ****/
+  phones: [String],                                /**** NOTE: make required for search purposes? ****/
   email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
   age: { type: Number },
   hometown: { type: String },
   currentCity: { type: String },
   reminders: { type: [String] },
   relationship: {
+    status: { type: String },
     partner: { type: String }
   },
   family: [{
@@ -25,12 +26,17 @@ var PlantSchema = new Schema({
     level: { type: String },
     name: { type: String },
   }],
-  employer: { type: String },                   /**** NOTE: Can we use Foursquare or some other places API? ****/
+  employment: { 
+    employer: String,
+    position: String 
+  },                                            /**** NOTE: Can we use Foursquare or some other places API? ****/
+  
   importantDates: [{ 
     eventName: { type: String },
     date: { type: Date },
     description: { type: String  }
   }],
+  
   interests: [{ 
     type: { type: String },
     tags: { type: [String] }
@@ -48,11 +54,13 @@ var PlantSchema = new Schema({
     title: { type: String },
     body: { type: String }
   }],
+  contactFrequency: { type: String },
   dateAdded: {
   	type: Date,
   	default: Date.now()
   },
-  userId: { type: String }
+  userId: { type: String },
+  ownerId: { type: String }
 });
 
 module.exports = mongoose.model('Plant', PlantSchema);
