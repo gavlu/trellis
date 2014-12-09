@@ -112,7 +112,10 @@ angular.module('trellisApp')
 	];
 
 	$scope.show = function(inputField) {
-		if ( $scope.tempMe[inputField].length > 0 || $scope.tempMe[inputField] ) {
+		if ( $scope.tempMe[inputField] ) {
+			if ( typeof $scope.tempMe[inputField] === 'object' && $scope.tempMe[inputField].length === 0 ) {
+				return false;
+			}
 			if ( $scope.selectedIcons.indexOf(inputField) === -1) { $scope.selectedIcons.push(inputField); }
 			return true;
 		} else {
