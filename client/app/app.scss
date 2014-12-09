@@ -197,6 +197,7 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
   margin: 0 .5em 0 0;
   border-radius: .2em;
   padding: .3em .9em;
+  outline-color: hsl(110, 50%, 50%);
   &:hover {
     color: hsl(0, 100%, 60%);
     box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.8);
@@ -205,15 +206,23 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
     color: hsl(0, 80%, 40%);
   }
 }
-// Green highlight for text input boxes
+// Green highlight for input boxes
 
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=number], textarea {
   padding: 0.5em;
   border: 1px solid hsl(110, 0%, 80%);
   border-radius: 2px;
   box-shadow: 0px 1px 2px -1px hsla(0, 0%, 0%, 0.5) inset;
   &:focus {
     outline-color: hsl(110, 50%, 50%);
+  }
+}
+
+.profileDetails {
+  /* font-size: 1.3em; */
+  margin-left: .5em;
+  h3, h4, label {
+    margin-left: -.5em;
   }
 }
 
@@ -229,11 +238,6 @@ input[type=text], input[type=password], textarea {
   ul {
     list-style-type: none;
     padding: 0;
-  }
-
-  .profileDetails {
-    font-size: 1.3em;
-    margin-left: .5em;
   }
 
   label {
