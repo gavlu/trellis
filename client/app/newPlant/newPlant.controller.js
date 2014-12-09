@@ -5,62 +5,53 @@ angular.module('trellisApp')
     var vm = this;
 
     $scope.newPlant = {
-    	name: "",
-    	email: "",
-    	phone: "",
-    	age: "",
-    	relationship: {
-    		partner: ""
-    	},
-    	hometown: "",
-    	currentCity: "",
-    	family: [{
-			name: "",
-			relation: ""
-		}],
-		education: [{
-			level: "other",
-			name: ""
-		}],
-		importantDates: [{
-			eventName: "",
-			date: "",
-			description: ""
-		}],
-		interests: [{
-			type: "",
-			tags: [""]
-		}],
-		projects: [{
-			type: "",
-			name: "",
-			description: "",
-			link: ""
-		}],
-		otherFields: [{
-			title: "",
-			body: ""
-		}],
-		reminders: []
+      name: "",
+      picture: "/assets/images/empty_profile.png",
+      email: "",
+      phone: "",
+      age: "",
+      relationship: {
+      	partner: ""
+      },
+      hometown: "",
+      currentCity: "",
+      family: [{
+        name: "",
+        relation: ""
+      }],
+      education: [{
+        level: "other",
+        name: ""
+      }],
+      importantDates: [{
+        eventName: "",
+        date: "",
+        description: ""
+      }],
+      interests: [{
+        type: "",
+        tags: [""]
+      }],
+      projects: [{
+        type: "",
+        name: "",
+        description: "",
+        link: ""
+      }],
+      otherFields: [{
+        title: "",
+        body: ""
+      }],
+      reminders: []
     };
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
-    //For education select boxes
-    $scope.showBox = function(school){
-      console.log(school, "Stufffffffff");
-      if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
-        return true;
-      } else {
-        return false;
-      }
-    };
 
     $scope.newMaster = angular.copy($scope.newPlant);
 
     $scope.selectedIcon = "";
   	$scope.selectedIcons = [];
   	$scope.icons = [
-  	    // {value: 'name', label: '<i class="fa fa-user"></i> Name'},
   	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
   	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
   	    {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
@@ -77,7 +68,7 @@ angular.module('trellisApp')
   	    {value: 'reminders', label: '<i class="fa fa-star"></i> Reminders'}
   	];
 
-  	$scope.show = function(inputField) {
+  	vm.show = function(inputField) {
   		return $scope.selectedIcons.indexOf(inputField) > -1;
   	};
 
@@ -112,7 +103,7 @@ angular.module('trellisApp')
   		}
   	};
 
-  	$scope.addField = function( key, index ) {
+  	vm.addField = function( key, index ) {
   		console.log(key, index)
   	    if( key == "tags" ){
   	    	$scope.newPlant.interests[index].tags.push("")
@@ -125,7 +116,7 @@ angular.module('trellisApp')
   	    }
   	};
 
-  	$scope.deleteField = function( key, index ) {
+  	vm.deleteField = function( key, index ) {
   	  console.log($scope.newPlant[key]);
   	  if( key == "tags" ){
   	  	$scope.newPlant.interests[index].tags.splice($scope.newPlant.interests[index].tags.length-1, 1);
@@ -135,7 +126,7 @@ angular.module('trellisApp')
   	  }
   	};
 
-  	$scope.create = function (input) {
+  	vm.create = function (input) {
     	console.log($scope.newPlant);
     	if(input === 'save'){
 	    	plantService.createPlant($scope.newPlant, function(created) {
@@ -154,4 +145,37 @@ angular.module('trellisApp')
 	    	$state.go('trellis.plants');
 	    }
     }
+
+    //For education select boxes
+    vm.showBox = function(school){
+      console.log(school, "Stufffffffff");
+      if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    // FILEPICKER IMAGE UPLOAD CODE
+
+    filepicker.setKey("AoRIJarp2S3uQNeH3nBQ2z");
+    vm.uploadImage = function() {
+      filepicker.pick(
+        {
+          mimetypes: ['image/*'],
+          container: 'modal',
+          services:['COMPUTER'],
+          maxSize: 10*1024*1024
+        },
+        function(Blob){
+          $scope.newPlant.picture = Blob.url;
+          $scope.$digest();
+          console.log(JSON.stringify(Blob));
+        },
+        function(FPError){
+          console.log(FPError.toString());
+        }
+      );
+    };
+
   });
