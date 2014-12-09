@@ -40,7 +40,7 @@ var isPast = function(date) {
 
 
 var job = new CronJob({
-	cronTime: '* * 5,17 * * *',
+	cronTime: '00 00 5,17 * * *',
     onTick: function(){
     	console.log('Date is now: ', Date());
     	console.log('You will see this message every 15 seconds');
@@ -71,32 +71,32 @@ var job = new CronJob({
 
                         User.findById(plant.ownerId, function(err, user){
                             sendEmail({
-                                to: user.email, 
+                                to: user.email,
                                 replyTo: plant.email,
                                 subject: "Trellis contact: " + plant.name + " | Event Today: " + someEvent.eventName,
-                                text: user.name + ", \n\n" 
-                                    + plant.name + " has an event happening today: \n\t" 
+                                text: user.name + ", \n\n"
+                                    + plant.name + " has an event happening today: \n\t"
                                     + "Event: " + someEvent.eventName + "\n\t"
                                     + "Notes: " + someEvent.description + "\n\n\n"
-                                    + "Contact him/her by either: \n\t 1) Replying to this email \n\t 2) Call (or text) at:\n\t\t" + phoneNum + "\n\n"  
+                                    + "Contact him/her by either: \n\t 1) Replying to this email \n\t 2) Call (or text) at:\n\t\t" + phoneNum + "\n\n"
                                     + "And don't forget! You wanted to remind them about: \n\n\t" + emailReminders + "\n\n\n\n"
                                     + "More information or to update: \n\t http://localhost:9000/trellis"
 
-                           }); 
+                           });
                         })
                     };
 
                     console.log("-------------------")
-                    
+
                 })
 
 
-                
+
                 console.log("----------------------------------")
             })
     	})
-	}, 
-	onComplete: null, 
-	start: true, 
+	},
+	onComplete: null,
+	start: true,
 	timeZone: "America/New_York"
 });
