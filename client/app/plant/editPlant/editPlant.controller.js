@@ -68,7 +68,6 @@ angular.module('trellisApp')
     	console.log($scope.editPlant);
     	if(input === 'save'){
 	    	plantService.updatePlant($scope.editPlant, function(updated) {
-	    		$scope.plantUpdated = true;
 	    		console.log("Here's your updated plant: ");
 	    		console.log(updated);
 	    		$scope.saved = true;

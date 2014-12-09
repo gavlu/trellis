@@ -16,6 +16,7 @@
         </li>
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/trellis/myProfile')}"><a ui-sref="trellis.myProfile">My Profile</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/calendar')}"><a ui-sref="trellis.calendar">Calendar</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
