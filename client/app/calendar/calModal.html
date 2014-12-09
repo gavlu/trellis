@@ -1,0 +1,19 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+      </div>
+      <div class="modal-body">
+        <label for="time">Time</label>
+        <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker>
+        <label for="notes">Notes</label>
+        <textarea ng-model="notes" name="notes"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="setReminder(cal.year, cal.month, cal.date, notes); $hide()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="col-md-12" ng-init="cal=setCal()">
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default">&#171</button>
+	  <button type="button" class="btn btn-default">&#187</button>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th ng-repeat="day in days">{{day}}</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="week in cal.weeks">
+			<td ng-repeat="date in week" data-animation="am-fade-and-scale" data-placement="center" ng-click="showModal(days[week.indexOf(date)], cal.month + 1, date, cal.year)">{{date}}</td>
+		</tr>
+	</table>
+</div>
