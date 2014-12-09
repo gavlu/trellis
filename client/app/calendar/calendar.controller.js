@@ -3,7 +3,9 @@
 angular.module('trellisApp')
   	.controller('CalendarCtrl', function ($scope, $modal) {
 
-		$scope.dateObj = new Date();
+  		$scope.date = new Date();
+  		$scope.date.setDate(1);
+
 		$scope.days = {
 			0: 'Sunday',
 			1: 'Monday',
@@ -14,7 +16,22 @@ angular.module('trellisApp')
 			6: 'Saturday'
 		}
 
-		$scope.notLeap = function(year){
+		$scope.months = {
+			0: 'January',
+			1: 'February',
+			2: 'March',
+			3: 'April',
+			4: 'May',
+			5: 'June',
+			6: 'July',
+			7: 'August',
+			8: 'September',
+			9: 'October',
+			10: 'November',
+			11: 'December'
+		}
+
+		$scope.leap = function(year){
 			var year = year || 0;
 			if(year%4===0){
 				if(year%100!==0){
@@ -27,11 +44,11 @@ angular.module('trellisApp')
 			} else {
 				return 28;
 			}
-		}
+		};
 
 		$scope.monthLen = {
 			0: 31,
-			1: $scope.notLeap(),
+			1: $scope.leap,
 			2: 31, 
 			3: 30,
 			4: 31,
@@ -44,19 +61,48 @@ angular.module('trellisApp')
 			11: 31
 		}
 
-		//$scope.$apply();
 
 
-		$scope.setCal = function(day, date, month, year){
-			var currDay = day || $scope.dateObj.getDay();
-			var currDate = date || $scope.dateObj.getDate();
-			var currMonth = month || $scope.dateObj.getMonth();
-			var currYear = year || $scope.dateObj.getFullYear();
-			var len = $scope.monthLen[currMonth];
+		$scope.setCal = function(month, year){
+			$scope.cal = setCalendar(month, year);
+		};
+
+		var setCalendar = function(m, y){
+			var month;
+			var year;
+			var day;
+			var date;
+			if(m!==undefined && y!==undefined){
+				if(m===12){
+					month = 0;
+					year = y+1;
+				} else if(m===-1){
+					month = 11;
+					year = y-1;
+				} else {
+					month = m;
+					year = y;
+				}
+				$scope.date.setMonth(month);
+				$scope.date.setFullYear(year);
+				day = $scope.date.getDay();
+				date = $scope.date.getDate();
+			} else {
+				month = $scope.date.getMonth();
+				year = $scope.date.getFullYear();
+				day = $scope.date.getDay();
+			}
+			
+			var len = function(){
+				if(month===1){
+					return $scope.monthLen[month](year);
+				}
+				return $scope.monthLen[month];
+			}();
 			var weeks = function(){
 				var w = [];
 				var tempArr = [];
-				for(var i=0, d=currDay; i<len; i++, d++){
+				for(var i=0, d=day; i<len; i++, d++){
 					if(d<7){
 						tempArr.push(i+1);
 					} else {
@@ -74,9 +120,11 @@ angular.module('trellisApp')
 					w[0].unshift('');
 				console.log(w, 'After tempArr check');
 				return w;
-			}
-			return {day: currDay, date: currDate, month: currMonth, weeks: weeks(), year: currYear};
+			}();
+			return {day: day, date: date, month: month, weeks: weeks, year: year};
 		}
+
+		$scope.setCal();
 
 		$scope.Reminder = function(date, notes){
 			this.date = date;
