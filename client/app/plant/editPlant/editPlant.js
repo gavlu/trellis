@@ -6,6 +6,6 @@ angular.module('trellisApp')
       .state('trellis.editPlant', {
         url: '/editPlant/:id',
         templateUrl: 'app/plant/editPlant/editPlant.html',
-        controller: 'EditplantCtrl'
+        controller: 'EditplantCtrl as epc'
       });
   });
