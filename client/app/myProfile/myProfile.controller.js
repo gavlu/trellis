@@ -2,8 +2,10 @@
 
 angular.module('trellisApp')
 .controller('MyprofileCtrl', function ($scope, Auth, userService) {
-	$scope.me = {};
-	angular.copy( Auth.getCurrentUser(), $scope.me );
+
+	var vm = this;
+
+	$scope.me = angular.copy( Auth.getCurrentUser() );
 	delete $scope.me.__v;
 	delete $scope.me._id;
 	delete $scope.me.$promise;
@@ -12,63 +14,58 @@ angular.module('trellisApp')
 	delete $scope.me.facebook;
 	delete $scope.me.plants;
 	delete $scope.me.role;
-	console.log($scope.me);
+	$scope.tempMe = angular.copy($scope.me);
 
 	$scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
 
-	$scope.family = function(name, relation){
-		this.name = name;
-		this.relation = relation;
-	};
-
-	$scope.education = function(name, level){
-		this.name = name;
-		this.level = level;
-	};
-
-	$scope.importantDates = function(eventName, date, eventDescription){
-		this.eventName = eventName;
-		this.date = date;
-		this.eventDescription = eventDescription;
-	};
-
-	$scope.interests = function(type, tags){
-		this.type = type;
-		this.tags = tags;
-	};
-
-	$scope.projects = function(name, type, link, projectDescription){
-		this.name = name;
-		this.type = type;
-		this.link = link;
-		this.projectDescription = projectDescription;
-	};
-
-	$scope.otherFields = function(title, body){
-		this.title = title;
-		this.body = body;
-	};
-
-	$scope.checkType = function( val ) {
-		return typeof val === 'string' ? true : false;
+	vm.typeObj = {
+		'family': {
+			name: '',
+			relation: ''
+		},
+		'education': {
+			level: '',
+			name: ''
+		},
+		'interests': {
+			type: '',
+			tags: []
+		},
+		'projects': {
+			type: '',
+			name: '',
+			description: '',
+			link: ''
+		},
+		'otherFields': {
+			title: '',
+			body: ''
+		}
 	};
 
 	$scope.addField = function( key, index ) {
-		$scope.me[key].push(new $scope[key]);
+		console.log(key, index);
+		if( key === 'tags' ){
+			$scope.tempMe.interests[index].tags.push('');
+		} else {
+			$scope.tempMe[key].push(angular.copy(vm.typeObj[key]));
+		}
 	};
 
 	$scope.deleteField = function( key, index ) {
-		console.log($scope.me[key]);
-		$scope.me[key].splice(index, 1);
+		console.log($scope.tempMe[key]);
+		$scope.tempMe[key].splice(index, 1);
 	};
 
-	$scope.editUser = function( ) {
+	$scope.setEditable = function( ) {
+		if ( $scope.editable === true ) { angular.copy($scope.me, $scope.tempMe); }
 		$scope.editable = !$scope.editable;
 	};
 
 	$scope.updateUser = function() {
-		userService.updateUser($scope.me, function(data){
+		userService.updateUser($scope.tempMe, function(data){
 			console.log(data);
+			$scope.me = angular.copy($scope.tempMe);
 			$scope.editable = !$scope.editable;
 		});
 	};
@@ -97,4 +94,34 @@ angular.module('trellisApp')
 			return false;
 		}
 	};
+
+	$scope.selectedIcon = "";
+	$scope.selectedIcons = [];
+	$scope.icons = [
+	{value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
+	{value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+	{value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
+	{value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
+	{value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
+	{value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
+	{value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
+	{value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
+	{value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
+	{value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
+	{value: 'notes', label: '<i class="fa fa-pencil"></i> Notes'}
+	];
+
+	$scope.show = function(inputField) {
+		if ( $scope.tempMe[inputField] ) {
+			if ( typeof $scope.tempMe[inputField] === 'object' && $scope.tempMe[inputField].length === 0 ) {
+				return false;
+			}
+			if ( $scope.selectedIcons.indexOf(inputField) === -1) { $scope.selectedIcons.push(inputField); }
+			return true;
+		} else {
+			return $scope.selectedIcons.indexOf(inputField) > -1;
+		}
+	};
+
+
 });
