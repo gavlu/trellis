@@ -3,13 +3,14 @@
 angular.module('trellisApp')
   .controller('NewplantCtrl', function ($scope, $state, plantService, userService) {
     var vm = this;
-
     $scope.newPlant = {
     	name: "",
     	email: "",
-    	phone: "",
+    	phone: [""],
     	age: "",
+    	contactFrequency: "",
     	relationship: {
+    		status: "",
     		partner: ""
     	},
     	hometown: "",
@@ -27,6 +28,10 @@ angular.module('trellisApp')
 			date: "",
 			description: ""
 		}],
+		employment: {
+			employer: "",
+			position: ""
+		},
 		interests: [{
 			type: "",
 			tags: [""]
@@ -41,7 +46,8 @@ angular.module('trellisApp')
 			title: "",
 			body: ""
 		}],
-		reminders: []
+		reminders: [],
+		ownerId: Auth.getCurrentUser._id
     };
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
@@ -80,6 +86,7 @@ angular.module('trellisApp')
   	$scope.show = function(inputField) {
   		return $scope.selectedIcons.indexOf(inputField) > -1;
   	};
+
 
 
   	vm.typeObj = {
