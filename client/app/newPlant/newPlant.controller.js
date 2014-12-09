@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('NewplantCtrl', function ($scope, $state, plantService, userService) {
+  .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
     var vm = this;
     $scope.newPlant = {
     	name: "",
