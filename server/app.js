@@ -22,6 +22,7 @@ var app = express();
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
+require('./api/cron');
 
 // Start server
 server.listen(config.port, config.ip, function () {

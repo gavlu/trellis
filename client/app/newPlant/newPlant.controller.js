@@ -3,46 +3,52 @@
 angular.module('trellisApp')
   .controller('NewplantCtrl', function ($scope, $state, plantService, userService) {
     var vm = this;
-
     $scope.newPlant = {
-      name: "",
+    	name: "",
       picture: "/assets/images/empty_profile.png",
-      email: "",
-      phone: "",
-      age: "",
-      relationship: {
-      	partner: ""
-      },
-      hometown: "",
-      currentCity: "",
-      family: [{
-        name: "",
-        relation: ""
-      }],
-      education: [{
-        level: "other",
-        name: ""
-      }],
-      importantDates: [{
-        eventName: "",
-        date: "",
-        description: ""
-      }],
-      interests: [{
-        type: "",
-        tags: [""]
-      }],
-      projects: [{
-        type: "",
-        name: "",
-        description: "",
-        link: ""
-      }],
-      otherFields: [{
-        title: "",
-        body: ""
-      }],
-      reminders: []
+    	email: "",
+    	phone: [""],
+    	age: "",
+    	contactFrequency: "",
+    	relationship: {
+    		status: "",
+    		partner: ""
+    	},
+    	hometown: "",
+    	currentCity: "",
+    	family: [{
+			name: "",
+			relation: ""
+		}],
+		education: [{
+			level: "other",
+			name: ""
+		}],
+		importantDates: [{
+			eventName: "",
+			date: "",
+			description: ""
+		}],
+		employment: {
+			employer: "",
+			position: ""
+		},
+		interests: [{
+			type: "",
+			tags: [""]
+		}],
+		projects: [{
+			type: "",
+			name: "",
+			description: "",
+			link: ""
+		}],
+		otherFields: [{
+			title: "",
+			body: ""
+		}],
+		reminders: [],
+		ownerId: Auth.getCurrentUser._id
     };
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
@@ -71,6 +77,7 @@ angular.module('trellisApp')
   	vm.show = function(inputField) {
   		return $scope.selectedIcons.indexOf(inputField) > -1;
   	};
+
 
 
   	vm.typeObj = {
