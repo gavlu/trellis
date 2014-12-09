@@ -6,7 +6,7 @@ var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
-  picture: { type: String },
+  picture: { type: String, default: "/assets/images/empty_profile.png" },
   name: { type: String },
   phone: String,                                /**** NOTE: make required for search purposes? ****/
   email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
