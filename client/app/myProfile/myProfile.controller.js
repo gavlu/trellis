@@ -95,6 +95,7 @@ angular.module('trellisApp')
 	};
 
 	vm.updateUser = function() {
+		_.merge( Auth.getCurrentUser(), $scope.tempMe, function( a, b ) { return b; } );
 		userService.updateUser($scope.tempMe, function(data){
 			console.log(data);
 			$scope.me = angular.copy($scope.tempMe);
