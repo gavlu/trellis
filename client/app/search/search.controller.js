@@ -73,6 +73,7 @@ angular.module('trellisApp')
     	console.log($scope.user);
 
     	$scope.user.userId = $scope.user._id;
+        $scope.user.ownerId = Auth.getCurrentUser()._id;
     	delete $scope.user._id;
 
     	plantService.createPlant($scope.user, addToPlantCB);
