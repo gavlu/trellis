@@ -1,0 +1,54 @@
+.calendar {
+	padding: 2em;
+}
+
+.changeMonths {
+	float: right;
+	/*margin-top: 15px;*/
+}
+
+.monthYear {
+	display: inline-block;
+	line-height: 1;
+	margin-top: -1em;
+}
+
+.modalComps {
+	margin-bottom: 20px;
+}
+
+input[name='time']{
+	width: 25%;
+}
+
+textarea[name='notes']{
+	display: block;
+	width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+tr {
+	height: 10vh;
+}
+
+th {
+	font-size: 1.15em;
+	width: 14vw;
+	text-align: center;
+}
+
+td:not(.empty) {
+	position:relative;
+	text-align: right;
+	width: 10%;
+	background-color: white;
+	border: 2px black solid;
+	span {
+		position:absolute;
+		top:0;
+		right:0;
+	}
+}

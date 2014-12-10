@@ -61,8 +61,6 @@ angular.module('trellisApp')
 			11: 31
 		}
 
-
-
 		$scope.setCal = function(month, year){
 			$scope.cal = setCalendar(month, year);
 		};
@@ -94,11 +92,12 @@ angular.module('trellisApp')
 			}
 			
 			var len = function(){
-				if(month===1){
+				if(month===1){//If month is February
 					return $scope.monthLen[month](year);
 				}
 				return $scope.monthLen[month];
 			}();
+
 			var weeks = function(){
 				var w = [];
 				var tempArr = [];
@@ -117,14 +116,21 @@ angular.module('trellisApp')
 					tempArr = [];	
 				}
 				while(w[0].length<7)
-					w[0].unshift('');
+					w[0].unshift('empty');
 				console.log(w, 'After tempArr check');
 				return w;
 			}();
+
 			return {day: day, date: date, month: month, weeks: weeks, year: year};
 		}
 
 		$scope.setCal();
+
+		$scope.showModal = function(day, month, date, year){
+			if(date==='empty') return inactive;
+			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+month+"/"+date+"/"+year, show: true});
+			$scope.time = new Date();
+		}
 
 		$scope.Reminder = function(date, notes){
 			this.date = date;
@@ -138,11 +144,4 @@ angular.module('trellisApp')
 			var newEvent = new $scope.Reminder(newDate, notes);
 			console.log(newEvent);
 		}
-
-		$scope.showModal = function(day, month, date, year){
-			if(date==='') return inactive;
-			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+month+"/"+date+"/"+year, show: true});
-			$scope.time = new Date();
-		};
-
 	});
