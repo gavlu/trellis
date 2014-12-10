@@ -1,8 +1,8 @@
 <div class="col-md-12">
 	<div class="card calendar">
 		<div class="btn-group changeMonths">
-		  <button type="button" class="btn btn-default" ng-click="setCal(cal.month-1, cal.year)">&#171</button>
-		  <button type="button" class="btn btn-default" ng-click="setCal(cal.month+1, cal.year)">&#187</button>
+		  <button type="button" class="btn btn-default" ng-click="clndr.setCal(cal.month-1, cal.year)">&#171</button>
+		  <button type="button" class="btn btn-default" ng-click="clndr.setCal(cal.month+1, cal.year)">&#187</button>
 		</div>
 		<h3 class="monthYear">{{months[cal.month]}} {{cal.year}}</h3>
 		<table>
@@ -10,7 +10,7 @@
 				<tr><th ng-repeat="day in days">{{day}}</th></tr>
 			</thead>
 			<tr ng-repeat="week in cal.weeks">
-				<td ng-repeat="date in week track by $index" class="{{date}}" data-animation="am-fade-and-scale" data-placement="center" ng-click="showModal(days[week.indexOf(date)], cal.month + 1, date, cal.year)"><span ng-hide="{{date==='empty'}}">{{date}}</span></td>
+				<td ng-repeat="date in week track by $index" class="{{date}}" data-animation="am-fade-and-scale" data-placement="center" ng-click="clndr.showModal(days[week.indexOf(date)], cal.month + 1, date, cal.year)"><span ng-hide="{{date==='empty'}}">{{date}}</span></td>
 			</tr>
 		</table>
 	</div>

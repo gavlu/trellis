@@ -1,10 +1,23 @@
 .calendar {
 	padding: 2em;
+
+	table {
+		width: 100%;
+	}
+
+	tr {
+		height: 10vh;
+	}
+
+	th {
+		font-size: 1.15em;
+		width: 14vw;
+		text-align: center;
+	}
 }
 
 .changeMonths {
 	float: right;
-	/*margin-top: 15px;*/
 }
 
 .monthYear {
@@ -17,35 +30,19 @@
 	margin-bottom: 1em;
 }
 
-input[name='time']{
-	width: 25%;
+.modal {
+	.btn-primary {
+		background-color: hsl(110, 50%, 50%);
+		border: 1px solid hsl(110, 50%, 40%);
+	}
 }
 
-textarea[name='notes']{
-	display: block;
-	width: 100%;
-}
-
-table {
-	width: 100%;
-}
-
-tr {
-	height: 10vh;
-}
-
-th {
-	font-size: 1.15em;
-	width: 14vw;
-	text-align: center;
-}
-
-td:not(.empty) {
+.calendar td:not(.empty) {
 	position:relative;
 	text-align: right;
 	width: 10%;
 	background-color: white;
-	border: 2px black solid;
+	border: 2px hsl(0, 0%, 80%) solid;
 	span {
 		position:absolute;
 		top:0;
