@@ -252,7 +252,7 @@ input[type=text], input[type=password], input[type=number], textarea {
 // Max width input areas
 
 .modal, .singleProfile {
-  input, textarea {
+  input[type=text], input[type=number], textarea {
     width: 100%;
     max-width: 100%;
   }
@@ -263,6 +263,7 @@ input[type=text], input[type=password], input[type=number], textarea {
   height: 16em;
   margin: auto;
   border-radius: 0.3em;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
   display: block;
   transition: opacity 0.35s;
 }
@@ -274,7 +275,6 @@ input[type=text], input[type=password], input[type=number], textarea {
   height: 16em;
   margin: 1em auto;
   border-radius: 0.3em;
-  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
   color:white;
   background-color: hsl(110, 50%, 20%);
   transition: all 0.35s;
