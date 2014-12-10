@@ -1,6 +1,6 @@
 <div class="reminderBox card">
-	<div class="plantName">{{reminder.plantName}}</div>
-	<div class="reminder">{{reminder.reminder}}</div>
-	<div class="event">{{reminder.plantEvent}}</div>
-	<div class="countdown">{{reminder.countdown}}</div>
+	<div class="reminderPlantName">{{reminder.plantName}}</div>
+	<div class="reminderReminder">{{reminder.reminder}}</div>
+	<div class="reminderEvent"><em>{{reminder.plantEvent}}</em></div>
+	<timer autostart="true" countdown="reminder.countdown" max-time-unit="'day'" class="reminderTimer">{{days}} day{{daysS}}, {{hours}} hour{{hoursS}}</timer>
 </div>

@@ -42,8 +42,9 @@ angular.module('trellisApp')
               $scope.remindersArray.push({
                 plantName: plant.name,
                 plantEvent: date.eventName,
-                countdown: (eventDate-currentDate)
-              })
+                countdown: (eventDate-currentDate)/1000
+              });
+              $scope.$broadcast('timer-start');
             }
           }
         })

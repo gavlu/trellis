@@ -7,8 +7,6 @@ angular.module('trellisApp')
       restrict: 'E',
       scope: {
       	reminder: '=info'
-      },
-      link: function (scope, element, attrs) {
       }
     };
   });
