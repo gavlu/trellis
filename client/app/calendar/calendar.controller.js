@@ -4,7 +4,9 @@ angular.module('trellisApp')
   	.controller('CalendarCtrl', function ($scope, $modal) {
 
   		$scope.date = new Date();
+  		console.log("Should not have date", $scope.date.getDate());
   		$scope.date.setDate(1);
+  		console.log("Should have date", $scope.date.getDate());
 
 		$scope.days = {
 			0: 'Sunday',
@@ -69,7 +71,6 @@ angular.module('trellisApp')
 			var month;
 			var year;
 			var day;
-			var date;
 			if(m!==undefined && y!==undefined){
 				if(m===12){
 					month = 0;
@@ -84,9 +85,9 @@ angular.module('trellisApp')
 				$scope.date.setMonth(month);
 				$scope.date.setFullYear(year);
 				day = $scope.date.getDay();
-				date = $scope.date.getDate();
 			} else {
 				month = $scope.date.getMonth();
+				console.log("Month in setCal: ", month);
 				year = $scope.date.getFullYear();
 				day = $scope.date.getDay();
 			}
@@ -121,14 +122,16 @@ angular.module('trellisApp')
 				return w;
 			}();
 
-			return {day: day, date: date, month: month, weeks: weeks, year: year};
+			return {day: day, month: month, weeks: weeks, year: year};
 		}
 
 		$scope.setCal();
 
 		$scope.showModal = function(day, month, date, year){
 			if(date==='empty') return inactive;
-			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+month+"/"+date+"/"+year, show: true});
+			$scope.modalData = {day: day, date: date, month: month, year: year};
+			console.log("This is the month: ", month);
+			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+(month+1)+"/"+date+"/"+year, show: true});
 			$scope.time = new Date();
 		}
 
@@ -140,8 +143,10 @@ angular.module('trellisApp')
 		$scope.setReminder = function(year, month, date, notes){
 			var hours = $scope.time.getHours();
 			var minutes = $scope.time.getMinutes();
+			console.log(month, "This is the date in setReminder");
 			var newDate = new Date(year, month, date, hours, minutes);
 			var newEvent = new $scope.Reminder(newDate, notes);
+			delete $scope.modalData;
 			console.log(newEvent);
 		}
 	});

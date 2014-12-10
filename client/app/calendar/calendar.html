@@ -10,7 +10,7 @@
 				<tr><th ng-repeat="day in days">{{day}}</th></tr>
 			</thead>
 			<tr ng-repeat="week in cal.weeks">
-				<td ng-repeat="date in week track by $index" class="{{date}}" data-animation="am-fade-and-scale" data-placement="center" ng-click="showModal(days[week.indexOf(date)], cal.month + 1, date, cal.year)"><span ng-hide="{{date==='empty'}}">{{date}}</span></td>
+				<td ng-repeat="date in week track by $index" class="{{date}}" data-animation="am-fade-and-scale" data-placement="center" ng-click="showModal(days[week.indexOf(date)], cal.month, date, cal.year)"><span ng-hide="{{date==='empty'}}">{{date}}</span></td>
 			</tr>
 		</table>
 	</div>
