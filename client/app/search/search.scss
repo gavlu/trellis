@@ -1,29 +1,9 @@
-.searchWindow {
-  height: 100vh;
-  margin-top: -71px;
-  padding-top: 71px;
-  background-color: hsl(0, 0%, 95%);
-}
-
-.searchResult {
-  margin: auto;
-  margin-bottom: 2em;
-  padding: 3em 4em;
-  width: 85%;
+input[type=checkbox].searchCheck {
+  float: left;
+  margin-left: -1.5em;
 }
 
 .cloneButton {
   font-size: 1em;
   margin-top: 1.5em;
-}
-
-@media (min-width: 720px) {
-  .searchResult {
-    width: 65%;
-  }
-}
-@media (min-width: 992px) {
-  .searchResult {
-    width: 45%;
-  }
 }
