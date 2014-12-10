@@ -1,8 +1,8 @@
 <div class="col-md-12">
 	<div class="card calendar">
 		<div class="btn-group changeMonths">
-		  <button type="button" class="btn btn-default" ng-click="setCal(cal.month-1, cal.year)">&#171</button>
-		  <button type="button" class="btn btn-default" ng-click="setCal(cal.month+1, cal.year)">&#187</button>
+		  <button type="button" class="btn btn-default" ng-click="clndr.setCal(cal.month-1, cal.year)">&#171</button>
+		  <button type="button" class="btn btn-default" ng-click="clndr.setCal(cal.month+1, cal.year)">&#187</button>
 		</div>
 		<h3 class="monthYear">{{months[cal.month]}} {{cal.year}}</h3>
 		<table>

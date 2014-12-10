@@ -6,6 +6,6 @@ angular.module('trellisApp')
       .state('trellis.calendar', {
         url: '/calendar',
         templateUrl: 'app/calendar/calendar.html',
-        controller: 'CalendarCtrl'
+        controller: 'CalendarCtrl as clndr'
       });
   });
