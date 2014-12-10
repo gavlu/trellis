@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('trellisApp')
-  	.controller('CalendarCtrl', function ($scope, $modal) {
+  .controller('CalendarCtrl', function ($scope, $modal) {
 
-  		$scope.date = new Date();
-  		$scope.date.setDate(1);
+    var vm = this;
+
+		$scope.date = new Date();
+		$scope.date.setDate(1);
 
 		$scope.days = {
 			0: 'Sunday',
@@ -14,7 +16,7 @@ angular.module('trellisApp')
 			4: 'Thursday',
 			5: 'Friday',
 			6: 'Saturday'
-		}
+		};
 
 		$scope.months = {
 			0: 'January',
@@ -29,27 +31,12 @@ angular.module('trellisApp')
 			9: 'October',
 			10: 'November',
 			11: 'December'
-		}
-
-		$scope.leap = function(year){
-			var year = year || 0;
-			if(year%4===0){
-				if(year%100!==0){
-					return 29;
-				} else if(year%400===0){
-					return 29;
-				} else {
-					return 28;
-				}
-			} else {
-				return 28;
-			}
 		};
 
 		$scope.monthLen = {
 			0: 31,
-			1: $scope.leap,
-			2: 31, 
+			1: vm.leap,
+			2: 31,
 			3: 30,
 			4: 31,
 			5: 30,
@@ -59,11 +46,14 @@ angular.module('trellisApp')
 			9: 31,
 			10: 30,
 			11: 31
-		}
-
-		$scope.setCal = function(month, year){
-			$scope.cal = setCalendar(month, year);
 		};
+
+    var Reminder = function(date, notes){
+      this.date = date;
+      this.notes = notes;
+    };
+
+    // HELPER FUNCTIONS
 
 		var setCalendar = function(m, y){
 			var month;
@@ -90,10 +80,10 @@ angular.module('trellisApp')
 				year = $scope.date.getFullYear();
 				day = $scope.date.getDay();
 			}
-			
+
 			var len = function(){
 				if(month===1){//If month is February
-					return $scope.monthLen[month](year);
+					return vm.leap(year);
 				}
 				return $scope.monthLen[month];
 			}();
@@ -113,7 +103,7 @@ angular.module('trellisApp')
 				}
 				if(tempArr.length > 0){
 					w.push(tempArr);
-					tempArr = [];	
+					tempArr = [];
 				}
 				while(w[0].length<7)
 					w[0].unshift('empty');
@@ -122,26 +112,41 @@ angular.module('trellisApp')
 			}();
 
 			return {day: day, date: date, month: month, weeks: weeks, year: year};
-		}
+		};
 
-		$scope.setCal();
+    vm.setReminder = function(year, month, date, notes){
+      var hours = $scope.time.getHours();
+      var minutes = $scope.time.getMinutes();
+      var newDate = new Date(year, month, date, hours, minutes);
+      var newEvent = new Reminder(newDate, notes);
+      console.log(newEvent);
+    };
 
-		$scope.showModal = function(day, month, date, year){
-			if(date==='empty') return inactive;
-			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+month+"/"+date+"/"+year, show: true});
-			$scope.time = new Date();
-		}
+    vm.leap = function(year){
+      var year = year || 0;
+      if(year%4===0){
+        if(year%100!==0){
+          return 29;
+        } else if(year%400===0){
+          return 29;
+        } else {
+          return 28;
+        }
+      } else {
+        return 28;
+      }
+    };
 
-		$scope.Reminder = function(date, notes){
-			this.date = date;
-			this.notes = notes;
-		}
+    vm.showModal = function(day, month, date, year){
+      if(date==='empty') { return inactive; }
+        var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+month+"/"+date+"/"+year, show: true});
+        $scope.time = new Date();
+      };
 
-		$scope.setReminder = function(year, month, date, notes){
-			var hours = $scope.time.getHours();
-			var minutes = $scope.time.getMinutes();
-			var newDate = new Date(year, month, date, hours, minutes);
-			var newEvent = new $scope.Reminder(newDate, notes);
-			console.log(newEvent);
-		}
+    vm.setCal = function(month, year){
+      $scope.cal = setCalendar(month, year);
+    };
+
+		vm.setCal();
+
 	});

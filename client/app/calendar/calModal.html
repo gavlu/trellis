@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div class="modalComps">
           <label for="time">Time</label>
-          <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker>
+          <input type="text" ng-model="time" name="time" bs-timepicker>
         </div>
         <div class="modalComps">
           <label for="notes">Notes</label>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="setReminder(cal.year, cal.month, cal.date, notes); $hide()">Save</button>
+        <button type="button" class="button save" ng-click="clndr.setReminder(cal.year, cal.month, cal.date, notes); $hide()"><span class="glyphicon glyphicon-ok-sign"></span></button>
       </div>
     </div>
   </div>

@@ -247,6 +247,11 @@ input[type=text], input[type=password], input[type=number], textarea {
     display:block;
   }
 
+}
+
+// Max width input areas
+
+.modal, .singleProfile {
   input, textarea {
     width: 100%;
     max-width: 100%;
