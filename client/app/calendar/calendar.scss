@@ -30,6 +30,15 @@
 	margin-bottom: 1em;
 }
 
+input[name='time']{
+	width: 25%;
+}
+
+textarea[name='notes']{
+	display: block;
+	width: 100%;
+}
+
 .modal {
 	.btn-primary {
 		background-color: hsl(110, 50%, 50%);
