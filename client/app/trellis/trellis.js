@@ -6,12 +6,18 @@ angular.module('trellisApp')
       .state('trellis', {
       	abstract: true,
         url: '/trellis',
-        templateUrl: 'app/trellis/trellis.html'
-        controller: 'TrellisCtrl'
+        templateUrl: 'app/trellis/trellis.html',
+        resolve: {
+          reminders: ['reminderService', function (reminderService) {
+            console.log("This is happening");
+            return reminderService.reminders;
+          }]
+        },
+        controller: 'TrellisTemplateCtrl'
       })
       .state('trellis.plants', {
       	url: '',
-      	templateUrl: 'app/trellis/trellis.plants.html'
-        // controller: 'TrellisCtrl'
+      	templateUrl: 'app/trellis/trellis.plants.html',
+        controller: 'TrellisCtrl'
       })
-  });
+  })

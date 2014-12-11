@@ -28,38 +28,39 @@ angular.module('trellisApp')
       }
     }
   })
-  .controller('TrellisCtrl', function ($scope, remindersArray, Auth, $http, userService, $state, plantService, reminderHelper) {
+  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
     
     console.log("THIS IS TWICE?")
 
     /**** REMINDERS CARDS ****/
-    $scope.remindersArray = remindersArray;   //purely for sidebar function
+    // remindersArray = []   //purely for sidebar function
     var cb = function (plants) {
       $scope.plants = plants;
-      // console.log($scope.plants);
+      console.log("this is plants", plants);
       Auth.getCurrentUser().plants = $scope.plants || [];
 
       /**** Reminder sidebar functionality ****/
-      var currentDate = new Date();
-      plants.forEach(function(plant){
-        plant.importantDates.forEach(function(date){
-          var eventDate = new Date(date.date);
-          if(reminderHelper.isRecurring(eventDate, currentDate)){
-            eventDate.setFullYear(currentDate.getFullYear());
-          }
-          if( reminderHelper.isApproaching(eventDate, currentDate) ){
+      // $scope.remindersArray = [];
+      // var currentDate = new Date();
+      // plants.forEach(function(plant){
+      //   plant.importantDates.forEach(function(date){
+      //     var eventDate = new Date(date.date);
+      //     if(reminderHelper.isRecurring(eventDate, currentDate)){
+      //       eventDate.setFullYear(currentDate.getFullYear());
+      //     }
+      //     if( reminderHelper.isApproaching(eventDate, currentDate) ){
             
-            remindersArray.push({
-              plantName: plant.name,
-              plantEvent: date.eventName,
-              eventDate: eventDate,
-              countdown: (eventDate-currentDate)/1000
-            });
-          }
-        })
-      })
+      //       $scope.remindersArray.push({
+      //         plantName: plant.name,
+      //         plantEvent: date.eventName,
+      //         eventDate: eventDate,
+      //         countdown: (eventDate-currentDate)/1000
+      //       });
+      //     }
+      //   })
+      // })
     };
 
     // Makes sure that it only gets the plants when

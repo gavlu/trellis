@@ -10,7 +10,7 @@ angular.module('trellisApp')
 
     	getPlants: function (cb) {
     		$http.get('/api/users/populateTrellis/')
-                .success(cb);
+          .success(cb);
     	},
 
     	searchUserByPhoneOrEmail: function (search, cb) {
