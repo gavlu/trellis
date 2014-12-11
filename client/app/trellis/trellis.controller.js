@@ -4,48 +4,59 @@ angular.module('trellisApp')
   .factory('reminderHelper', function () {
     return {
       isRecurring: function (inputDate, currentDate) {
+        // console.log("Is Recurring, true")
+        // console.log(inputDate);
+        // console.log(currentDate);
+        // console.log(((inputDate-currentDate)/(1000*3600*24)) < -1)
+        // console.log("----------------")
         if( ((inputDate-currentDate)/(1000*3600*24)) < -1 ) {
-          console.log("Date should recur");
+          // console.log("Date should recur");
           return true;
         }
         return false;
       },
       isApproaching: function (inputDate, currentDate) {
+        // console.log("Is Approaching, true")
+        // console.log(inputDate);
+        // console.log(currentDate);
+        // console.log("----------------")
         if(((inputDate - currentDate)/(1000*3600*24)) < 3 &&
           ((inputDate - currentDate)/(1000*3600*24)) > -1){
-          return true
+          return true;
         }
         return false;
       }
     }
   })
-  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
-  	console.log("TrellisCtrl, hit");
+  .controller('TrellisCtrl', function ($scope, remindersArray, Auth, $http, userService, $state, plantService, reminderHelper) {
+  	// console.log("TrellisCtrl, hit");
     var vm = this;
+    
+    console.log("THIS IS TWICE?")
+
+    /**** REMINDERS CARDS ****/
+    $scope.remindersArray = remindersArray;   //purely for sidebar function
     var cb = function (plants) {
       $scope.plants = plants;
-      console.log($scope.plants);
+      // console.log($scope.plants);
       Auth.getCurrentUser().plants = $scope.plants || [];
-
 
       /**** Reminder sidebar functionality ****/
       var currentDate = new Date();
       plants.forEach(function(plant){
         plant.importantDates.forEach(function(date){
           var eventDate = new Date(date.date);
-          if( reminderHelper.isRecurring(eventDate, currentDate) ){
+          if(reminderHelper.isRecurring(eventDate, currentDate)){
             eventDate.setFullYear(currentDate.getFullYear());
-            if( reminderHelper.isApproaching(eventDate, currentDate) ){
-              console.log("Something got through");
-              console.log($scope.remindersArray);
-              
-              $scope.remindersArray.push({
-                plantName: plant.name,
-                plantEvent: date.eventName,
-                countdown: (eventDate-currentDate)/1000
-              });
-              $scope.$broadcast('timer-start');
-            }
+          }
+          if( reminderHelper.isApproaching(eventDate, currentDate) ){
+            
+            remindersArray.push({
+              plantName: plant.name,
+              plantEvent: date.eventName,
+              eventDate: eventDate,
+              countdown: (eventDate-currentDate)/1000
+            });
           }
         })
       })
@@ -98,7 +109,7 @@ angular.module('trellisApp')
     $scope.deletePlant = function(plant){
       var index = $scope.plants.indexOf(plant);
       plantService.deletePlant(plant._id, function(){
-        console.log($scope.plants)
+        // console.log($scope.plants)
         $scope.plants.splice(index,1);
       });
     };
@@ -125,8 +136,6 @@ angular.module('trellisApp')
       {text: "Date: oldest to newest", click: "sortPlants('date')"}
     ];
 
-    /**** REMINDERS CARDS ****/
-    $scope.remindersArray = [];
 
   })
   .directive('ngEnter', function(){
