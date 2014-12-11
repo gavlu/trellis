@@ -97,7 +97,12 @@ exports.findUser = function(req, res, next){
  */
 exports.update = function( req, res, next ) {
   console.log(req.body, 'update object');
+  if(req.body._id) delete req.body._id;
   User.findByIdAndUpdate(req.user._id, req.body, function(err, user) {
+    console.log("req.body._id: ", req.body._id);
+    console.log("req.user._id: ", req.user._id);
+    if ( err ) {console.log('ERR', err);}
+    console.log('updated user', user);
     res.json(user);
   });
 };

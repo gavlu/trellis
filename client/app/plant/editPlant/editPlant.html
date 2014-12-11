@@ -100,7 +100,7 @@
 				<label for="name">Important Dates: </label>
 				<div ng-repeat="date in editPlant.importantDates">
 					<input type="text" ng-model="date.eventName" name="importantDates" placeholder="e.g. Graduation Party!">
-					<input type="text" ng-model="date.date" placeholder="12/31/2014">
+					<input type="date" ng-model="date.date">
 					<input type="text" ng-model="date.description" placeholder="Graduation!">
 				</div>
 

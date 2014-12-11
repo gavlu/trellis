@@ -98,7 +98,10 @@ angular.module('trellisApp')
        * @return {Object} user
        */
       getCurrentUser: function() {
-        
+        //convert date strings back to date objects
+        currentUser.importantDates.forEach(function(el){
+          el.date = new Date(el.date);
+        });
         return currentUser;
       },
 
