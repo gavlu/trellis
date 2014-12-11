@@ -32,7 +32,6 @@ var isPast = function(date, currentDate) {
         console.log("Date should recur");
         return true;
     }
-
     return false;
 }
 
@@ -50,7 +49,6 @@ var job = new CronJob({
                 plant.importantDates.forEach(function(someEvent){
                     console.log("Event date:")
                     console.log(someEvent.date);
-
                     var eventDate = someEvent.date;
                     if(isPast(eventDate, currentTime)){
                         eventDate.setFullYear(currentTime.getFullYear());
@@ -84,13 +82,8 @@ var job = new CronJob({
                            });
                         })
                     };
-
                     console.log("-------------------")
-
                 })
-
-
-
                 console.log("----------------------------------")
             })
     	})

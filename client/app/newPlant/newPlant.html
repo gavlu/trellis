@@ -32,8 +32,15 @@
 		<!-- RELATIONSHIP -->
 		<div class="relationship profileDetails" ng-if="npc.show('relationship')">
 			<label>Relationship: </label>
+			<input type="text" ng-model="newPlant.relationship.status">
 			<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
 		</div>
+
+		<div class="contactFrequency profileDetails" ng-if="show('contactFrequency')">
+			<label for="contactFrequency">Contact Frequency: </label>
+			<input type="text" name="contactFrequency" ng-model="newPlant.contactFrequency">
+		</div>
+			
 		<!-- FAMILY -->
 		<div class="family profileDetails" ng-if="npc.show('family')">
 			<label for="name">Family: </label>
@@ -54,10 +61,12 @@
 			<label for="name">Current City: </label>
 			<input type="text" ng-model="newPlant.currentCity" name="currentCity" placeholder="New York City">
 		</div>
+
 		<!-- EMPLOYER -->
-		<div class="employer profileDetails" ng-if="npc.show('employer')">
-			<label for="name">Employer: </label>
-			<input type="text" ng-model="newPlant.employer" name="employer" placeholder="Dunder Mifflin">
+		<div class="employment profileDetails" ng-if="npc.show('employer')">
+			<label for="name">Employment: </label>
+			<input type="text" ng-model="newPlant.employment.employer" name="employer" placeholder="Dunder Mifflin">
+			<input type="text" ng-model="newPlant.employment.position" name="position" placeholder="Asst to Regional Manager">
 		</div>
 		<!-- PROJECTS -->
 		<div class="projects profileDetails" ng-if="npc.show('projects')">

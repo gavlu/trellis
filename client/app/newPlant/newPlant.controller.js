@@ -2,6 +2,7 @@
 
 angular.module('trellisApp')
   .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
+
     var vm = this;
     $scope.newPlant = {
     	name: "",
@@ -61,11 +62,12 @@ angular.module('trellisApp')
 	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
 	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
 	    {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+	    {value: 'contactFrequency', label: '<i class="fa fa-paper-plane-o"></i> Contact Frequency'},
 	    {value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
 	    {value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
 	    {value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
 	    {value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
-	    {value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
+	    {value: 'employment', label: '<i class="fa fa-briefcase"></i> Employer'},
 	    {value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
 	    {value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
 	    {value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
