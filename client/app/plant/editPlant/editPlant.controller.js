@@ -8,7 +8,6 @@ angular.module('trellisApp')
     $scope.master    = {};
     $scope.editPlant = {};
     plantService.getPlant(plantId, function(plant) {
-    	console.log("RETURNED plant", plant);
     	$scope.editPlant = plant;
     	$scope.master = angular.copy(plant);
     });
@@ -75,10 +74,10 @@ angular.module('trellisApp')
     };
 
     vm.addField = function( key, index ) {
-      if( key == "tags" ){
+      if( key === "tags" ){
       	$scope.editPlant.interests[index].tags.push("")
       }
-      else if ( key == "reminders" ) {
+      else if ( key === "reminders" ) {
       	$scope.editPlant.reminders.push("");
       }
       else {
@@ -87,8 +86,7 @@ angular.module('trellisApp')
     };
 
     vm.deleteField = function( key, index ) {
-      console.log($scope.editPlant[key]);
-      if( key == "tags" ){
+      if( key === "tags" ){
       	$scope.editPlant.interests[index].tags.splice($scope.editPlant.interests[index].tags.length-1, 1);
       }
       else {
@@ -97,17 +95,13 @@ angular.module('trellisApp')
     };
 
     vm.update = function (input) {
-    	console.log($scope.editPlant);
     	if(input === 'save'){
 	    	plantService.updatePlant($scope.editPlant, function(updated) {
-	    		console.log("Here's your updated plant: ");
-	    		console.log(updated);
 	    		$scope.saved = true;
           $state.go('trellis.plants');
 	    	})
 	    }
 	    else if(input === 'reset'){
-	    	console.log("save @ reset, hit");
 	    	$scope.saved = false;
 	    	$scope.editPlant = angular.copy($scope.master);
 	    }

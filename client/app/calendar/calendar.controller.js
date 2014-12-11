@@ -104,8 +104,9 @@ angular.module('trellisApp')
 					w.push(tempArr);
 					tempArr = [];
 				}
-				while(w[0].length<7)
+				while (w[0].length<7) {
 					w[0].unshift('empty');
+				}
 				console.log(w, 'After tempArr check');
 				return w;
 			}();
