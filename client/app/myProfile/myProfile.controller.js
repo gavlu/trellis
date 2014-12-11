@@ -21,17 +21,17 @@ angular.module('trellisApp')
 	$scope.selectedIcon = "";
 	$scope.selectedIcons = [];
 	$scope.icons = [
-	{value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
-	{value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
-	{value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
-	{value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
-	{value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
-	{value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
-	{value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
-	{value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
-	{value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
-	{value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
-	{value: 'notes', label: '<i class="fa fa-pencil"></i> Notes'}
+		{value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
+		{value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+		{value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
+		{value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
+		{value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
+		{value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
+		{value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
+		{value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
+		{value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
+		{value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
+		{value: 'notes', label: '<i class="fa fa-pencil"></i> Notes'}
 	];
 
 	vm.show = function(inputField) {
@@ -72,7 +72,6 @@ angular.module('trellisApp')
 	};
 
 	vm.addField = function( key, index ) {
-		console.log(key, index);
 		if( key === 'tags' ){
 			$scope.tempMe.interests[index].tags.push('');
 		} else {
@@ -81,7 +80,6 @@ angular.module('trellisApp')
 	};
 
 	vm.deleteField = function( key, index ) {
-		console.log($scope.tempMe[key], key, 'TEST');
 		if( key === 'tags' ){
 			$scope.tempMe.interests[index].tags.splice($scope.tempMe.interests[index].tags.length-1, 1);
 		} else {
@@ -95,6 +93,7 @@ angular.module('trellisApp')
 	};
 
 	vm.updateUser = function() {
+		_.merge( Auth.getCurrentUser(), $scope.tempMe, function( a, b ) { return b; } );
 		userService.updateUser($scope.tempMe, function(data){
 			console.log(data);
 			$scope.me = angular.copy($scope.tempMe);
@@ -107,19 +106,14 @@ angular.module('trellisApp')
 	$scope.otherEd = function(edLevel, edIndex){
 		console.log($scope.other);
 		if(edLevel === 'other'){
-			console.log('true!!!!!!!!!!!!!');
 			$scope.other[edIndex] = true;
-			console.log($scope.other);
-			console.log($scope.other[edIndex]);
 		}else{
-			console.log('false!!!!!!!!!!!!!');
 			$scope.other[edIndex] = false;
 		}
 	};
 
 	//For education select boxes
 	vm.showBox = function(school){
-		console.log(school, "Stufffffffff");
 		if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
 			return true;
 		} else {

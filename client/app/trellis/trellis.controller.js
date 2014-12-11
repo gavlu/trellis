@@ -34,6 +34,7 @@ angular.module('trellisApp')
     
     console.log("THIS IS TWICE?")
 
+
     /**** REMINDERS CARDS ****/
     // remindersArray = []   //purely for sidebar function
     var cb = function (plants) {
@@ -80,7 +81,7 @@ angular.module('trellisApp')
           "inputType": "email",
           "input": input.email
         });
-      } 
+      }
       else {
         var temp = emailOrPhone.replace(/[^0-9]/g, '');
         if ( temp.length === 10 ) {
@@ -90,7 +91,7 @@ angular.module('trellisApp')
         }
         input.phone = temp;
 
-        
+
         $state.go('trellis.searchView', {
           "inputType": "phone",
           "input": input.phone
@@ -98,26 +99,21 @@ angular.module('trellisApp')
       }
     };
 
-
     /**** Profile Preview ****/
 
     $scope.editPlant = function(plantId){
       $state.go('trellis.editPlant', {
         id: plantId
       })
-    }
+    };
 
     $scope.deletePlant = function(plant){
       var index = $scope.plants.indexOf(plant);
       plantService.deletePlant(plant._id, function(){
-        // console.log($scope.plants)
         $scope.plants.splice(index,1);
       });
     };
     /**** END Profile Preview ****/
-
-
-
 
     $scope.plantFilter = function(plantName) {
       var query = new RegExp($scope.name, "i");
@@ -150,7 +146,7 @@ angular.module('trellisApp')
         }
       });
     };
-  })
+  });
 
 
 
@@ -165,7 +161,7 @@ $scope.addReminder = function(action, plantId, newReminder) {
   else if( action == 'saving') {
     $scope.makeNewReminder = false;
     userService.updateUser(newReminder, function(){
-      
+
     })
   }
 }
