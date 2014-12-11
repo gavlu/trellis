@@ -23,10 +23,8 @@ var sendEmail = function(options){
   });
 };
 
-var isPast = function(date) {
+var isPast = function(date, currentDate) {
     console.log("isPast, hit");
-    var currentDate = new Date;
-
     console.log("Milliseconds in the past:");
     console.log(date-currentDate);
 
@@ -43,7 +41,7 @@ var job = new CronJob({
 	cronTime: '00 00 5,17 * * *',
     onTick: function(){
     	console.log('Date is now: ', Date());
-    	console.log('You will see this message every 15 seconds');
+    	console.log('You will see this message twice a day');
 
         var currentTime = new Date();
 
@@ -52,8 +50,9 @@ var job = new CronJob({
                 plant.importantDates.forEach(function(someEvent){
                     console.log("Event date:")
                     console.log(someEvent.date);
+
                     var eventDate = someEvent.date;
-                    if(isPast(eventDate)){
+                    if(isPast(eventDate, currentTime)){
                         eventDate.setFullYear(currentTime.getFullYear());
                     };
                     if(((eventDate - currentTime)/(1000*3600*24)) < 0 &&

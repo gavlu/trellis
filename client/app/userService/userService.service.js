@@ -6,6 +6,7 @@ angular.module('trellisApp')
     return {
 
     	getPlants: function (cb) {
+
     		$http.get('/api/users/populateTrellis/').success(cb);
     	},
 
