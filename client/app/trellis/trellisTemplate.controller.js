@@ -1,39 +1,38 @@
 angular.module("trellisApp")
-	.factory('reminderService', function (userService, reminderHelper){
+	.factory('reminderService', function (userService, reminderHelper, $q){
 		function GetReminders() {
-			var remindersArray = [];
-			userService.getPlants(function(plants){
-				var currentDate = new Date();
-				plants.forEach(function(plant){
-				  plant.importantDates.forEach(function(date){
-				    var eventDate = new Date(date.date);
-				    if(reminderHelper.isRecurring(eventDate, currentDate)){
-				      eventDate.setFullYear(currentDate.getFullYear());
-				    }
-				    if( reminderHelper.isApproaching(eventDate, currentDate) ){
-				      
-				      remindersArray.push({
-				        plantName: plant.name,
-				        plantEvent: date.eventName,
-				        eventDate: eventDate,
-				        countdown: (eventDate-currentDate)/1000
-				      });
-				    }
-				  })
+			return $q(function(resolve, reject) {
+				userService.getPlants(function(plants){
+					var currentDate = new Date();
+					var remindersArray = [];
+					plants.forEach(function(plant, outsideindex){
+					  plant.importantDates.forEach(function(date, insideindex){
+					    var eventDate = new Date(date.date);
+					    if(reminderHelper.isRecurring(eventDate, currentDate)){
+					      eventDate.setFullYear(currentDate.getFullYear());
+					    }
+					    if( reminderHelper.isApproaching(eventDate, currentDate) ){
+					      remindersArray.push({
+					        plantName: plant.name,
+					        plantEvent: date.eventName,
+					        eventDate: eventDate,
+					        countdown: (eventDate-currentDate)/1000
+					      });
+					    }
+					  })
+					})
+					resolve(remindersArray);
 				})
-			})
-			console.log("From GetReminders",remindersArray);
-			return remindersArray;
+			});
 		}
-		console.log("Should be reminders", GetReminders());
 		return {
 			getReminders: GetReminders,
-			reminders: null
+			reminders: []
 		}
 	})
-	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminders){
+	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminderService){
 
-		$scope.remindersArray = reminders
+		$scope.remindersArray = reminderService.reminders;
 		
 		$scope.search = function(emailOrPhone) {
 		  $scope.emailOrPhone = "";

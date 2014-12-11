@@ -51,6 +51,14 @@ angular.module('trellisApp', [
           $location.path('/login');
         }
       });
-      reminderService.reminders = reminderService.getReminders(); 
+      reminderService.getReminders().then(
+        function onResolve(resolveObj) {
+        console.log("resolve obj", resolveObj);
+        angular.copy(resolveObj, reminderService.reminders);
+        }, 
+        function onReject(rejectObj) {
+          console.log("fail");
+        }
+      ); 
     });
   });
