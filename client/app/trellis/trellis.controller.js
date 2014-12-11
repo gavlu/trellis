@@ -27,14 +27,7 @@ angular.module('trellisApp')
         });
       }
       else {
-        var temp = emailOrPhone.replace(/[^0-9]/g, '');
-        if ( temp.length === 10 ) {
-          temp = temp.substr(0, 3)+'_'+temp.substr(3, 3)+'_'+temp.substr(6, 4);
-        } else if ( temp.length === 7 ) {
-          temp = temp.substr(0,3)+'_'+temp.substr(3,4);
-        }
-        input.phone = temp;
-
+        input.phone = emailOrPhone.replace(/[^0-9-]/g, '');
 
         $state.go('trellis.searchView', {
           "inputType": "phone",
