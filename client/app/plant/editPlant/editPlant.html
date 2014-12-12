@@ -1,9 +1,9 @@
 <div class="col-md-12">
-	<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
-		Action <span class="caret"></span>
-	</button>
 	<form novalidate class="editPlantForm" name="form">
 		<div class="card singleProfile">
+			<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
+				Action <span class="caret"></span>
+			</button>
 			<!-- NAME -->
 			<div class="name">
 				<h2>
@@ -78,6 +78,26 @@
 				<button class="button deleteButton" ng-click="epc.deleteField('projects')"> - </button>
 
 			</div>
+			<!-- EDUCATION -->
+			<ul ng-if="epc.show('education')">
+				<label>Education:</label>
+				<li ng-repeat="school in editPlant.education track by $index" ng-init="edIndex = $index">
+					<!-- Education select boxes -->
+					<label for="levelSelect">Level:</label>
+					<select ng-model="school.level" name="levelSelect">
+						<option ng-repeat="level in edLevel" value="{{level}}" label='{{level[0] | uppercase }}{{level.slice(1)}}'></option>
+					</select>
+					<div ng-show="epc.showBox(school.level)" class='profileDetails'>
+						<input ng-model="school.level" type="text" name="customLevel" placeholder="Boating School">
+					</div>
+					<div class='profileDetails'>
+						<label>School Name:</label>
+						<input type="text" ng-model="school.name" placeholder="Test University">
+					</div>
+				</li>
+				<button class="button editButton" ng-click="epc.addField( 'education', $index )">+</button>
+				<button class="button deleteButton" ng-click="epc.deleteField('education')"> - </button>
+			</ul>
 			<!-- INTERESTS -->
 			<div class="interests" ng-if="epc.show('interests')">
 				<label for="name">Interests: </label>

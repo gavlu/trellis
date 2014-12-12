@@ -107,7 +107,7 @@
 			<button class="button deleteButton" ng-click="npc.deleteField('projects')"> - </button>
 		</div>
 		<!-- EDUCATION -->
-		<div ng-if="npc.show('education')">
+		<ul class="profileDetails" ng-if="npc.show('education')">
 			<h4>Education</h4>
 			<li ng-repeat="school in newPlant.education track by $index" ng-init="edIndex = $index">
 				<!-- Education select boxes -->
@@ -125,7 +125,7 @@
 			</li>
 			<button class="button editButton" ng-click="npc.addField( 'education', $index )">+</button>
 			<button class="button deleteButton" ng-click="npc.deleteField('education')"> - </button>
-		</div>
+		</ul>
 		<!-- INTERESTS -->
 		<div class="interests profileDetails" ng-if="npc.show('interests')">
 			<label for="name">Interests: </label>
