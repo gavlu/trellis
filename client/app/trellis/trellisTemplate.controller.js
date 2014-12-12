@@ -31,10 +31,11 @@ angular.module("trellisApp")
 		}
 	})
 	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminderService){
+		var vm = this;
 
 		$scope.remindersArray = reminderService.reminders;
-		
-		$scope.search = function(emailOrPhone) {
+
+		vm.search = function(emailOrPhone) {
 		  $scope.emailOrPhone = "";
 		  var email = new RegExp("@"),
 		      input = {};
@@ -44,7 +45,7 @@ angular.module("trellisApp")
 		      "inputType": "email",
 		      "input": input.email
 		    });
-		  } 
+		  }
 		  else {
 		    var temp = emailOrPhone.replace(/[^0-9]/g, '');
 		    if ( temp.length === 10 ) {
@@ -54,7 +55,7 @@ angular.module("trellisApp")
 		    }
 		    input.phone = temp;
 
-		    
+
 		    $state.go('trellis.searchView', {
 		      "inputType": "phone",
 		      "input": input.phone

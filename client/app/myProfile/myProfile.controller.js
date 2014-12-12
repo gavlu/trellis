@@ -101,17 +101,6 @@ angular.module('trellisApp')
 		});
 	};
 
-	//For education radio buttons
-	$scope.other = {};
-	$scope.otherEd = function(edLevel, edIndex){
-		console.log($scope.other);
-		if(edLevel === 'other'){
-			$scope.other[edIndex] = true;
-		}else{
-			$scope.other[edIndex] = false;
-		}
-	};
-
 	//For education select boxes
 	vm.showBox = function(school){
 		if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){

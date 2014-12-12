@@ -12,6 +12,8 @@ angular.module('trellisApp')
     	$scope.master = angular.copy(plant);
     });
 
+    $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
+
     $scope.selectedIcon = "";
     $scope.selectedIcons = [];
     $scope.icons = [
@@ -105,6 +107,15 @@ angular.module('trellisApp')
 	    	$scope.saved = false;
 	    	$scope.editPlant = angular.copy($scope.master);
 	    }
+    };
+
+    //For education select boxes
+    vm.showBox = function(school){
+      if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
+        return true;
+      } else {
+        return false;
+      }
     };
 
     // FILEPICKER IMAGE UPLOAD CODE

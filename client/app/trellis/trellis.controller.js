@@ -31,9 +31,6 @@ angular.module('trellisApp')
   .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
-    
-    console.log("THIS IS TWICE?")
-
 
     /**** REMINDERS CARDS ****/
     // remindersArray = []   //purely for sidebar function
@@ -52,7 +49,7 @@ angular.module('trellisApp')
       //       eventDate.setFullYear(currentDate.getFullYear());
       //     }
       //     if( reminderHelper.isApproaching(eventDate, currentDate) ){
-            
+
       //       $scope.remindersArray.push({
       //         plantName: plant.name,
       //         plantEvent: date.eventName,
@@ -71,36 +68,15 @@ angular.module('trellisApp')
        console.log(Auth.getCurrentUser());
     }
 
-    $scope.search = function(emailOrPhone) {
-      $scope.emailOrPhone = "";
-      var email = new RegExp("@"),
-          input = {};
-      if(email.test(emailOrPhone)) {
-        input.email = emailOrPhone;
-        $state.go('trellis.searchView', {
-          "inputType": "email",
-          "input": input.email
-        });
-      }
-      else {
-        input.phone = emailOrPhone.replace(/[^0-9-]/g, '');
-
-        $state.go('trellis.searchView', {
-          "inputType": "phone",
-          "input": input.phone
-        });
-      }
-    };
-
     /**** Profile Preview ****/
 
-    $scope.editPlant = function(plantId){
+    vm.editPlant = function(plantId){
       $state.go('trellis.editPlant', {
         id: plantId
       })
     };
 
-    $scope.deletePlant = function(plant){
+    vm.deletePlant = function(plant){
       var index = $scope.plants.indexOf(plant);
       plantService.deletePlant(plant._id, function(){
         $scope.plants.splice(index,1);
@@ -108,7 +84,7 @@ angular.module('trellisApp')
     };
     /**** END Profile Preview ****/
 
-    $scope.plantFilter = function(plantName) {
+    vm.plantFilter = function(plantName) {
       var query = new RegExp($scope.name, "i");
       if(query.test(plantName)){
         return true;
@@ -116,14 +92,14 @@ angular.module('trellisApp')
     };
 
     $scope.criteria = "name";
-    $scope.sortPlants = function(criteria){
+    vm.sortPlants = function(criteria){
       $scope.criteria = criteria;
     };
 
     $scope.dropdown = [
-      {text: "Name", click: "sortPlants('name')"},
-      {text: "Date: newest to oldest", click: "sortPlants(date)"},
-      {text: "Date: oldest to newest", click: "sortPlants('date')"}
+      {text: "Name", click: "trellis.sortPlants('name')"},
+      {text: "Date: newest to oldest", click: "trellis.sortPlants(date)"},
+      {text: "Date: oldest to newest", click: "trellis.sortPlants('date')"}
     ];
 
 
