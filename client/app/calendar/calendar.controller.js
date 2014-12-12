@@ -64,7 +64,8 @@ angular.module('trellisApp')
 			}
 		};
 
-		var Reminder = function(date, notes){
+		var Reminder = function(name, date, notes){
+			this.name = name;
 			this.date = date;
 			this.notes = notes;
 		};
@@ -94,7 +95,6 @@ angular.module('trellisApp')
 	    		day = $scope.date.getDay();
 	    	} else {
 	    		month = $scope.date.getMonth();
-	    		console.log("Month in setCal: ", month);
 	    		year = $scope.date.getFullYear();
 	    		day = $scope.date.getDay();
 	    	}
@@ -106,15 +106,14 @@ angular.module('trellisApp')
 					return $scope.monthLen[month];
 				}();
 
+			//Populate weeks arrays with day objects for a given month
 			var weeks = function(){
 				var w = [];
 				var tempArr = [];
 				for(var i=0, d=day; i<len; i++, d++){
 					var date = new Day(i+1);
 					$scope.me.importantDates.forEach(function(el){
-						console.log("DIS BE DA el.date: ", el.date);
 						if(el.date.getMonth()===month&&el.date.getFullYear()===year&&el.date.getDate()===i+1) date.events.push(el);
-						console.log("THIS BE DA date object: " ,date)
 					});
 					if(d<7){
 						tempArr.push(date);
@@ -129,9 +128,13 @@ angular.module('trellisApp')
 					w.push(tempArr);
 					tempArr = [];
 				}
+				/** 
+				 *	Will be used to make empty td elements in the first week
+				 *  so that, if the week is less than 7 days, the other days don't
+				 *  shift over to the left of the calendar
+				 */
 				while(w[0].length<7)
-					w[0].unshift('empty');
-				console.log(w, 'After tempArr check');
+					w[0].unshift({date: 'empty'});
 				return w;
 			}();
 
@@ -147,28 +150,35 @@ angular.module('trellisApp')
 			if(date.date===impEvent.date.getDate() && $scope.cal.month===impEvent.date.getMonth() && $scope.cal.year===impEvent.date.getFullYear()) return true;
 		}
 
-		vm.setReminder = function(year, month, date, notes){
+		vm.setReminder = function(year, month, date, notes, name){
 			var hours = $scope.time.getHours();
 			var minutes = $scope.time.getMinutes();
 			var newDate = new Date(year, month, date, hours, minutes);
-			var newEvent = new Reminder(newDate, notes);
+			console.log("This is the new date: ", newDate);
+			var newEvent = new Reminder(name, newDate, notes);
 			$scope.me.importantDates.push(newEvent);
-			console.log($scope.me);
 			userService.updateUser($scope.me, function(data){
-				console.log($scope.me);
-				console.log(data);
+				$scope.me = Auth.getCurrentUser();
+				console.log($scope.me.importantDates);
 			});
 			delete $scope.modalData;
-			console.log("This is the new event", newEvent);
 			vm.setCal(month, year);
 		};
 
 		vm.showModal = function(day, month, date, year){
 			if(date==='empty') return inactive;
-			console.log(day);
 			$scope.modalData = {day: day, date: date, month: month, year: year};
 			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+(month+1)+"/"+date+"/"+year, show: true});
 			$scope.time = new Date();
+			//Initial minute for reminder time picker will be the next minute that is a multiple of 5 at the moment the time picker was clicked
+			$scope.time.setMinutes(Math.ceil(($scope.time.getMinutes())/5)*5);
+		};
+
+		vm.showDateModal = function(day, month, date, year, notes, name, eventDate){
+			console.log(eventDate);
+			$scope.modalData = {day: day, date: date, month: month, year: year, notes: notes, name: name, eventDate: eventDate};
+			var calModal = $modal({scope: $scope, template: "/app/calendar/dateModal.html", title: day+", "+(month+1)+"/"+date+"/"+year, show: true});
+			$scope.time = new Date(year, month, date);
 			//Initial minute for reminder time picker will be the next minute that is a multiple of 5 at the moment the time picker was clicked
 			$scope.time.setMinutes(Math.ceil(($scope.time.getMinutes())/5)*5);
 		};

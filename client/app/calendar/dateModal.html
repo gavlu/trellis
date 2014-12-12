@@ -8,19 +8,19 @@
       <div class="modal-body">
         <div class="modalComps">
           <label for="name">Name</label>
-          <input type="text" ng-model="name" name="name">
+          <input type="text" ng-model="modalData.name" name="name" value="{{modalData.name}}">
         </div>
         <div class="modalComps">
           <label for="time">Time</label>
-          <input type="text" ng-model="time" name="time" bs-timepicker>
+          <input type="text" ng-model="modalData.eventDate" name="time" bs-timepicker>
         </div>
         <div class="modalComps">
           <label for="notes">Notes</label>
-          <textarea ng-model="notes" name="notes"></textarea>
+          <textarea ng-model="modalData.notes" name="notes">{{modalData.notes}}</textarea>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="button save" ng-click="clndr.setReminder(modalData.year, modalData.month, modalData.date, notes, name); $hide()"><span class="glyphicon glyphicon-ok-sign"></span></button>
+        <!-- <button type="button" class="button save" ng-click="clndr.setReminder(modalData.year, modalData.month, modalData.date, modalData.notes, modalData.name); $hide()"><span class="glyphicon glyphicon-ok-sign"></span></button> -->
       </div>
     </div>
   </div>

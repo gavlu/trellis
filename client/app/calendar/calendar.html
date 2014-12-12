@@ -12,10 +12,10 @@
 			<tr ng-repeat="week in cal.weeks">
 				<td ng-repeat="date in week track by $index" class="{{date.date}}" data-animation="am-fade-and-scale" data-placement="center">
 					<ul>
-						<li ng-repeat="event in date.events" ng-show="clndr.checkEvent(date, event.date)" class="event"></li>
+						<li ng-repeat="event in date.events" ng-show="clndr.checkEvent(date, event.date)" ng-click="clndr.showDateModal(days[week.indexOf(date)], cal.month, date.date, cal.year, event.notes, event.name, event.date)" class="event"></li>
 					</ul>
-					<span class="date" ng-hide="{{date==='empty'}}">{{date.date}}</span>
-					<span class="addEvent" ng-hide="{{date==='empty'}}" ng-click="clndr.showModal(days[week.indexOf(date)], cal.month, date.date, cal.year)">+</span>
+					<span class="date" ng-hide="{{date.date==='empty'}}">{{date.date}}</span>
+					<span class="addEvent" ng-hide="{{date.date==='empty'}}" ng-click="clndr.showModal(days[week.indexOf(date)], cal.month, date.date, cal.year)">+</span>
 				</td>
 			</tr>
 		</table>

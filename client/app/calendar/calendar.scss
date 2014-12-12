@@ -32,6 +32,11 @@
 
 input[name='time']{
 	width: 25%;
+	margin-left: .4em;
+}
+
+input[name='name']{
+	width: 50%;
 }
 
 textarea[name='notes']{
