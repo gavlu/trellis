@@ -41,7 +41,9 @@ var UserSchema = new Schema({
     description: { type: String },
     link: { type: String }
   }],
-  notes: { type: String },
+  notes: {
+    body: { type: String }
+  },
   plants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
   role: {
     type: String,

@@ -12,11 +12,15 @@ angular.module("trellisApp")
 					      eventDate.setFullYear(currentDate.getFullYear());
 					    }
 					    if( reminderHelper.isApproaching(eventDate, currentDate) ){
+					      var countdownDate = (eventDate-currentDate)/1000;
+					      if(((eventDate-currentDate)/1000) < 0){
+					      	countdownDate = "Today!"
+					      } 
 					      remindersArray.push({
 					        plantName: plant.name,
 					        plantEvent: date.eventName,
 					        eventDate: eventDate,
-					        countdown: (eventDate-currentDate)/1000
+					        countdown: countdownDate
 					      });
 					    }
 					  })
@@ -76,4 +80,19 @@ angular.module("trellisApp")
 			  }	
 			}
 		};
+
+		vm.isNegative = function () {
+			if($scope.remindersArray.countdown < 0){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+
 	})
+
+
+
+
