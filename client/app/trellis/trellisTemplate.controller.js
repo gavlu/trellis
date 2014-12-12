@@ -31,7 +31,6 @@ angular.module("trellisApp")
 		}
 	})
 	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminderService){
-<<<<<<< HEAD
 		$rootScope.$on('$stateChangeStart', function (event, next) {
 			reminderService.getReminders().then(
 			  function onResolve(resolveObj) {
@@ -44,10 +43,8 @@ angular.module("trellisApp")
 			);
 		});
 		 
-=======
 		var vm = this;
 
->>>>>>> master
 		$scope.remindersArray = reminderService.reminders;
 
 		vm.search = function(emailOrPhone) {
