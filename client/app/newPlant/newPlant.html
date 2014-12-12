@@ -10,6 +10,7 @@
 			<h3 for="name">Name: </h3>
 			<input type="text" ng-model="newPlant.name" name="name" placeholder="James"/>
 		</div>
+		<!-- PICTURE -->
 		<div class="imageDiv" ng-click="npc.uploadImage()">
 			<img ng-src="{{newPlant.picture}}" alt="Profile Picture" class="singleProfilePhoto" />
 			<h3>UPLOAD<span class="glyphicon glyphicon-pencil"></span></h3>
@@ -29,16 +30,39 @@
 			<label for="name">Age: </label>
 			<input type="text" ng-model="newPlant.age" name="age" placeholder="18">
 		</div>
+
+
+		<!-- CONTACT FREQUENCY -->
+		<div class="contactFrequency profileDetails" ng-if="npc.show('contactFrequency')">
+			<label for="contactFrequency">Contact Frequency: </label>
+			<input type="text" name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="!npc.frequencyShow('daily')" placeholder="# of">
+			<div name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="npc.frequencyShow('daily')">One</div>
+				<span>times per</span>
+
+			<!-- "Day" or "Week" -->
+			<button type="button" class="btn btn-default" ng-model="$parent.selectedFrequency" data-html="1" ng-options="choice.value as choice.label for choice in frequency" placeholder="Choose" bs-select>
+			     <span class="caret"></span>
+			</button>
+			
+			<!-- Days of the week -->
+			<div ng-if="npc.frequencyShow('weekly')"> (Which days?)</div>
+			<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedDays" data-html="1" data-multiple="1" ng-options="day.value as day.label for day in days" ng-if="npc.frequencyShow('weekly')" placeholder="Choose" bs-select>
+			     <span class="caret"></span>
+			</button>
+
+			<!-- End date / # of reps -->
+			<div>until</div>
+			<input type="text" name="endPoint" ng-model="$parent.dateObj.recurrence_end" placeholder="End date">
+
+			{{dateObj}}
+		</div>
+
+
 		<!-- RELATIONSHIP -->
 		<div class="relationship profileDetails" ng-if="npc.show('relationship')">
 			<label>Relationship: </label>
 			<input type="text" ng-model="newPlant.relationship.status">
 			<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
-		</div>
-
-		<div class="contactFrequency profileDetails" ng-if="show('contactFrequency')">
-			<label for="contactFrequency">Contact Frequency: </label>
-			<input type="text" name="contactFrequency" ng-model="newPlant.contactFrequency">
 		</div>
 			
 		<!-- FAMILY -->
@@ -63,7 +87,7 @@
 		</div>
 
 		<!-- EMPLOYER -->
-		<div class="employment profileDetails" ng-if="npc.show('employer')">
+		<div class="employment profileDetails" ng-if="npc.show('employment')">
 			<label for="name">Employment: </label>
 			<input type="text" ng-model="newPlant.employment.employer" name="employer" placeholder="Dunder Mifflin">
 			<input type="text" ng-model="newPlant.employment.position" name="position" placeholder="Asst to Regional Manager">
