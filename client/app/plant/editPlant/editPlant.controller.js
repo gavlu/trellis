@@ -20,6 +20,7 @@ angular.module('trellisApp')
       {value: 'email', label: '<i class="fa fa-send"></i> Email'},
       {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
       {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+      {value: 'contactFrequency', label: '<i class="fa fa-clock-o"></i> Age'},
       {value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
       {value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
       {value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
