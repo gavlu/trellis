@@ -7,11 +7,11 @@ angular.module('trellisApp')
       	abstract: true,
         url: '/trellis',
         templateUrl: 'app/trellis/trellis.html',
-        controller: 'TrellisCtrl'
+        controller: 'TrellisTemplateCtrl as trellisTemp'
       })
       .state('trellis.plants', {
       	url: '',
       	templateUrl: 'app/trellis/trellis.plants.html',
-        controller: 'TrellisCtrl'
+        controller: 'TrellisCtrl as trellis'
       })
-  });
+  })

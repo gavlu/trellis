@@ -7,6 +7,7 @@ angular.module('trellisApp', [
   'ui.router',
   'mgcrea.ngStrap',
   'ngAnimate',
+  'timer'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
