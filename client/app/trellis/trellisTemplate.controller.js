@@ -12,15 +12,15 @@ angular.module("trellisApp")
 					      eventDate.setFullYear(currentDate.getFullYear());
 					    }
 					    if( reminderHelper.isApproaching(eventDate, currentDate) ){
-					      var countdownDate = (eventDate-currentDate)/1000;
-					      if(((eventDate-currentDate)/1000) < 0){
-					      	countdownDate = "Today!"
-					      } 
+					      // var countdownDate = (eventDate-currentDate)/1000;
+					      // if(((eventDate-currentDate)/1000) < 0){
+					      // 	countdownDate = "Today!"
+					      // } 
 					      remindersArray.push({
 					        plantName: plant.name,
 					        plantEvent: date.eventName,
 					        eventDate: eventDate,
-					        countdown: countdownDate
+					        countdown: (eventDate-currentDate)/1000
 					      });
 					    }
 					  })

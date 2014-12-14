@@ -37,7 +37,7 @@ var isPast = function(date, currentDate) {
 
 
 var job = new CronJob({
-	cronTime: '00 */2 * * * *',
+	cronTime: '00 00 5,17 * * *',
     onTick: function(){
     	console.log('Date is now: ', Date());
     	console.log('You will see this message twice a day');
@@ -46,6 +46,7 @@ var job = new CronJob({
 
     	Plant.find({}, function(err, plants) {
     		plants.forEach(function(plant){
+                // Check existence
                 plant.importantDates.forEach(function(someEvent){
                     if(someEvent.date){
                         console.log("Event date:")

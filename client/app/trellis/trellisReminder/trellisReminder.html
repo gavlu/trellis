@@ -4,5 +4,5 @@
 	<div class="reminderEvent">Event: <span ><em>{{reminder.plantEvent}}</em></span></div>
 	<div class="reminderDate">When: {{reminder.eventDate | date: mediumDate}}</div> 
 	<div class="reminderTimer" ng-show="reminder.countdown > 0"><timer autostart="true" countdown="reminder.countdown" max-time-unit="'day'">({{days}} day{{daysS}}, {{hours}} hour{{hoursS}})</timer></div>
-	<div class="reminderTimer" ng-show="typeof reminder.countdown === 'String'">( Today! )</div>
+	<div class="reminderTimer" ng-show="reminder.countdown < 0">( Today! )</div>
 </div>
