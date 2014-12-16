@@ -7,42 +7,48 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   picture: { type: String, default: "/assets/images/empty_profile.png" },
-  name: { type: String },
+  name: String,
   phone: String,                                /**** NOTE: make required for search purposes? ****/
-  email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
-  age: { type: Number },
-  hometown: { type: String },
-  currentCity: { type: String },
+  email: {
+    type: String,
+    lowercase: true
+  },     /**** NOTE: make required for search purposes? ****/
+  age: Number,
+  hometown: String,
+  currentCity: String,
   // reminders: { type: [String] },
   relationship: {
-    partner: { type: String }
+    partner: String
   },
   family: [{
-    name: { type: String },
-    relation: { type: String }
+    name: String,
+    relation: String
   }],
   education: [{                                 /**** NOTE: Can we use Foursquare or some other places API? ****/
-    level: { type: String },
-    name: { type: String },
+    level: String,
+    name: String,
   }],
-  employer: { type: String },                   /**** NOTE: Can we use Foursquare or some other places API? ****/
+  employer: String,                   /**** NOTE: Can we use Foursquare or some other places API? ****/
   importantDates: [{
-    eventName: { type: String },
-    date: { type: Date },
-    description: { type: String  }
+    eventName: String,
+    date: Date,
+    description: String
   }],
   interests: [{
-    type: { type: String },
-    tags: { type: [String] }
+    type: String,
+    tags: [String]
   }],
   projects: [{
-    type: { type: String },
-    name: { type: String },
-    description: { type: String },
-    link: { type: String }
+    type: String,
+    name: String,
+    description: String,
+    link: String
   }],
-  notes: { type: String },
-  plants: [{ type: Schema.Types.ObjectId, ref: 'Plant' }],
+  notes: String,
+  plants: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Plant'
+  }],
   role: {
     type: String,
     default: 'user'

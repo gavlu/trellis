@@ -140,6 +140,49 @@ User.find({}).remove(function() {
       title: "Second title",
       body: "Second body"
     }]
+  }, {
+    provider: 'local',
+    name: 'Gavin Lue',
+    email: 'gavinlue@gmail.com',
+    password: 'gavinlikesdogs',
+    phone: '718-483-6772',
+    age: '23',
+    hometown: 'Staten Island, NY',
+    currentCity: 'Staten Island, NY',
+    relationship: {
+      partner: ''
+    },
+    family: [{
+      name: 'Peter',
+      relation: 'Father'
+    },{
+      name: 'Jackie',
+      relation: 'Mother'
+    },{
+      name: 'Mathieu',
+      relation: 'Brother'
+    },{
+      name: 'Ana',
+      relation: 'Sister'
+    }],
+    education: [{
+      level: "High School",
+      name: "Xavier High School"
+    },{
+      level: "College",
+      name: "Macaulay Honors College"
+    }],
+    employer: "",
+    importantDates: [],
+    interests: [{
+      type: "Video games",
+      tags: ["Mass Effect", "Final Fantasy", "Borderlands", "Playstation"]
+    }],
+    projects: [],
+    notes: {
+      body: "Likes languages"
+    },
+    otherFields: []
   }, function() {
       console.log('finished populating users');
     }

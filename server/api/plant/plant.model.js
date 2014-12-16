@@ -6,72 +6,75 @@ var mongoose = require('mongoose'),
     // extend = require('mongoose-schema-extend');
 
 var PlantSchema = new Schema({
-  picture: { type: String },
-  name: { type: String },
+  picture: String,
+  name: String,
 
   // Changed to array from String
   phones: [String],                                /**** NOTE: make required for search purposes? ****/
-  email: { type: String, lowercase: true },     /**** NOTE: make required for search purposes? ****/
-  age: { type: Number },
-  hometown: { type: String },
-  currentCity: { type: String },
-  reminders: { type: [String] },
+  email: {
+    type: String,
+    lowercase: true
+  },     /**** NOTE: make required for search purposes? ****/
+  age: Number,
+  hometown: String,
+  currentCity: String,
+  reminders: [String],
 
   // Added "status" field
   relationship: {
-    status: { type: String },
-    partner: { type: String }
+    status: String,
+    partner: String
   },
   family: [{
-    name: { type: String },
-    relation: { type: String }
+    name: String,
+    relation: String
   }],
   education: [{                                 /**** NOTE: Can we use Foursquare or some other places API? ****/
-    level: { type: String },
-    name: { type: String },
+    level: String,
+    name: String,
   }],
 
   // Changed object from "employer" to "employment"
       // Added 'employer' and 'position' fields
-  employment: { 
+  employment: {
     employer: String,
-    position: String 
+    position: String
   },                                            /**** NOTE: Can we use Foursquare or some other places API? ****/
-  
-  importantDates: [{ 
-    eventName: { type: String },
-    date: { type: Date },
-    description: { type: String  }
+
+  importantDates: [{
+    eventName: String,
+    date: Date,
+    description: String
   }],
-  
-  interests: [{ 
-    type: { type: String },
-    tags: { type: [String] }
-  }],                  
+
+  interests: [{
+    type: String,
+    tags: [String]
+  }],
   projects: [{
-    type: { type: String },
-    name: { type: String },
-    description: { type: String },
-    link: { type: String }
+    type: String,
+    name: String,
+    description: String,
+    link: String
   }],
   notes: {
-    body: { type: String }
+    body: String
   },
   otherFields: [{
-    title: { type: String },
-    body: { type: String }
+    title: String,
+    body: String
   }],
 
   // Added contact frequency
-  contactFrequency: { type: String },
+  contactFrequency: String,
   dateAdded: {
   	type: Date,
   	default: Date.now()
   },
-  userId: { type: String },
+  userId: String,
 
   // Added ownerId
-  ownerId: { type: String }
+  ownerId: String
 });
 
 module.exports = mongoose.model('Plant', PlantSchema);
