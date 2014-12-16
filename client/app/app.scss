@@ -86,7 +86,6 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
         background-color: $bgHighlight; }}}
 }
 
-
 // Styling for cards
 
 .card {
@@ -95,6 +94,10 @@ $bgGradient     : linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 48%));
   border-radius: 2px;
   input[type=text], input[type=number], textarea, select {
     margin: .75em 0;
+  }
+  hr {
+    width: 80%;
+    border-top: 2px solid hsl(0, 0%, 50%);
   }
 }
 
