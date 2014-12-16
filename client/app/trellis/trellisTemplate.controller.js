@@ -15,10 +15,12 @@ angular.module('trellisApp')
 		});
 
 		var vm = this;
+		vm.isNegative = isNegative;
+		vm.search     = search;
 
 		$scope.remindersArray = reminderService.reminders;
 
-		vm.search = function(emailOrPhone) {
+		function search(emailOrPhone) {
 			if ($scope.trellisForm.$valid) {
 			  $scope.emailOrPhone = "";
 			  var email = new RegExp("@"),
@@ -48,7 +50,7 @@ angular.module('trellisApp')
 			}
 		};
 
-		vm.isNegative = function () {
+		function isNegative() {
 			if($scope.remindersArray.countdown < 0){
 				return true;
 			}
@@ -58,8 +60,4 @@ angular.module('trellisApp')
 		}
 
 
-	})
-
-
-
-
+	});
