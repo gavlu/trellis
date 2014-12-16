@@ -46,45 +46,47 @@ var job = new CronJob({
 
     	Plant.find({}, function(err, plants) {
     		plants.forEach(function(plant){
+                // Check existence
                 plant.importantDates.forEach(function(someEvent){
-                    console.log("Event date:")
-                    console.log(someEvent.date);
-                    var eventDate = someEvent.date;
-                    if(isPast(eventDate, currentTime)){
-                        eventDate.setFullYear(currentTime.getFullYear());
-                    };
-                    if(((eventDate - currentTime)/(1000*3600*24)) < 0 &&
-                        ((eventDate - currentTime)/(1000*3600*24)) > -1){
+                    if(someEvent.date){
+                        console.log("Event date:")
+                        console.log(someEvent.date);
+                        var eventDate = someEvent.date;
+                        if(isPast(eventDate, currentTime)){
+                            console.log(eventDate);
+                            eventDate.setFullYear(currentTime.getFullYear());
+                        };
+                        if(((eventDate - currentTime)/(1000*3600*24)) < 0 &&
+                            ((eventDate - currentTime)/(1000*3600*24)) > -1){
 
-                        var emailReminders = [];
-                        plant.reminders.forEach(function(reminder) {
-                            emailReminders += reminder + "\n\t";
-                        });
+                            var emailReminders = [];
+                            plant.reminders.forEach(function(reminder) {
+                                emailReminders += reminder + "\n\t";
+                            });
 
-                        console.log(emailReminders);
+                            console.log(emailReminders);
 
-                        var phoneNum = "";
-                        if(!plant.phones[0]) { phoneNum = "No phone number stored for this contact" };
+                            var phoneNum = "";
+                            if(!plant.phones[0]) { phoneNum = "No phone number stored for this contact" };
 
-                        User.findById(plant.ownerId, function(err, user){
-                            sendEmail({
-                                to: user.email,
-                                replyTo: plant.email,
-                                subject: "Trellis contact: " + plant.name + " | Event Today: " + someEvent.eventName,
-                                text: user.name + ", \n\n"
-                                    + plant.name + " has an event happening today: \n\t"
-                                    + "Event: " + someEvent.eventName + "\n\t"
-                                    + "Notes: " + someEvent.description + "\n\n\n"
-                                    + "Contact him/her by either: \n\t 1) Replying to this email \n\t 2) Call (or text) at:\n\t\t" + phoneNum + "\n\n"
-                                    + "And don't forget! You wanted to remind them about: \n\n\t" + emailReminders + "\n\n\n\n"
-                                    + "More information or to update: \n\t http://localhost:9000/trellis"
+                            User.findById(plant.ownerId, function(err, user){
+                                sendEmail({
+                                    to: user.email,
+                                    replyTo: plant.email,
+                                    subject: "Trellis contact: " + plant.name + " | Event Today: " + someEvent.eventName,
+                                    text: user.name + ", \n\n"
+                                        + plant.name + " has an event happening today: \n\t"
+                                        + "Event: " + someEvent.eventName + "\n\t"
+                                        + "Notes: " + someEvent.description + "\n\n\n"
+                                        + "Contact him/her by either: \n\t 1) Replying to this email \n\t 2) Call (or text) at:\n\t\t" + phoneNum + "\n\n"
+                                        + "And don't forget! You wanted to remind them about: \n\n\t" + emailReminders + "\n\n\n\n"
+                                        + "More information or to update: \n\t http://localhost:9000/trellis"
 
-                           });
-                        })
-                    };
-                    console.log("-------------------")
+                               });
+                            })
+                        };
+                    }
                 })
-                console.log("----------------------------------")
             })
     	})
 	},

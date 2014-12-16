@@ -1,37 +1,15 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
+  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
 
     /**** REMINDERS CARDS ****/
-    // remindersArray = []   //purely for sidebar function
     var cb = function (plants) {
       $scope.plants = plants;
       console.log("this is plants", plants);
       Auth.getCurrentUser().plants = $scope.plants || [];
-
-      /**** Reminder sidebar functionality ****/
-      // $scope.remindersArray = [];
-      // var currentDate = new Date();
-      // plants.forEach(function(plant){
-      //   plant.importantDates.forEach(function(date){
-      //     var eventDate = new Date(date.date);
-      //     if(reminderHelper.isRecurring(eventDate, currentDate)){
-      //       eventDate.setFullYear(currentDate.getFullYear());
-      //     }
-      //     if( reminderHelper.isApproaching(eventDate, currentDate) ){
-
-      //       $scope.remindersArray.push({
-      //         plantName: plant.name,
-      //         plantEvent: date.eventName,
-      //         eventDate: eventDate,
-      //         countdown: (eventDate-currentDate)/1000
-      //       });
-      //     }
-      //   })
-      // })
     };
 
     // Makes sure that it only gets the plants when
