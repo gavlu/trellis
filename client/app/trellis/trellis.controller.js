@@ -4,6 +4,10 @@ angular.module('trellisApp')
   .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
+    vm.editPlant   = editPlant;
+    vm.deletePlant = deletePlant;
+    vm.plantFilter = plantFilter;
+    vm.sortPlants  = sortPlants;
 
     /**** REMINDERS CARDS ****/
     var cb = function (plants) {
@@ -21,13 +25,13 @@ angular.module('trellisApp')
 
     /**** Profile Preview ****/
 
-    vm.editPlant = function(plantId){
+    function editPlant(plantId){
       $state.go('trellis.editPlant', {
         id: plantId
       })
     };
 
-    vm.deletePlant = function(plant){
+    function deletePlant(plant){
       var index = $scope.plants.indexOf(plant);
       plantService.deletePlant(plant._id, function(){
         $scope.plants.splice(index,1);
@@ -35,7 +39,7 @@ angular.module('trellisApp')
     };
     /**** END Profile Preview ****/
 
-    vm.plantFilter = function(plantName) {
+    function plantFilter(plantName) {
       var query = new RegExp($scope.name, "i");
       if(query.test(plantName)){
         return true;
@@ -43,7 +47,7 @@ angular.module('trellisApp')
     };
 
     $scope.criteria = "name";
-    vm.sortPlants = function(criteria){
+    function sortPlants(criteria){
       $scope.criteria = criteria;
     };
 
@@ -54,21 +58,7 @@ angular.module('trellisApp')
     ];
 
 
-  })
-  .directive('ngEnter', function(){
-    return function(scope, element, attrs){
-      element.bind('keydown keypress', function(event){
-        if (event.which === 13){
-          scope.$apply(function(){
-            scope.$eval(attrs.ngEnter, {'event': event});
-            });
-          event.preventDefault();
-        }
-      });
-    };
   });
-
-
 
 /****   MINI REMINDER FEATURE
           maybe add later

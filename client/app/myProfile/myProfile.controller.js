@@ -2,8 +2,39 @@
 
 angular.module('trellisApp')
 .controller('MyprofileCtrl', function ($scope, Auth, userService) {
-
-	var vm = this;
+	/* jshint validthis: true */
+	var vm             = this;
+	vm.addField    = addField;
+	vm.deleteField = deleteField;
+	vm.setEditable = setEditable;
+	vm.show        = show;
+	vm.showBox     = showBox;
+	vm.updateUser  = updateUser;
+	vm.uploadImage = uploadImage;
+	vm.typeObj 		 = {
+		'family': {
+			name: '',
+			relation: ''
+		},
+		'education': {
+			level: '',
+			name: ''
+		},
+		'interests': {
+			type: '',
+			tags: []
+		},
+		'projects': {
+			type: '',
+			name: '',
+			description: '',
+			link: ''
+		},
+		'otherFields': {
+			title: '',
+			body: ''
+		}
+	};
 
 	$scope.me = angular.copy( Auth.getCurrentUser() );
 	delete $scope.me.__v;
@@ -34,7 +65,7 @@ angular.module('trellisApp')
 		{value: 'notes', label: '<i class="fa fa-pencil"></i> Notes'}
 	];
 
-	vm.show = function(inputField) {
+	function show(inputField) {
 		if ( $scope.tempMe[inputField] ) {
 			if ( typeof $scope.tempMe[inputField] === 'object' && $scope.tempMe[inputField].length === 0 ) {
 				return $scope.selectedIcons.indexOf(inputField) > -1 ? true : false;
@@ -44,76 +75,51 @@ angular.module('trellisApp')
 		} else {
 			return $scope.selectedIcons.indexOf(inputField) > -1;
 		}
-	};
+	}
 
-	vm.typeObj = {
-		'family': {
-			name: '',
-			relation: ''
-		},
-		'education': {
-			level: '',
-			name: ''
-		},
-		'interests': {
-			type: '',
-			tags: []
-		},
-		'projects': {
-			type: '',
-			name: '',
-			description: '',
-			link: ''
-		},
-		'otherFields': {
-			title: '',
-			body: ''
-		}
-	};
-
-	vm.addField = function( key, index ) {
+	function addField( key, index ) {
 		if( key === 'tags' ){
 			$scope.tempMe.interests[index].tags.push('');
 		} else {
 			$scope.tempMe[key].push(angular.copy(vm.typeObj[key]));
 		}
-	};
+	}
 
-	vm.deleteField = function( key, index ) {
+	function deleteField( key, index ) {
 		if( key === 'tags' ){
 			$scope.tempMe.interests[index].tags.splice($scope.tempMe.interests[index].tags.length-1, 1);
 		} else {
 			$scope.tempMe[key].splice($scope.tempMe[key].length-1, 1);
 		}
-	};
+	}
 
-	vm.setEditable = function( ) {
+	function setEditable() {
 		if ( $scope.editable === true ) { angular.copy($scope.me, $scope.tempMe); }
 		$scope.editable = !$scope.editable;
-	};
+	}
 
-	vm.updateUser = function() {
+	function updateUser() {
 		_.merge( Auth.getCurrentUser(), $scope.tempMe, function( a, b ) { return b; } );
 		userService.updateUser($scope.tempMe, function(data){
 			console.log(data);
 			$scope.me = angular.copy($scope.tempMe);
 			$scope.editable = !$scope.editable;
 		});
-	};
+	}
 
 	//For education select boxes
-	vm.showBox = function(school){
+	function showBox(school){
 		if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
 			return true;
 		} else {
 			return false;
 		}
-	};
+	}
 
 	// FILEPICKER IMAGE UPLOAD CODE
 
 	filepicker.setKey("AoRIJarp2S3uQNeH3nBQ2z");
-	vm.uploadImage = function() {
+	function uploadImage() {
 		filepicker.pick(
 			{
 				mimetypes: ['image/*'],
@@ -130,6 +136,6 @@ angular.module('trellisApp')
 				console.log(FPError.toString());
 			}
 		);
-	};
+	}
 
 });

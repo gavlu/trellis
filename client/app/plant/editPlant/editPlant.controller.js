@@ -4,6 +4,41 @@ angular.module('trellisApp')
   .controller('EditplantCtrl', function ($scope, $stateParams, plantService, $state) {
     var vm      = this,
         plantId = $stateParams.id;
+    vm.addField    = addField;
+    vm.deleteField = deleteField;
+    vm.show        = show;
+    vm.showBox     = showBox;
+    vm.typeObj     = {
+      "family": {
+        name: "",
+        relation: ""
+      },
+      "education": {
+        level: "",
+        name: ""
+      },
+      "importantDates": {
+        eventName: "",
+        date: "",
+        description: ""
+      },
+      "interests": {
+        type: "",
+        tags: []
+      },
+      "projects": {
+        type: "",
+        name: "",
+        description: "",
+        link: ""
+      },
+      "otherFields": {
+        title: "",
+        body: ""
+      }
+    };
+    vm.update      = update;
+    vm.uploadImage = uploadImage;
 
     $scope.master    = {};
     $scope.editPlant = {};
@@ -34,7 +69,7 @@ angular.module('trellisApp')
       {value: 'reminders', label: '<i class="fa fa-star"></i> Reminders'}
     ];
 
-    vm.show = function(inputField) {
+    function show(inputField) {
       if ( $scope.editPlant[inputField] ) {
         if ( typeof $scope.editPlant[inputField] === 'object' && $scope.editPlant[inputField].length === 0 ) {
           return $scope.selectedIcons.indexOf(inputField) > -1 ? true : false;
@@ -46,37 +81,7 @@ angular.module('trellisApp')
       }
     };
 
-    vm.typeObj = {
-      "family": {
-        name: "",
-        relation: ""
-      },
-      "education": {
-        level: "",
-        name: ""
-      },
-      "importantDates": {
-        eventName: "",
-        date: "",
-        description: ""
-      },
-      "interests": {
-        type: "",
-        tags: []
-      },
-      "projects": {
-        type: "",
-        name: "",
-        description: "",
-        link: ""
-      },
-      "otherFields": {
-        title: "",
-        body: ""
-      }
-    };
-
-    vm.addField = function( key, index ) {
+    function addField( key, index ) {
       if( key === "tags" ){
       	$scope.editPlant.interests[index].tags.push("")
       }
@@ -88,7 +93,7 @@ angular.module('trellisApp')
       }
     };
 
-    vm.deleteField = function( key, index ) {
+    function deleteField( key, index ) {
       if( key === "tags" ){
       	$scope.editPlant.interests[index].tags.splice($scope.editPlant.interests[index].tags.length-1, 1);
       }
@@ -97,7 +102,7 @@ angular.module('trellisApp')
       }
     };
 
-    vm.update = function (input) {
+    function update(input) {
     	if(input === 'save'){
 	    	plantService.updatePlant($scope.editPlant, function(updated) {
 	    		$scope.saved = true;
@@ -111,7 +116,7 @@ angular.module('trellisApp')
     };
 
     //For education select boxes
-    vm.showBox = function(school){
+    function showBox(school){
       if(school!==$scope.edLevel[0]&&school!==$scope.edLevel[1]&&school!==$scope.edLevel[2]&&school!==undefined){
         return true;
       } else {
@@ -122,7 +127,7 @@ angular.module('trellisApp')
     // FILEPICKER IMAGE UPLOAD CODE
 
     filepicker.setKey("AoRIJarp2S3uQNeH3nBQ2z");
-    vm.uploadImage = function() {
+    function uploadImage() {
       filepicker.pick(
         {
           mimetypes: ['image/*'],
