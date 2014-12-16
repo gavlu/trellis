@@ -2,7 +2,6 @@
 
 angular.module('trellisApp')
   .factory('userService', function ($http, Auth){
-    // Public API here
     return {
 
     	getPlants: function (cb) {

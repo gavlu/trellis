@@ -1,33 +1,6 @@
 'use strict';
 
 angular.module('trellisApp')
-  .factory('reminderHelper', function () {
-    return {
-      isRecurring: function (inputDate, currentDate) {
-        // console.log("Is Recurring, true")
-        // console.log(inputDate);
-        // console.log(currentDate);
-        // console.log(((inputDate-currentDate)/(1000*3600*24)) < -1)
-        // console.log("----------------")
-        if( ((inputDate-currentDate)/(1000*3600*24)) < -1 ) {
-          // console.log("Date should recur");
-          return true;
-        }
-        return false;
-      },
-      isApproaching: function (inputDate, currentDate) {
-        // console.log("Is Approaching, true")
-        // console.log(inputDate);
-        // console.log(currentDate);
-        // console.log("----------------")
-        if(((inputDate - currentDate)/(1000*3600*24)) < 3 &&
-          ((inputDate - currentDate)/(1000*3600*24)) > -1){
-          return true;
-        }
-        return false;
-      }
-    }
-  })
   .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
