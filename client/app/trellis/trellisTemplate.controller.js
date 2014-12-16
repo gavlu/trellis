@@ -1,52 +1,19 @@
-angular.module("trellisApp")
-	.factory('reminderService', function (userService, reminderHelper, $q){
-		function GetReminders() {
-			return $q(function(resolve, reject) {
-				userService.getPlants(function(plants){
-					var currentDate = new Date();
-					var remindersArray = [];
-					plants.forEach(function(plant, outsideindex){
-					  plant.importantDates.forEach(function(date, insideindex){
-					    var eventDate = new Date(date.date);
-					    if(reminderHelper.isRecurring(eventDate, currentDate)){
-					      eventDate.setFullYear(currentDate.getFullYear());
-					    }
-					    if( reminderHelper.isApproaching(eventDate, currentDate) ){
-					      // var countdownDate = (eventDate-currentDate)/1000;
-					      // if(((eventDate-currentDate)/1000) < 0){
-					      // 	countdownDate = "Today!"
-					      // } 
-					      remindersArray.push({
-					        plantName: plant.name,
-					        plantEvent: date.eventName,
-					        eventDate: eventDate,
-					        countdown: (eventDate-currentDate)/1000
-					      });
-					    }
-					  })
-					})
-					resolve(remindersArray);
-				})
-			});
-		}
-		return {
-			getReminders: GetReminders,
-			reminders: []
-		}
-	})
+'use strict';
+
+angular.module('trellisApp')
 	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminderService){
 		$rootScope.$on('$stateChangeStart', function (event, next) {
 			reminderService.getReminders().then(
 			  function onResolve(resolveObj) {
-			  console.log("resolve obj", resolveObj);
-			  angular.copy(resolveObj, reminderService.reminders);
-			  }, 
+				  console.log("resolve obj", resolveObj);
+				  angular.copy(resolveObj, reminderService.reminders);
+			  },
 			  function onReject(rejectObj) {
 			    console.log("fail");
 			  }
 			);
 		});
-		 
+
 		var vm = this;
 
 		$scope.remindersArray = reminderService.reminders;
@@ -77,7 +44,7 @@ angular.module("trellisApp")
 			      "inputType": "phone",
 			      "input": input.phone
 			    });
-			  }	
+			  }
 			}
 		};
 

@@ -1,64 +1,15 @@
 'use strict';
 
 angular.module('trellisApp')
-  .factory('reminderHelper', function () {
-    return {
-      isRecurring: function (inputDate, currentDate) {
-        // console.log("Is Recurring, true")
-        // console.log(inputDate);
-        // console.log(currentDate);
-        // console.log(((inputDate-currentDate)/(1000*3600*24)) < -1)
-        // console.log("----------------")
-        if( ((inputDate-currentDate)/(1000*3600*24)) < -1 ) {
-          // console.log("Date should recur");
-          return true;
-        }
-        return false;
-      },
-      isApproaching: function (inputDate, currentDate) {
-        // console.log("Is Approaching, true")
-        // console.log(inputDate);
-        // console.log(currentDate);
-        // console.log("----------------")
-        if(((inputDate - currentDate)/(1000*3600*24)) < 3 &&
-          ((inputDate - currentDate)/(1000*3600*24)) > -1){
-          return true;
-        }
-        return false;
-      }
-    }
-  })
-  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService, reminderHelper) {
+  .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService) {
   	// console.log("TrellisCtrl, hit");
     var vm = this;
 
     /**** REMINDERS CARDS ****/
-    // remindersArray = []   //purely for sidebar function
     var cb = function (plants) {
       $scope.plants = plants;
       console.log("this is plants", plants);
       Auth.getCurrentUser().plants = $scope.plants || [];
-
-      /**** Reminder sidebar functionality ****/
-      // $scope.remindersArray = [];
-      // var currentDate = new Date();
-      // plants.forEach(function(plant){
-      //   plant.importantDates.forEach(function(date){
-      //     var eventDate = new Date(date.date);
-      //     if(reminderHelper.isRecurring(eventDate, currentDate)){
-      //       eventDate.setFullYear(currentDate.getFullYear());
-      //     }
-      //     if( reminderHelper.isApproaching(eventDate, currentDate) ){
-
-      //       $scope.remindersArray.push({
-      //         plantName: plant.name,
-      //         plantEvent: date.eventName,
-      //         eventDate: eventDate,
-      //         countdown: (eventDate-currentDate)/1000
-      //       });
-      //     }
-      //   })
-      // })
     };
 
     // Makes sure that it only gets the plants when

@@ -178,6 +178,7 @@ User.find({}).remove(function() {
        otherFields: []
      }, 
      function() {
+
       console.log('finished populating users');
     }
   );
