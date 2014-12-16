@@ -18,7 +18,7 @@
 		<!-- EMAIL -->
 		<div class="email profileDetails" ng-if="npc.show('email')">
 			<label for="name">Email: </label>
-			<input type="text" ng-model="newPlant.email" name="email" placeholder="james@gmail.com">
+			<input type="text" ng-model="newPlant.email" name="email" placeholder="YourName@gmail.com">
 		</div>
 		<!-- PHONE -->
 		<div class="phone profileDetails" ng-if="npc.show('phone')">
@@ -39,20 +39,38 @@
 			<div name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="npc.frequencyShow('daily')">One</div>
 				<span>times per</span>
 
-			<!-- "Day" or "Week" -->
+			<!-- "Day", "Week", or "Month" -->
 			<button type="button" class="btn btn-default" ng-model="$parent.selectedFrequency" data-html="1" ng-options="choice.value as choice.label for choice in frequency" placeholder="Choose" bs-select>
 			     <span class="caret"></span>
 			</button>
-			
-			<!-- Days of the week -->
-			<div ng-if="npc.frequencyShow('weekly')"> (Which days?)</div>
-			<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedDays" data-html="1" data-multiple="1" ng-options="day.value as day.label for day in days" ng-if="npc.frequencyShow('weekly')" placeholder="Choose" bs-select>
+
+			<!-- Weeks in the month -->
+			<div ng-if="npc.frequencyShow('monthly')"> (Which week(s)?)</div>
+			<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedWeeks" data-html="1" data-multiple="1" ng-options="week.value as week.label for week in weeks" ng-if="npc.frequencyShow('monthly')" placeholder="Choose" bs-select>
 			     <span class="caret"></span>
 			</button>
 
+			<!-- Days of the week -->
+			<div ng-if="npc.frequencyShow('weekly') || npc.frequencyShow('monthly')"> (Which day(s)?)</div>
+			<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedDays" data-html="1" data-multiple="1" ng-options="day.value as day.label for day in days" ng-if="npc.frequencyShow('weekly') || npc.frequencyShow('monthly')" placeholder="Choose" bs-select>
+			     <span class="caret"></span>
+			</button>
+
+			<div class="timepicker">		
+				<label for="time">at:</label>
+				<input type="text" ng-model="timeOfDay" size="3" data-time-format="shortTime" data-length="3" data-minute-step="15" name="time" bs-timepicker>
+			</div>
+
+			<!-- Starting date -->
+
+			<div>from:</div>
+			<input type="text" name="startPoint" ng-model="$parent.dateObj.recurrence_start" placeholder="Start date">
+
 			<!-- End date / # of reps -->
-			<div>until</div>
+			<div>until:</div>
 			<input type="text" name="endPoint" ng-model="$parent.dateObj.recurrence_end" placeholder="End date">
+
+			<button class="btn btn-default" ng-click="npc.test(dateObj.timerPer)">Test</button>
 		</div>
 
 
