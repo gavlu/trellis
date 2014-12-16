@@ -31,6 +31,18 @@ angular.module("trellisApp")
 		}
 	})
 	.controller('TrellisTemplateCtrl', function ($rootScope, $scope, $state, reminderService){
+		$rootScope.$on('$stateChangeStart', function (event, next) {
+			reminderService.getReminders().then(
+			  function onResolve(resolveObj) {
+			  console.log("resolve obj", resolveObj);
+			  angular.copy(resolveObj, reminderService.reminders);
+			  }, 
+			  function onReject(rejectObj) {
+			    console.log("fail");
+			  }
+			);
+		});
+		 
 		var vm = this;
 
 		$scope.remindersArray = reminderService.reminders;

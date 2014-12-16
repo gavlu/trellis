@@ -66,7 +66,17 @@ var PlantSchema = new Schema({
   }],
 
   // Added contact frequency
-  contactFrequency: String,
+  contactFrequency: {
+    recurrence_start: {
+      type: Date,
+      default: Date.now()
+    },
+    recurrence_end: Date,
+    frequency: String,
+    timesPer: String,
+    days_of_week: [String]
+  },
+
   dateAdded: {
   	type: Date,
   	default: Date.now()

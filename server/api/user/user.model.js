@@ -30,9 +30,9 @@ var UserSchema = new Schema({
   }],
   employer: String,                   /**** NOTE: Can we use Foursquare or some other places API? ****/
   importantDates: [{
-    eventName: String,
+    name: String,
     date: Date,
-    description: String
+    notes: String
   }],
   interests: [{
     type: String,

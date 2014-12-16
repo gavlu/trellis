@@ -43,7 +43,7 @@ angular.module('trellisApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth, reminderService) {
+  .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -51,14 +51,5 @@ angular.module('trellisApp', [
           $location.path('/login');
         }
       });
-      reminderService.getReminders().then(
-        function onResolve(resolveObj) {
-        console.log("resolve obj", resolveObj);
-        angular.copy(resolveObj, reminderService.reminders);
-        }, 
-        function onReject(rejectObj) {
-          console.log("fail");
-        }
-      ); 
     });
   });

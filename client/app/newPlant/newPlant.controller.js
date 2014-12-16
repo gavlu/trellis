@@ -2,6 +2,7 @@
 
 angular.module('trellisApp')
   .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
+
     var vm = this;
     $scope.newPlant = {
     	name: "",
@@ -9,7 +10,13 @@ angular.module('trellisApp')
     	email: "",
     	phone: [""],
     	age: "",
-    	contactFrequency: "",
+    	// contactFrequency: {
+     //    recurrence_start: "",
+     //    recurrence_end: "",
+     //    frequency: "",
+     //    timesPer: "",
+     //    days_of_week: []
+     //  },
     	relationship: {
     		status: "",
     		partner: ""
@@ -20,6 +27,10 @@ angular.module('trellisApp')
   			name: "",
   			relation: ""
   		}],
+      employment: {
+        employer: "",
+        position: ""
+      },
   		education: [{
   			level: "other",
   			name: ""
@@ -29,10 +40,6 @@ angular.module('trellisApp')
   			date: "",
   			description: ""
   		}],
-  		employment: {
-  			employer: "",
-  			position: ""
-  		},
   		interests: [{
   			type: "",
   			tags: [""]
@@ -61,11 +68,12 @@ angular.module('trellisApp')
 	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
 	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
 	    {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
+	    {value: 'contactFrequency', label: '<i class="fa fa-clock-o"></i> Contact Frequency'},
 	    {value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
 	    {value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
 	    {value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
 	    {value: 'currentCity', label: '<i class="fa fa-dot-circle-o"></i> Current City'},
-	    {value: 'employer', label: '<i class="fa fa-briefcase"></i> Employer'},
+	    {value: 'employment', label: '<i class="fa fa-briefcase"></i> Employment'},
 	    {value: 'education', label: '<i class="fa fa-graduation-cap"></i> Education'},
 	    {value: 'projects', label: '<i class="fa fa-wrench"></i> Projects'},
 	    {value: 'interests', label: '<i class="fa fa-comments"></i> Interests'},
@@ -79,10 +87,22 @@ angular.module('trellisApp')
   	};
 
   	vm.typeObj = {
+      "contactFrequency": {
+        recurrence_start: "",
+        recurrence_end: "",
+        type: "",
+        day_of_week: "",
+        month: "",
+        day_of_month: ""
+      },
   		"family": {
   			name: "",
   			relation: ""
   		},
+      "employment": {
+        employer: "",
+        position: ""
+      },
   		"education": {
   			level: "",
   			name: ""
@@ -131,6 +151,17 @@ angular.module('trellisApp')
 
   	vm.create = function (input) {
     	if(input === 'save'){
+
+        // Add the contact frequency to newPlant
+        $scope.newPlant.contactFrequency = {
+          recurrence_start: new Date(),
+          timesPer: $scope.dateObj.timesPer,
+          frequency: $scope.selectedFrequency,
+          days_of_week: $scope.selectedDays,
+          recurrence_end: $scope.dateObj.recurrence_end
+        };
+        console.log("contact frequency", $scope.newPlant.contactFrequency);
+
 	    	plantService.createPlant($scope.newPlant, function(created) {
 	    		userService.addToPlants(created, function(){
 	    			$state.go('trellis.plants');
@@ -152,6 +183,34 @@ angular.module('trellisApp')
         return false;
       }
     };
+
+    // Create date object
+    $scope.dateObj = {}
+
+
+    // For contact frequency btns
+    $scope.selectedFrequency = "";
+    $scope.frequency = [
+      { value: 'daily', label: "Day" }, 
+      { value: 'weekly', label: "Week" }, 
+      { value: 'monthly', label: "Month" }, 
+      // { value: 'yearly', label: "Year" }
+    ];
+
+    vm.frequencyShow = function(input){
+      return input == $scope.selectedFrequency;
+    }
+
+    $scope.selectedDays = [];
+    $scope.days = [
+      { value: 'monday', label: "Monday" }, 
+      { value: 'tuesday', label: "Tuesday" }, 
+      { value: 'wednesday', label: "Wednesday" }, 
+      { value: 'thursday', label: "Thursday" },
+      { value: 'friday', label: "Friday" },
+      { value: 'saturday', label: "Saturday" }, 
+      { value: 'sunday', label: "Sunday" }, 
+    ];
 
     // FILEPICKER IMAGE UPLOAD CODE
 

@@ -32,6 +32,11 @@
 
 input[name='time']{
 	width: 25%;
+	margin-left: .4em;
+}
+
+input[name='name']{
+	width: 50%;
 }
 
 textarea[name='notes']{
@@ -52,9 +57,30 @@ textarea[name='notes']{
 	width: 10%;
 	background-color: white;
 	border: 2px hsl(0, 0%, 80%) solid;
-	span {
+	.date {
 		position:absolute;
 		top:0;
 		right:0;
+		margin: 0 .1em 0 0;
+	}
+	.event{
+		display: inline-block;
+		position: relative;
+		background-color: rgb(0,153,255);
+		border-radius: 50%;
+		height: 1em;
+		width: 1em;
+		margin: .5em;
+	}
+	.addEvent {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 1.25em;
+		font-weight: bold;
+		margin: 0 .1em -.2em 0;
+	}
+	.addEvent:hover{
+		cursor: pointer;
 	}
 }
