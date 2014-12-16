@@ -187,6 +187,30 @@ angular.module('trellisApp')
     // Create date object
     $scope.dateObj = {}
 
+    vm.test = function () {
+      if($scope.selectedWeeks.length > 0 && $scope.selectedDays.length > 0){
+        console.log("Monthly", $scope.timeOfDay)
+        $scope.sched.schedules[0].dc = $scope.selectedWeeks;
+        $scope.sched.schedules[0].dw = $scope.selectedDays;
+        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+      } 
+      else if ($scope.selectedDays.length > 0) {
+        console.log("Weekly", $scope.timeOfDay)
+        $scope.sched.schedules[0].dw = $scope.selectedDays;
+        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+      } 
+      else {
+        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+      }
+
+      $scope.occurences = later.schedule($scope.sched).next($scope.dateObj.timesPer, Date.now());
+      console.log("Sched:", $scope.sched);
+      console.log($scope.occurences);
+    }
+    $scope.sched = {schedules: [{}]};
+
+    $scope.timeOfDay = new Date();
+    $scope.timeOfDay.setMinutes(Math.ceil(($scope.timeOfDay.getMinutes())/15)*15);
 
     // For contact frequency btns
     $scope.selectedFrequency = "";
@@ -203,13 +227,22 @@ angular.module('trellisApp')
 
     $scope.selectedDays = [];
     $scope.days = [
-      { value: 'monday', label: "Monday" }, 
-      { value: 'tuesday', label: "Tuesday" }, 
-      { value: 'wednesday', label: "Wednesday" }, 
-      { value: 'thursday', label: "Thursday" },
-      { value: 'friday', label: "Friday" },
-      { value: 'saturday', label: "Saturday" }, 
-      { value: 'sunday', label: "Sunday" }, 
+      { value: 1, label: "Sunday" }, 
+      { value: 2, label: "Monday" }, 
+      { value: 3, label: "Tuesday" }, 
+      { value: 4, label: "Wednesday" }, 
+      { value: 5, label: "Thursday" },
+      { value: 6, label: "Friday" },
+      { value: 7, label: "Saturday" }, 
+    ];
+
+    $scope.selectedWeeks = [];
+    $scope.weeks = [
+      { value: 1, label: "First"},
+      { value: 2, label: "Second"},
+      { value: 3, label: "Third"},
+      { value: 4, label: "Fourth"},
+      { value: 0, label: "Last" }
     ];
 
     // FILEPICKER IMAGE UPLOAD CODE

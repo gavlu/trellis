@@ -47,4 +47,19 @@ angular.module('trellisApp')
 			  }
 			}
 		};
+
+		vm.isNegative = function () {
+			if($scope.remindersArray.countdown < 0){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+
 	})
+
+
+
+

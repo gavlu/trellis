@@ -50,7 +50,17 @@ User.find({}).remove(function() {
     provider: 'local',
     name: 'Moe',
     email: 'moe@stooges.com',
-    password: 'test'
+    password: 'test',
+    age: '25',
+    hometown: 'Hollywood, CA',
+    currentCity: 'Somewhere, NE',
+    projects: [{
+      type: "Performance",
+      name: "Film",
+      description: "Makes movies",
+      link: "none"
+    }],
+
   }, {
     provider: 'local',
     name: 'Larry',
@@ -100,23 +110,6 @@ User.find({}).remove(function() {
       name: "Georgetown University"
     }],
     employer: "AIG",
-    importantDates: [{
-      eventName: "Birthday",
-      date: "September 19, 1989",
-      description: "It is his birthday"
-    },{
-      eventName: "Engagement party",
-      date: "December 5, 2014",
-      description: "Formal event at a restaurant in Westport"
-    },{
-      eventName: "Wedding",
-      date: "July 11, 2015",
-      description: "Big man is getting married at the Whittaker church."
-    },{
-      eventName: "Cron test",
-      date: "December 09, 2014",
-      description: "Please allow me to reintroduce myself! My name is James."
-    }],
     interests: [{
       type: "Video games",
       tags: ["halo", "call of duty", "red dead redemption", "xbox"]
@@ -141,49 +134,51 @@ User.find({}).remove(function() {
       body: "Second body"
     }]
   }, {
-    provider: 'local',
-    name: 'Gavin Lue',
-    email: 'gavinlue@gmail.com',
-    password: 'gavinlikesdogs',
-    phone: '718-483-6772',
-    age: '23',
-    hometown: 'Staten Island, NY',
-    currentCity: 'Staten Island, NY',
-    relationship: {
-      partner: ''
-    },
-    family: [{
-      name: 'Peter',
-      relation: 'Father'
-    },{
-      name: 'Jackie',
-      relation: 'Mother'
-    },{
-      name: 'Mathieu',
-      relation: 'Brother'
-    },{
-      name: 'Ana',
-      relation: 'Sister'
-    }],
-    education: [{
-      level: "High School",
-      name: "Xavier High School"
-    },{
-      level: "College",
-      name: "Macaulay Honors College"
-    }],
-    employer: "",
-    importantDates: [],
-    interests: [{
-      type: "Video games",
-      tags: ["Mass Effect", "Final Fantasy", "Borderlands", "Playstation"]
-    }],
-    projects: [],
-    notes: {
-      body: "Likes languages"
-    },
-    otherFields: []
-  }, function() {
+       provider: 'local',
+       name: 'Gavin Lue',
+       email: 'gavinlue@gmail.com',
+       password: 'gavinlikesdogs',
+       phone: '718-483-6772',
+       age: '23',
+       hometown: 'Staten Island, NY',
+       currentCity: 'Staten Island, NY',
+       relationship: {
+         partner: ''
+       },
+       family: [{
+         name: 'Peter',
+         relation: 'Father'
+       },{
+         name: 'Jackie',
+         relation: 'Mother'
+       },{
+         name: 'Mathieu',
+         relation: 'Brother'
+       },{
+         name: 'Ana',
+         relation: 'Sister'
+       }],
+       education: [{
+         level: "High School",
+         name: "Xavier High School"
+       },{
+         level: "College",
+         name: "Macaulay Honors College"
+       }],
+       employer: "",
+       importantDates: [],
+       interests: [{
+         type: "Video games",
+         tags: ["Mass Effect", "Final Fantasy", "Borderlands", "Playstation"]
+       }],
+       projects: [],
+       notes: {
+         body: "Likes languages"
+       },
+       otherFields: []
+     }, 
+     function() {
+
       console.log('finished populating users');
     }
   );
