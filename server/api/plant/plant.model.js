@@ -46,7 +46,7 @@ var PlantSchema = new Schema({
     date: Date,
     description: String
   }],
-
+  //why not have subdoc schemas for important dates, interests, projects, etc
   interests: [{
     type: String,
     tags: [String]
@@ -86,5 +86,5 @@ var PlantSchema = new Schema({
   // Added ownerId
   ownerId: String
 });
-
+// you need to add indexes for everything you search on
 module.exports = mongoose.model('Plant', PlantSchema);

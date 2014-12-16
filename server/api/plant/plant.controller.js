@@ -4,6 +4,8 @@ var _ = require('lodash');
 var config = require('../../config/environment');
 var Plant = require('./plant.model');
 
+
+//this feels like it should really be in its own file
 var sendEmail = function(to, subject, text){
   var options = {
     from: 'reminder.trellis@gmail.com',
@@ -21,10 +23,11 @@ var sendEmail = function(to, subject, text){
   });
 }
 
+
+//when do you list all plants for everyone?
 // Get list of plants
 exports.index = function(req, res) {
   Plant.find(function (err, plants) {
-    console.log("getPlant got to show!");
     if(err) { return handleError(res, err); }
     return res.json(200, plants);
   });
@@ -33,8 +36,6 @@ exports.index = function(req, res) {
 // Get a single plant
 exports.show = function(req, res) {
   Plant.findById(req.params.id, function (err, plant) {
-    console.log("getPlant got to show!");
-    console.log(req.params.id);
     if(err) { return handleError(res, err); }
     if(!plant) { return res.send(404); }
     return res.json(plant);
@@ -45,7 +46,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Plant.create(req.body, function(err, plant) {
     if(err) { return handleError(res, err); }
-    console.log(req.user);
+    //you should call this function from a mongoose post save hook.
     sendEmail(req.user.email, 
       'You have a new plant to tend to!', 
       'Tend to your plant and make sure it gets an adequate amount of attention so that ' + req.body.name + ' can grow strong!'
@@ -56,26 +57,22 @@ exports.create = function(req, res) {
 
 // Updates an existing plant in the DB.
 exports.update = function(req, res) {
-  console.log("Update, hit!")
-  console.log(req.body._id);
   var objectId = req.body._id;
 
   var newObject = req.body;
 
   delete newObject._id;
 
-
+  //findByIdAndUpdate bypasses mongoose hooks & validation. probably better to find then update
+  //this means you'd need new endpoints for your nested data
   Plant.findByIdAndUpdate(objectId, {$set: newObject}, function(err, plant, numModified) {
-    console.log("this is err", err);
-    console.log("newly updated plant", plant);
-    console.log("this is nummdofied", numModified);
+    //check for err
     res.json(plant);
   });
 };
 
 // Deletes a plant from the DB.
 exports.destroy = function(req, res) {
-  console.log(req.params);
   Plant.findById(req.params.id, function (err, plant) {
     if(err) { return handleError(res, err); }
     if(!plant) { return res.send(404); }

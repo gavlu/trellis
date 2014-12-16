@@ -3,7 +3,7 @@
 angular.module('trellisApp')
   .factory('userService', function ($http, Auth){
     return {
-
+      // fullstack angular generator already has one of these, i think
     	getPlants: function (cb) {
 
     		$http.get('/api/users/populateTrellis/').success(cb);

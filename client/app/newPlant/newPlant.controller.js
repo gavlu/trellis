@@ -4,6 +4,7 @@ angular.module('trellisApp')
   .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
 
     var vm = this;
+    // i feel like this could be in a factory
     $scope.newPlant = {
     	name: "",
       picture: "/assets/images/empty_profile.png",
@@ -57,13 +58,14 @@ angular.module('trellisApp')
   		reminders: [],
   		ownerId: Auth.getCurrentUser._id
     };
-
+    // I've seen this array before,... probably should be in one place
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
 
     $scope.newMaster = angular.copy($scope.newPlant);
 
     $scope.selectedIcon = "";
   	$scope.selectedIcons = [];
+    // i've seen this elsewhere... what happens when you want to add a new icon
   	$scope.icons = [
 	    {value: 'email', label: '<i class="fa fa-send"></i> Email'},
 	    {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},

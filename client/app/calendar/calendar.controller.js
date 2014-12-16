@@ -8,7 +8,8 @@ angular.module('trellisApp')
 
 		$scope.date = new Date();
 		$scope.date.setDate(1);
-
+    // these could be in providers
+    // they could also be arrays, right?
 		$scope.days = {
 			0: 'Sunday',
 			1: 'Monday',
@@ -48,7 +49,7 @@ angular.module('trellisApp')
 			10: 30,
 			11: 31
 		};
-
+    //why sometimes scope sometimes vm... its the right thing to do sometimes, but why here
 		vm.leap = function(year){
 			var year = year || 0;
 			if(year%4===0){
@@ -63,13 +64,13 @@ angular.module('trellisApp')
 				return 28;
 			}
 		};
-
+    // should certainly be in a factory
 		var Reminder = function(name, date, notes){
 			this.name = name;
 			this.date = date;
 			this.notes = notes;
 		};
-
+    // should be in a factory... also indentation
 	    var Day = function(dateNum){
 	    	this.date = dateNum;
 	    	this.events = [];
@@ -113,6 +114,9 @@ angular.module('trellisApp')
 				for(var i=0, d=day; i<len; i++, d++){
 					var date = new Day(i+1);
 					$scope.me.importantDates.forEach(function(el){
+            // lines like this benefit from helper functions
+            // they're just really hard to get what's going on.
+            // could be like if(isInRange(month,year,day) or something...
 						if(el.date.getMonth()===month&&el.date.getFullYear()===year&&el.date.getDate()===i+1) date.events.push(el);
 					});
 					if(d<7){
