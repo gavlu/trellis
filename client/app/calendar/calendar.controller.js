@@ -147,6 +147,8 @@ angular.module('trellisApp')
 		vm.setCal();
 
 		vm.checkEvent = function(date, impEvent){
+			console.log(impEvent.date);
+			console.log(date.date);
 			if(date.date===impEvent.date.getDate() && $scope.cal.month===impEvent.date.getMonth() && $scope.cal.year===impEvent.date.getFullYear()) return true;
 		}
 

@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/trellis-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };

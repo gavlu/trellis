@@ -85,7 +85,7 @@
 		<div class="notes" ng-if="user.notes">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'notes' )" ng-if="!noClone" checked>
 			<h4>Notes</h4>
-			<p class="profileDetails">{{user.notes}}</p>
+			<p class="profileDetails">{{user.notes.body}}</p>
 		</div>
 		<button class="cloneButton button" ng-if="!noClone" ng-click="search.clone()">Clone</button>
 	</div>

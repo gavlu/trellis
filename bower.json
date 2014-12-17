@@ -15,7 +15,8 @@
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
     "angular-strap": "~2.1.4",
-    "angular-timer": "~1.1.9"
+    "angular-timer": "~1.1.9",
+    "later": "*"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
