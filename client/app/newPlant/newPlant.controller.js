@@ -154,11 +154,10 @@ angular.module('trellisApp')
 
         // Add the contact frequency to newPlant
         $scope.newPlant.contactFrequency = {
-          recurrence_start: new Date(),
-          timesPer: $scope.dateObj.timesPer,
-          frequency: $scope.selectedFrequency,
-          days_of_week: $scope.selectedDays,
-          recurrence_end: $scope.dateObj.recurrence_end
+          recurrence_start: $scope.frequencyData.start,
+          timesPer: $scope.frequencyData.timesPer,
+          schedule: $scope.buildSchedule(),
+          recurrence_end: $scope.frequencyData.end
         };
         console.log("contact frequency", $scope.newPlant.contactFrequency);
 
@@ -184,33 +183,43 @@ angular.module('trellisApp')
       }
     };
 
-    // Create date object
-    $scope.dateObj = {}
+    // Create frequency data
+    $scope.frequencyData = {}
+    $scope.sched = {schedules: [{}]};
+    $scope.timeOfDay = new Date();
+    $scope.timeOfDay.setMinutes(Math.ceil(($scope.timeOfDay.getMinutes())/15)*15);
 
-    vm.test = function () {
+    later.date.localTime();
+
+    $scope.buildSchedule = function () {
       if($scope.selectedWeeks.length > 0 && $scope.selectedDays.length > 0){
         console.log("Monthly", $scope.timeOfDay)
         $scope.sched.schedules[0].dc = $scope.selectedWeeks;
         $scope.sched.schedules[0].dw = $scope.selectedDays;
         $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+        $scope.sched.schedules[0].m = [$scope.timeOfDay.getMinutes()];
       } 
       else if ($scope.selectedDays.length > 0) {
         console.log("Weekly", $scope.timeOfDay)
         $scope.sched.schedules[0].dw = $scope.selectedDays;
         $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+        $scope.sched.schedules[0].m = [$scope.timeOfDay.getMinutes()];
       } 
       else {
         $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
+        $scope.sched.schedules[0].m = [$scope.timeOfDay.getMinutes()];
       }
 
-      $scope.occurences = later.schedule($scope.sched).next($scope.dateObj.timesPer, Date.now());
+      // $scope.occurences = later.schedule($scope.sched).next(200, $scope.frequencyData.start, $scope.frequencyData.end);
       console.log("Sched:", $scope.sched);
       console.log($scope.occurences);
+      return $scope.sched
     }
-    $scope.sched = {schedules: [{}]};
 
-    $scope.timeOfDay = new Date();
-    $scope.timeOfDay.setMinutes(Math.ceil(($scope.timeOfDay.getMinutes())/15)*15);
+
+    vm.frequencyShow = function(input){
+      return input == $scope.selectedFrequency;
+    }
 
     // For contact frequency btns
     $scope.selectedFrequency = "";
@@ -220,10 +229,6 @@ angular.module('trellisApp')
       { value: 'monthly', label: "Month" }, 
       // { value: 'yearly', label: "Year" }
     ];
-
-    vm.frequencyShow = function(input){
-      return input == $scope.selectedFrequency;
-    }
 
     $scope.selectedDays = [];
     $scope.days = [

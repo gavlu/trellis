@@ -72,9 +72,8 @@ var PlantSchema = new Schema({
       default: Date.now()
     },
     recurrence_end: Date,
-    frequency: String,
+    schedule: { type: Object },
     timesPer: String,
-    days_of_week: [String]
   },
 
   dateAdded: {
