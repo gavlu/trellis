@@ -3,6 +3,8 @@
 angular.module('trellisApp')
   .controller('SearchCtrl', function ($scope, Auth, userService, $stateParams, searchHelper, plantService, $state) {
     var vm = this;
+    vm.clone   = clone;
+    vm.uncheck = uncheck;
 
     //	--Autoloads the user with matching phone or email--
     /**** NOTE: Would not work on $scope ****/
@@ -30,7 +32,7 @@ angular.module('trellisApp')
     userService.searchUserByPhoneOrEmail(searchInput, searchCB);
     //	--end of autoload--
 
-    vm.uncheck = function( prop ) {
+    function uncheck( prop ) {
       if ( !!mutableCopy[prop] ) {
         delete mutableCopy[prop];
       } else {
@@ -48,7 +50,7 @@ angular.module('trellisApp')
     };
 
 
-    vm.clone = function() {
+    function clone() {
     	mutableCopy.userId = mutableCopy._id;
       mutableCopy.ownerId = Auth.getCurrentUser()._id;
     	delete mutableCopy._id;
