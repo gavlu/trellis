@@ -1,7 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema   = mongoose.Schema,
+    User     = require('../user/user.model'),
+    config   = require('../../config/environment');
     //Extend plants from users in the future
     // extend = require('mongoose-schema-extend');
 
@@ -84,6 +86,41 @@ var PlantSchema = new Schema({
 
   // Added ownerId
   ownerId: String
+});
+
+// Checks for newness before the plant is saved.
+PlantSchema.pre('save', function( next ){
+  this.wasNew = this.isNew;
+  next();
+});
+
+// If the plant is new then it will send the email to the owner.
+PlantSchema.post('save', function( plant ){
+    function sendEmail(to, subject, text){
+      var options = {
+        from: 'reminder.trellis@gmail.com',
+        to: to,
+        subject: subject,
+        text: text
+      }
+      config.email.transporter.sendMail(options, function(err, info){
+        if(err){
+          console.log(err);
+        }else{
+          console.log('Message sent: ' + info.response);
+        }
+        config.email.transporter.close();
+      });
+    }
+  if ( plant.wasNew ) {
+    User.findById(plant.ownerId, function(err, user){
+      if ( err ) throw err;
+      sendEmail(user.email,
+        'You have a new plant to tend to!',
+        'Tend to your plant and make sure it gets an adequate amount of attention so that ' + plant.name + ' can grow strong!'
+      );
+    });
+  }
 });
 
 module.exports = mongoose.model('Plant', PlantSchema);
