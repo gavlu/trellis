@@ -16,17 +16,17 @@
 	}
 }
 
-.changeMonths {
+.change-months {
 	float: right;
 }
 
-.monthYear {
+.month-year {
 	display: inline-block;
 	line-height: 1;
 	margin-top: -1em;
 }
 
-.modalComps {
+.modal-comps {
 	margin-bottom: 1em;
 }
 
@@ -72,7 +72,7 @@ textarea[name='notes']{
 		width: 1em;
 		margin: .5em;
 	}
-	.addEvent {
+	.add-event {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -80,7 +80,7 @@ textarea[name='notes']{
 		font-weight: bold;
 		margin: 0 .1em -.2em 0;
 	}
-	.addEvent:hover{
+	.add-event:hover{
 		cursor: pointer;
 	}
 }

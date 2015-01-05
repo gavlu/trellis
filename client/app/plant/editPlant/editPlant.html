@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<form novalidate class="editPlantForm" name="form">
-		<div class="card singleProfile">
+		<div class="card single-profile">
 			<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
 				Action <span class="caret"></span>
 			</button>
@@ -11,8 +11,8 @@
 				</h2>
 			</div>
 			<!-- IMAGE -->
-			<div class="imageDiv" ng-click="epc.uploadImage()">
-				<img ng-src="{{editPlant.picture}}" alt="Profile Picture" class="singleProfilePhoto" />
+			<div class="photo-container" ng-click="epc.uploadImage()">
+				<img ng-src="{{editPlant.picture}}" alt="Profile Picture" class="single-profile-photo" />
 				<h3>UPLOAD<span class="glyphicon glyphicon-pencil"></span></h3>
 			</div>
 			<!-- EMAIL -->
@@ -87,10 +87,10 @@
 					<select ng-model="school.level" name="levelSelect">
 						<option ng-repeat="level in edLevel" value="{{level}}" label='{{level[0] | uppercase }}{{level.slice(1)}}'></option>
 					</select>
-					<div ng-show="epc.showBox(school.level)" class='profileDetails'>
+					<div ng-show="epc.showBox(school.level)" class='profile-details'>
 						<input ng-model="school.level" type="text" name="customLevel" placeholder="Boating School">
 					</div>
-					<div class='profileDetails'>
+					<div class='profile-details'>
 						<label>School Name:</label>
 						<input type="text" ng-model="school.name" placeholder="Test University">
 					</div>
@@ -144,13 +144,13 @@
 				<button class="button deleteButton" ng-click="epc.deleteField('reminders')"> - </button>
 			</div>
 			<div class="buttonBox">
-				<button class="flatButton" ui-sref="trellis.plants">Cancel</button>
-				<button class="flatButton" ng-click="epc.update('reset')">Undo</button>
+				<button class="flat-button" ui-sref="trellis.plants">Cancel</button>
+				<button class="flat-button" ng-click="epc.update('reset')">Undo</button>
 				<span class="updated" ng-if="epc.show()">
 					<i class="fa fa-floppy-o"></i>
 					<i class="fa fa-check"></i>
 				</span>
-				<button class="button save" ng-click="epc.update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
+				<button class="button button-save" ng-click="epc.update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			</div>
 		</div>
 	</form>
