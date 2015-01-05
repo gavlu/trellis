@@ -49,7 +49,6 @@ angular.module('trellisApp')
     	$state.go('trellis.plants');
     };
 
-
     function clone() {
     	mutableCopy.userId = mutableCopy._id;
       mutableCopy.ownerId = Auth.getCurrentUser()._id;

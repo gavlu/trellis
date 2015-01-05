@@ -62,6 +62,15 @@ var UserSchema = new Schema({
 });
 
 /**
+ * Indices
+ */
+UserSchema
+  .index({
+    email: 1,
+    phone: 1
+  });
+
+/**
  * Virtuals
  */
 UserSchema

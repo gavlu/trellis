@@ -59,25 +59,11 @@ exports.clone = function (req, res, next) {
   });
 };
 
-exports.populateTrellis = function (req, res, next) {
-  console.log('inside populateTrellis');
-  var userId = req.user._id;
-  User.findById(userId)
-  .populate('plants')
-  .exec(function (err, user) {
-    if (err) return res.send("Could not populate!");
-    // prints current users plants array
-    console.log('PLANTS: ', user.plants);
-    res.json(user.plants);
-  });
-};
-
-
 /**
  * Finds a user based on email or phone
  */
 exports.findUser = function(req, res, next){
-  User.findOne(req.body, {
+  User.findOne(req.query, {
     hashedPassword: 0,
     plants: 0,
     provider: 0,
