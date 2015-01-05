@@ -1,59 +1,21 @@
 'use strict';
 
 angular.module('trellisApp')
-	.controller('CalendarCtrl', function ($scope, $modal, Auth, userService) {
+	.controller('CalendarCtrl', function ($scope, $modal, Auth, userService, days, months, monthLen, Reminder, Day) {
 
 		var vm           = this;
 		vm.checkEvent    = checkEvent;
-		vm.leap          = leap;
 		vm.setCal        = setCal;
 		vm.setReminder   = setReminder;
 		vm.showDateModal = showDateModal;
 		vm.showModal     = showModal;
 
 		$scope.me = Auth.getCurrentUser();
+		$scope.days = days;
+		$scope.months = months;
+		$scope.monthLen = monthLen;
 		$scope.date = new Date();
 		$scope.date.setDate(1);
-
-		$scope.days = {
-			0: 'Sunday',
-			1: 'Monday',
-			2: 'Tuesday',
-			3: 'Wednesday',
-			4: 'Thursday',
-			5: 'Friday',
-			6: 'Saturday'
-		};
-
-		$scope.months = {
-			0: 'January',
-			1: 'February',
-			2: 'March',
-			3: 'April',
-			4: 'May',
-			5: 'June',
-			6: 'July',
-			7: 'August',
-			8: 'September',
-			9: 'October',
-			10: 'November',
-			11: 'December'
-		};
-
-		$scope.monthLen = {
-			0: 31,
-			1: vm.leap,
-			2: 31,
-			3: 30,
-			4: 31,
-			5: 30,
-			6: 31,
-			7: 31,
-			8: 30,
-			9: 31,
-			10: 30,
-			11: 31
-		};
 
 		function leap(year){
 			var year = year || 0;
@@ -70,46 +32,35 @@ angular.module('trellisApp')
 			}
 		}
 
-		var Reminder = function(name, date, notes){
-			this.name = name;
-			this.date = date;
-			this.notes = notes;
-		};
+	    var setCalendar = function(m, y){
+	    	var month;
+	    	var year;
+	    	var day;
+	    	if(m!==undefined && y!==undefined){
+	    		if(m===12){
+	    			month = 0;
+	    			year = y+1;
+	    		} else if(m===-1){
+	    			month = 11;
+	    			year = y-1;
+	    		} else {
+	    			month = m;
+	    			year = y;
+	    		}
+	    		$scope.date.setMonth(month);
+	    		$scope.date.setFullYear(year);
+	    		day = $scope.date.getDay();
+	    	} else {
+	    		month = $scope.date.getMonth();
+	    		year = $scope.date.getFullYear();
+	    		day = $scope.date.getDay();
+	    	}
 
-    var Day = function(dateNum){
-    	this.date = dateNum;
-    	this.events = [];
-    };
-
-    var setCalendar = function(m, y){
-    	var month;
-    	var year;
-    	var day;
-    	if(m!==undefined && y!==undefined){
-    		if(m===12){
-    			month = 0;
-    			year = y+1;
-    		} else if(m===-1){
-    			month = 11;
-    			year = y-1;
-    		} else {
-    			month = m;
-    			year = y;
-    		}
-    		$scope.date.setMonth(month);
-    		$scope.date.setFullYear(year);
-    		day = $scope.date.getDay();
-    	} else {
-    		month = $scope.date.getMonth();
-    		year = $scope.date.getFullYear();
-    		day = $scope.date.getDay();
-    	}
-
-    	var len = function(){
+    		var len = function(){
 				if(month===1){//If month is February
-					return vm.leap(year);
+					return leap(year);
 				}
-				return $scope.monthLen[month];
+				return monthLen[month];
 			}();
 
 			//Populate weeks arrays with day objects for a given month
