@@ -2,7 +2,6 @@
 
 angular.module('trellisApp')
   .controller('TrellisCtrl', function ($scope, Auth, $http, userService, $state, plantService) {
-  	// console.log("TrellisCtrl, hit");
     var vm = this;
     vm.editPlant   = editPlant;
     vm.deletePlant = deletePlant;
@@ -19,12 +18,10 @@ angular.module('trellisApp')
     // Makes sure that it only gets the plants when
     // on the main user home page
     if ( $state.is('trellis.plants') ) {
-  	   userService.getPlants(cb);
-       console.log(Auth.getCurrentUser());
+  	  userService.getPlants(cb);
     }
 
     /**** Profile Preview ****/
-
     function editPlant(plantId){
       $state.go('trellis.editPlant', {
         id: plantId
