@@ -18,25 +18,24 @@
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 1.2em 0 .5em;
-    margin-top: 70px;
-    border-top: 1px solid #E5E5E5;
-    background: hsla(0, 0%, 0%, 0.5);
-
-    a {
-      color: hsl(110, 50%, 45%);
-      text-decoration: none;
-      &:hover {
-        color: hsl(110, 50%, 35%);
-      }
-      &:active {
-        color: hsl(110, 50%, 25%);
-      }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1.2em 0 .5em;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background: hsla(0, 0%, 0%, 0.5);
+  a {
+    color: hsl(110, 50%, 45%);
+    text-decoration: none;
+    &:hover {
+      color: hsl(110, 50%, 35%);
     }
+    &:active {
+      color: hsl(110, 50%, 25%);
+    }
+  }
 }
 
 .splash {

@@ -1,4 +1,4 @@
-<div class="filterBar">
+<div class="filter-bar">
   <button class="btn btn-default" type="button" data-animation="am-flip-x" bs-dropdown="dropdown">
   	Sort
   	<span class="caret"></span>
@@ -6,4 +6,4 @@
 	<input ng-model="name" ng-model-options="{ debounce: 250 }" type="text" name="trellisSearch" placeholder="Filter your plants..."></input>
 </div>
 <profile-preview ng-repeat="plant in plants | orderBy: criteria" ng-show="trellis.plantFilter(plant.name)"></profile-preview>
-<button class="floatButton plus" ui-sref="trellis.newPlant"><span class="glyphicon glyphicon-plus"></span></button>
+<button class="float-button plus" ui-sref="trellis.newPlant"><span class="glyphicon glyphicon-plus"></span></button>
