@@ -1,0 +1,161 @@
+// General styling for all buttons, should update to separate the button structure
+// and color schemes for each button.
+
+.button {
+  cursor: pointer;
+  color: hsl(0, 0%, 100%);
+  font-size: 1.1em;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border: 0;
+  border-radius:.2em;
+  box-shadow: 0px 2px 3px -3px black;
+  &:hover {
+    color: hsl(0, 0%, 100%);
+    text-decoration: none;
+  }
+}
+
+// Green color
+.button--green,
+.button--save,
+.button--clone {
+  background: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%));
+  border-bottom: 1px solid hsl(110, 60%, 25%);
+  &:hover {
+    text-decoration: none;
+    color: hsl(0, 0%, 100%);
+    background: linear-gradient(hsl(110, 50%, 45%), hsl(110,50%, 40%));
+  }
+  &:active {
+    background: linear-gradient(hsl(110, 60%, 30%), hsl(110, 60%, 25%));
+    box-shadow: 0 0 0 0 black;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+.button--save {
+  font-size: 1.33em;
+  padding: .3em 2em .1em;
+  float: right;
+}
+
+//Clone button
+.button--clone {
+  font-size: 1em;
+  margin-top: 1.5em;
+}
+
+//Delete Button
+.button--delete {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(0, 50%, 50%), hsl(0,50%, 45%));
+  border-bottom: 1px solid hsl(0, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(0, 50%, 45%), hsl(0,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(0, 60%, 30%), hsl(0, 60%, 25%));
+  }
+}
+
+//Edit Button
+.button--edit {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(220, 50%, 50%), hsl(220,50%, 45%));
+  border-bottom: 1px solid hsl(220, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(220, 50%, 45%), hsl(220,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(220, 60%, 30%), hsl(220, 60%, 25%));
+  }
+}
+
+//Reminder Button ( not currently in use )
+/* .button--reminder {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(90, 50%, 50%), hsl(90,50%, 45%));
+  border-bottom: 1px solid hsl(90, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(90, 50%, 45%), hsl(90,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(90, 60%, 30%), hsl(90, 60%, 25%));
+  }
+} */
+
+// Float buttons are absolutely positioned make sure to nest
+// inside of a relatively positioned element
+.floatButton {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  cursor: pointer;
+  color: hsl(0, 0%, 100%);
+  font-size: 2.5em;
+  display: inline-block;
+  border: 0;
+  background: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%));
+  border-bottom: 1px solid hsl(110, 60%, 25%);
+  border-radius:50%;
+  box-shadow: 0px 2px 10px -2px rgba(0, 0, 0, 0.8);
+  &:hover {
+    text-decoration: none;
+    color: hsl(0, 0%, 100%);
+    background: linear-gradient(hsl(110, 50%, 45%), hsl(110,50%, 40%));
+  }
+  &:active {
+    background: linear-gradient(hsl(110, 60%, 30%), hsl(110, 60%, 25%));
+    box-shadow: 0 0 0 0 black;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+// Different padding for the different glyphicons because they are sized differently
+
+.floatButton.edit {
+  bottom: 5%;
+  right: 10%;
+  padding: .5em .66em .3em;
+}
+
+.floatButton.plus {
+  padding: .5em .64em .3em .7em;
+}
+
+//Flat Button Styles
+
+.flatButton {
+  font-size: 1.3em;
+  transition: color 0.1s ease-out,
+              box-shadow 0.3s ease-out;
+  border: 0px solid hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(0, 60%, 60%);
+  text-transform: uppercase;
+  margin: 0 .5em 0 0;
+  border-radius: .2em;
+  padding: .3em .9em;
+  outline-color: hsl(110, 50%, 50%);
+  &:hover {
+    color: hsl(0, 100%, 60%);
+    box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.8);
+  }
+  &:active {
+    color: hsl(0, 80%, 40%);
+  }
+}

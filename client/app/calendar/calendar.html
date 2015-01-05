@@ -15,7 +15,7 @@
 						<li ng-repeat="event in date.events" ng-show="clndr.checkEvent(date, event)" ng-click="clndr.showDateModal(days[week.indexOf(date)], cal.month, date.date, cal.year, event.notes, event.name, event.date)" class="event"></li>
 					</ul>
 					<span class="date" ng-hide="{{date.date==='empty'}}">{{date.date}}</span>
-					<span class="addEvent" ng-hide="{{date.date==='empty'}}" ng-click="clndr.showModal(days[week.indexOf(date)], cal.month, date.date, cal.year)">+</span>
+					<span class="addEventButton" ng-hide="{{date.date==='empty'}}" ng-click="clndr.showModal(days[week.indexOf(date)], cal.month, date.date, cal.year)">+</span>
 				</td>
 			</tr>
 		</table>
