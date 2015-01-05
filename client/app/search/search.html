@@ -1,5 +1,8 @@
 <div class="col-md-12 col-xs-12">
-	<div class="single-profile card">
+	<div class="single-profile card" ng-if='!user'>
+		<h3>No User Found</h3>
+	</div>
+	<div class="single-profile card" ng-if='user'>
 		<!-- NAME -->
 		<h2>{{user.name}}</h2>
 		<!-- IMAGE -->

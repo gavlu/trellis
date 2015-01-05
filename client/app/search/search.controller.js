@@ -15,7 +15,7 @@ angular.module('trellisApp')
     /**** NOTE: this should be changed. Limit functions on scope
     			Can we add it into searchHelper? ****/
     var searchCB = function (data){
-    	$scope.emailOrPhone = "";
+    	$scope.emailOrPhone = '';
       $scope.user = data;
       mutableCopy = angular.copy( $scope.user );
 
@@ -25,7 +25,7 @@ angular.module('trellisApp')
     	  if($scope.user._id === el.userId || $scope.user._id === $scope.currentUser._id) {
     			/**** NOTE: fix the flicker ****/
     			$scope.noClone = true;
-		    };
+		    }
     	});
     };
 
@@ -38,7 +38,7 @@ angular.module('trellisApp')
       } else {
         mutableCopy[prop] = $scope.user[prop];
       }
-    };
+    }
 
     //	--Cloning feature--
     var addToPlantCB = function (newPlant){
@@ -54,7 +54,7 @@ angular.module('trellisApp')
       mutableCopy.ownerId = Auth.getCurrentUser()._id;
     	delete mutableCopy._id;
     	plantService.createPlant(mutableCopy, addToPlantCB);
-    };
+    }
     // --End cloning feature--
 
   });
