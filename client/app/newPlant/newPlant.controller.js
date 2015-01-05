@@ -55,7 +55,7 @@ angular.module('trellisApp')
   			body: ""
   		}],
   		reminders: [],
-  		ownerId: Auth.getCurrentUser._id
+  		ownerId: Auth.getCurrentUser()._id
     };
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
@@ -151,12 +151,11 @@ angular.module('trellisApp')
 
   	vm.create = function (input) {
     	if(input === 'save'){
-
+        console.log("Function is functioning")
         // Add the contact frequency to newPlant
         $scope.newPlant.contactFrequency = {
           recurrence_start: $scope.frequencyData.start,
-          timesPer: $scope.frequencyData.timesPer,
-          schedule: $scope.buildSchedule(),
+          schedule: vm.buildSchedule(),
           recurrence_end: $scope.frequencyData.end
         };
         console.log("contact frequency", $scope.newPlant.contactFrequency);
@@ -191,7 +190,8 @@ angular.module('trellisApp')
 
     later.date.localTime();
 
-    $scope.buildSchedule = function () {
+    vm.buildSchedule = function () {
+      console.log("clicked");
       if($scope.selectedWeeks.length > 0 && $scope.selectedDays.length > 0){
         console.log("Monthly", $scope.timeOfDay)
         $scope.sched.schedules[0].dc = $scope.selectedWeeks;
@@ -209,10 +209,6 @@ angular.module('trellisApp')
         $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
         $scope.sched.schedules[0].m = [$scope.timeOfDay.getMinutes()];
       }
-
-      // $scope.occurences = later.schedule($scope.sched).next(200, $scope.frequencyData.start, $scope.frequencyData.end);
-      console.log("Sched:", $scope.sched);
-      console.log($scope.occurences);
       return $scope.sched
     }
 
@@ -224,7 +220,7 @@ angular.module('trellisApp')
     // For contact frequency btns
     $scope.selectedFrequency = "";
     $scope.frequency = [
-      { value: 'daily', label: "Day" }, 
+      { value: 'daily', label: "Daily" }, 
       { value: 'weekly', label: "Week" }, 
       { value: 'monthly', label: "Month" }, 
       // { value: 'yearly', label: "Year" }
