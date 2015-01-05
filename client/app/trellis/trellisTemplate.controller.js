@@ -21,7 +21,7 @@ angular.module('trellisApp')
 		$scope.remindersArray = reminderService.reminders;
 
 		function search(emailOrPhone) {
-			if ($scope.trellis-form.$valid) {
+			if ($scope.trellisForm.$valid) {
 			  $scope.emailOrPhone = "";
 			  var email = new RegExp("@"),
 			      input = {};

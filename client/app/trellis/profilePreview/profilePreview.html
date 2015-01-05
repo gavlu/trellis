@@ -8,8 +8,8 @@
 	<div class="email">{{plant.email}}</div>
 	<div class="reminder">{{plant.reminders[plant.reminders.length-1]}}</div>
 
-	<button class='button editButton' ng-click="trellis.editPlant(plant._id)">EDIT</button>
-	<button class='button deleteButton' ng-click="trellis.deletePlant(plant)">DELETE</button>
+	<button class='button button--edit' ng-click="trellis.editPlant(plant._id)">EDIT</button>
+	<button class='button button--delete' ng-click="trellis.deletePlant(plant)">DELETE</button>
 </div>
 
 
@@ -21,9 +21,9 @@
 	<div class="reminder" ng-show="!makeNewReminder">{{plant.reminder}}</div>
 	<input type="text" class="reminderInput" ng-model="newReminder" placeholder="Reminder" ng-show="makeNewReminder"/>
 
-	<button class='button reminderButton' ng-if="!makeNewReminder" ng-click="addReminder('adding')"> ++ </button>
+	<button class='button button--reminder' ng-if="!makeNewReminder" ng-click="addReminder('adding')"> ++ </button>
 
-	<button class='button reminderButton' ng-if="makeNewReminder" ng-click="addReminder('saving', plant._id, newReminder)"> &#x2713&#x2713 </button>
+	<button class='button button--reminder' ng-if="makeNewReminder" ng-click="addReminder('saving', plant._id, newReminder)"> &#x2713&#x2713 </button>
 
 
 An application that allows users to find other users, copy other users profiles, and then edit and store the copied profiles in a personal repository. Allows people to maintain and reference information about people that they find pertinent.

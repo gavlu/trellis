@@ -88,8 +88,8 @@
 				<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
 				<input type="text" ng-model="member.relation" name="memberRelation" placeholder="Relation">
 			</div>
-			<button class="button editButton" ng-click="npc.addField('family')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('family')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('family')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('family')"> - </button>
 		</div>
 		<!-- HOMETOWN -->
 		<div class="hometown profile-details" ng-if="npc.show('hometown')">
@@ -119,8 +119,8 @@
 					<input type="text" ng-model="project.link" name="projects" placeholder="Link">
 				</div>
 			</div>
-			<button class="button editButton" ng-click="npc.addField('projects')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('projects')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('projects')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('projects')"> - </button>
 		</div>
 		<!-- EDUCATION -->
 		<ul class="profile-details" ng-if="npc.show('education')">
@@ -139,8 +139,8 @@
 					<input type="text" ng-model="school.name" placeholder="Test University">
 				</div>
 			</li>
-			<button class="button editButton" ng-click="npc.addField( 'education', $index )">+</button>
-			<button class="button deleteButton" ng-click="npc.deleteField('education')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField( 'education', $index )">+</button>
+			<button class="button button--delete" ng-click="npc.deleteField('education')"> - </button>
 		</ul>
 		<!-- INTERESTS -->
 		<div class="interests profile-details" ng-if="npc.show('interests')">
@@ -151,12 +151,12 @@
 					<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
 				</span>
 				<div>
-					<button class="button editButton" ng-click="npc.addField('tags', outer)"> +Tag </button>
-					<button class="button deleteButton" ng-click="npc.deleteField('tags', outer)"> -Tag </button>
+					<button class="button button--edit" ng-click="npc.addField('tags', outer)"> +Tag </button>
+					<button class="button button--delete" ng-click="npc.deleteField('tags', outer)"> -Tag </button>
 				</div>
 			</div>
-			<button class="button editButton" ng-click="npc.addField('interests')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('interests')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('interests')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('interests')"> - </button>
 		</div>
 		<!-- IMPORTANT DATES -->
 		<div class="importantDates profile-details" ng-if="npc.show('importantDates')">
@@ -166,8 +166,8 @@
 				<input type="text" ng-model="date.date" placeholder="Date">
 				<input type="text" ng-model="date.description" placeholder="Description/Notes">
 			</div>
-			<button class="button editButton" ng-click="npc.addField('importantDates')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('importantDates')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('importantDates')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('importantDates')"> - </button>
 		</div>
 		<!-- NOTES -->
 		<div class="notes profile-details" ng-if="npc.show('notes')">
@@ -180,13 +180,13 @@
 			<span ng-repeat="reminder in newPlant.reminders track by $index">
 				<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
 			</span>
-			<button class="button editButton" ng-click="npc.addField('reminders')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('reminders')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('reminders')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('reminders')"> - </button>
 		</div>
 
 		<div class="buttonBox">
-			<button class="flat-button" ng-click="npc.create('cancel')">Cancel</button>
-			<button class="button button-save" ng-click="npc.create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
+			<button class="flatButton" ng-click="npc.create('cancel')">Cancel</button>
+			<button class="button button--save" ng-click="npc.create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			<span class="updated" ng-if="npc.show()">
 				<i class="fa fa-floppy-o"></i>
 				<i class="fa fa-check"></i>
