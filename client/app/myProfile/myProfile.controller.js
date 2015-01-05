@@ -3,7 +3,7 @@
 angular.module('trellisApp')
 .controller('MyprofileCtrl', function ($scope, Auth, userService) {
 	/* jshint validthis: true */
-	var vm             = this;
+	var vm         = this;
 	vm.addField    = addField;
 	vm.deleteField = deleteField;
 	vm.setEditable = setEditable;
