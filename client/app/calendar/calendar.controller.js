@@ -3,9 +3,15 @@
 angular.module('trellisApp')
 	.controller('CalendarCtrl', function ($scope, $modal, Auth, userService) {
 
-		var vm = this;
-		$scope.me = Auth.getCurrentUser();
+		var vm           = this;
+		vm.checkEvent    = checkEvent;
+		vm.leap          = leap;
+		vm.setCal        = setCal;
+		vm.setReminder   = setReminder;
+		vm.showDateModal = showDateModal;
+		vm.showModal     = showModal;
 
+		$scope.me = Auth.getCurrentUser();
 		$scope.date = new Date();
 		$scope.date.setDate(1);
 
@@ -49,7 +55,7 @@ angular.module('trellisApp')
 			11: 31
 		};
 
-		vm.leap = function(year){
+		function leap(year){
 			var year = year || 0;
 			if(year%4===0){
 				if(year%100!==0){
@@ -62,7 +68,7 @@ angular.module('trellisApp')
 			} else {
 				return 28;
 			}
-		};
+		}
 
 		var Reminder = function(name, date, notes){
 			this.name = name;
@@ -70,50 +76,61 @@ angular.module('trellisApp')
 			this.notes = notes;
 		};
 
-	    var Day = function(dateNum){
-	    	this.date = dateNum;
-	    	this.events = [];
-	    }
+    var Day = function(dateNum){
+    	this.date = dateNum;
+    	this.events = [];
+    };
 
-	    var setCalendar = function(m, y){
-	    	var month;
-	    	var year;
-	    	var day;
-	    	if(m!==undefined && y!==undefined){
-	    		if(m===12){
-	    			month = 0;
-	    			year = y+1;
-	    		} else if(m===-1){
-	    			month = 11;
-	    			year = y-1;
-	    		} else {
-	    			month = m;
-	    			year = y;
-	    		}
-	    		$scope.date.setMonth(month);
-	    		$scope.date.setFullYear(year);
-	    		day = $scope.date.getDay();
-	    	} else {
-	    		month = $scope.date.getMonth();
-	    		year = $scope.date.getFullYear();
-	    		day = $scope.date.getDay();
-	    	}
+    var setCalendar = function(m, y){
+    	var month;
+    	var year;
+    	var day;
+    	if(m!==undefined && y!==undefined){
+    		if(m===12){
+    			month = 0;
+    			year = y+1;
+    		} else if(m===-1){
+    			month = 11;
+    			year = y-1;
+    		} else {
+    			month = m;
+    			year = y;
+    		}
+    		$scope.date.setMonth(month);
+    		$scope.date.setFullYear(year);
+    		day = $scope.date.getDay();
+    	} else {
+    		month = $scope.date.getMonth();
+    		year = $scope.date.getFullYear();
+    		day = $scope.date.getDay();
+    	}
 
-	    	var len = function(){
-					if(month===1){//If month is February
-						return vm.leap(year);
-					}
-					return $scope.monthLen[month];
-				}();
+    	var len = function(){
+				if(month===1){//If month is February
+					return vm.leap(year);
+				}
+				return $scope.monthLen[month];
+			}();
 
 			//Populate weeks arrays with day objects for a given month
 			var weeks = function(){
 				var w = [];
 				var tempArr = [];
+				function _checkDate( el ) {
+					if( el.date.getMonth() === month &&
+							el.date.getFullYear() === year &&
+							el.date.getDate() === i+1 ) {
+						return true;
+					} else {
+						return false;
+					}
+				}
 				for(var i=0, d=day; i<len; i++, d++){
 					var date = new Day(i+1);
 					$scope.me.importantDates.forEach(function(el){
-						if(el.date.getMonth()===month&&el.date.getFullYear()===year&&el.date.getDate()===i+1) date.events.push(el);
+						if ( _checkDate(el) ) {
+							date.events.push(el);
+						}
 					});
 					if(d<7){
 						tempArr.push(date);
@@ -128,7 +145,7 @@ angular.module('trellisApp')
 					w.push(tempArr);
 					tempArr = [];
 				}
-				/** 
+				/**
 				 *	Will be used to make empty td elements in the first week
 				 *  so that, if the week is less than 7 days, the other days don't
 				 *  shift over to the left of the calendar
@@ -141,18 +158,18 @@ angular.module('trellisApp')
 			return {day: day, month: month, weeks: weeks, year: year};
 		};
 
-		vm.setCal = function(month, year){
+		function setCal(month, year){
 			$scope.cal = setCalendar(month, year);
 		};
-		vm.setCal();
+		setCal();
 
-		vm.checkEvent = function(date, impEvent){
+		function checkEvent(date, impEvent){
 			console.log(impEvent.date);
 			console.log(date.date);
 			if(date.date===impEvent.date.getDate() && $scope.cal.month===impEvent.date.getMonth() && $scope.cal.year===impEvent.date.getFullYear()) return true;
 		}
 
-		vm.setReminder = function(year, month, date, notes, name){
+		function setReminder(year, month, date, notes, name){
 			var hours = $scope.time.getHours();
 			var minutes = $scope.time.getMinutes();
 			var newDate = new Date(year, month, date, hours, minutes);
@@ -164,10 +181,10 @@ angular.module('trellisApp')
 				console.log($scope.me.importantDates);
 			});
 			delete $scope.modalData;
-			vm.setCal(month, year);
+			setCal(month, year);
 		};
 
-		vm.showModal = function(day, month, date, year){
+		function showModal(day, month, date, year){
 			if(date==='empty') return inactive;
 			$scope.modalData = {day: day, date: date, month: month, year: year};
 			var calModal = $modal({scope: $scope, template: "/app/calendar/calModal.html", title: day+", "+(month+1)+"/"+date+"/"+year, show: true});
@@ -176,7 +193,7 @@ angular.module('trellisApp')
 			$scope.time.setMinutes(Math.ceil(($scope.time.getMinutes())/5)*5);
 		};
 
-		vm.showDateModal = function(day, month, date, year, notes, name, eventDate){
+		function showDateModal(day, month, date, year, notes, name, eventDate){
 			console.log(eventDate);
 			$scope.modalData = {day: day, date: date, month: month, year: year, notes: notes, name: name, eventDate: eventDate};
 			var calModal = $modal({scope: $scope, template: "/app/calendar/dateModal.html", title: day+", "+(month+1)+"/"+date+"/"+year, show: true});
