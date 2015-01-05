@@ -1,4 +1,4 @@
-.button-account {
+.button--account {
   background: linear-gradient(hsl(200, 50%, 50%), hsl(200,50%, 45%));
   border-bottom: 1px solid hsl(200, 60%, 25%);
   font-size: 1em;
@@ -11,8 +11,8 @@
   }
 }
 
-.button-facebook,
-.button-google-plus {
+.facebookButton,
+.googlePlusButton {
   cursor: pointer;
   color: hsl(0, 0%, 100%);
   text-align: center;
@@ -36,7 +36,7 @@
   }
 }
 
-.button-facebook {
+.facebookButton {
   background: linear-gradient(hsl(230, 50%, 45%), hsl(230,50%, 40%));
   border-bottom: 1px solid hsl(230, 60%, 25%);
   &:hover {
@@ -47,7 +47,7 @@
   }
 }
 
-.button-google-plus {
+.googlePlusButton {
   background: linear-gradient(hsl(5, 60%, 55%), hsl(5,60%, 50%));
   border-bottom: 1px solid hsl(5, 60%, 25%);
   &:hover {

@@ -16,11 +16,10 @@
   }
 }
 
-
 // Green color
-.button-green,
-.button-save,
-.button-clone {
+.button--green,
+.button--save,
+.button--clone {
   background: linear-gradient(hsl(110, 50%, 50%), hsl(110,50%, 45%));
   border-bottom: 1px solid hsl(110, 60%, 25%);
   &:hover {
@@ -37,16 +36,69 @@
   }
 }
 
-.button-save {
+.button--save {
   font-size: 1.33em;
   padding: .3em 2em .1em;
   float: right;
 }
 
+//Clone button
+.button--clone {
+  font-size: 1em;
+  margin-top: 1.5em;
+}
+
+//Delete Button
+.button--delete {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(0, 50%, 50%), hsl(0,50%, 45%));
+  border-bottom: 1px solid hsl(0, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(0, 50%, 45%), hsl(0,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(0, 60%, 30%), hsl(0, 60%, 25%));
+  }
+}
+
+//Edit Button
+.button--edit {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(220, 50%, 50%), hsl(220,50%, 45%));
+  border-bottom: 1px solid hsl(220, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(220, 50%, 45%), hsl(220,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(220, 60%, 30%), hsl(220, 60%, 25%));
+  }
+}
+
+//Reminder Button ( not currently in use )
+/* .button--reminder {
+  font-size: 0.8em;
+  padding: .5em 1.25em;
+  background: linear-gradient(hsl(90, 50%, 50%), hsl(90,50%, 45%));
+  border-bottom: 1px solid hsl(90, 60%, 25%);
+
+  &:hover {
+    background: linear-gradient(hsl(90, 50%, 45%), hsl(90,50%, 40%));
+  }
+
+  &:active {
+    background: linear-gradient(hsl(90, 60%, 30%), hsl(90, 60%, 25%));
+  }
+} */
 
 // Float buttons are absolutely positioned make sure to nest
 // inside of a relatively positioned element
-.float-button {
+.floatButton {
   position: absolute;
   bottom: 8%;
   right: 8%;
@@ -75,19 +127,19 @@
 
 // Different padding for the different glyphicons because they are sized differently
 
-.float-button.edit {
+.floatButton.edit {
   bottom: 5%;
   right: 10%;
   padding: .5em .66em .3em;
 }
 
-.float-button.plus {
+.floatButton.plus {
   padding: .5em .64em .3em .7em;
 }
 
 //Flat Button Styles
 
-.flat-button {
+.flatButton {
   font-size: 1.3em;
   transition: color 0.1s ease-out,
               box-shadow 0.3s ease-out;
@@ -106,11 +158,4 @@
   &:active {
     color: hsl(0, 80%, 40%);
   }
-}
-
-//Clone button
-
-.button-clone {
-  font-size: 1em;
-  margin-top: 1.5em;
 }
