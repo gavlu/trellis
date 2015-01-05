@@ -1,30 +1,11 @@
 'use strict';
 
 var _ = require('lodash');
-var config = require('../../config/environment');
 var Plant = require('./plant.model');
-
-var sendEmail = function(to, subject, text){
-  var options = {
-    from: 'reminder.trellis@gmail.com',
-    to: to,
-    subject: subject,
-    text: text
-  }
-  config.email.transporter.sendMail(options, function(err, info){
-    if(err){
-      console.log(err);
-    }else{
-      console.log('Message sent: ' + info.response);
-    }
-  config.email.transporter.close();
-  });
-}
 
 // Get list of plants
 exports.index = function(req, res) {
   Plant.find(function (err, plants) {
-    console.log("getPlant got to show!");
     if(err) { return handleError(res, err); }
     return res.json(200, plants);
   });
@@ -45,31 +26,19 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Plant.create(req.body, function(err, plant) {
     if(err) { return handleError(res, err); }
-    console.log(req.user);
-    sendEmail(req.user.email, 
-      'You have a new plant to tend to!', 
-      'Tend to your plant and make sure it gets an adequate amount of attention so that ' + req.body.name + ' can grow strong!'
-    );
     return res.json(201, plant);
   });
 };
 
 // Updates an existing plant in the DB.
 exports.update = function(req, res) {
-  console.log("Update, hit!")
-  console.log(req.body._id);
-  var objectId = req.body._id;
-
-  var newObject = req.body;
-
-  delete newObject._id;
-
-
-  Plant.findByIdAndUpdate(objectId, {$set: newObject}, function(err, plant, numModified) {
-    console.log("this is err", err);
-    console.log("newly updated plant", plant);
-    console.log("this is nummdofied", numModified);
-    res.json(plant);
+  Plant.findById(req.body._id, function(err, plant) {
+    if ( err ) throw err;
+    var updatedPlant = _.merge( plant, req.body );
+    updatedPlant.save( function(err, updatedPlant, numModified){
+      if ( err ) console.log( 'UPDATE PLANT ERROR: ', err );
+      res.json(updatedPlant);
+    });
   });
 };
 

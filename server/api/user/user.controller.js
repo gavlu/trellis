@@ -1,8 +1,9 @@
 'use strict';
 
-var User = require('./user.model');
+var _        = require('lodash');
+var User     = require('./user.model');
 var passport = require('passport');
-var jwt = require('jsonwebtoken');
+var jwt      = require('jsonwebtoken');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -38,7 +39,6 @@ exports.create = function (req, res, next) {
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
@@ -50,29 +50,25 @@ exports.show = function (req, res, next) {
  * Adds the userId to the plants array
  */
 exports.clone = function (req, res, next) {
-  console.log("clone, hit!");
-  console.log(req.user._id);
   var userId = req.user._id;
-  console.log(userId);
-  console.log("---------------------")
-  console.log(req.body);
-  User.findByIdAndUpdate(userId, { $push: { plants: req.body._id } }, function (err, user) {
-    if(err) throw err ; 
+  User.findById(userId, function (err, user) {
+    user.plants.push( req.body._id );
+    user.save();
+    if(err) throw err ;
     res.send(200);
   });
 };
 
 exports.populateTrellis = function (req, res, next) {
-  console.log("populate, hit!!");
+  console.log('inside populateTrellis');
   var userId = req.user._id;
   User.findById(userId)
-  // This has not been truly tested because there aren't any plants in any users yet (11/29)
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
-    console.log('plants are: ', user.plants);
-    res.json(user.plants);
     // prints current users plants array
+    console.log('PLANTS: ', user.plants);
+    res.json(user.plants);
   });
 };
 
@@ -88,6 +84,7 @@ exports.findUser = function(req, res, next){
     role: 0,
     salt: 0
   }, function(err, user) {
+    if ( err ) throw err;
     res.json(user);
   });
 };
@@ -96,14 +93,14 @@ exports.findUser = function(req, res, next){
  * Updates a user based on an update object sent to server
  */
 exports.update = function( req, res, next ) {
-  console.log(req.body, 'update object');
   if(req.body._id) delete req.body._id;
-  User.findByIdAndUpdate(req.user._id, req.body, function(err, user) {
-    console.log("req.body._id: ", req.body._id);
-    console.log("req.user._id: ", req.user._id);
-    if ( err ) {console.log('ERR', err);}
-    console.log('updated user', user);
-    res.json(user);
+  User.findById(req.user._id, function(err, user) {
+    if ( err ) throw err;
+    var updatedUser = _.merge( user, req.body );
+    updatedUser.save( function(err, updatedUser, numModified) {
+      if ( err ) console.log( 'UPDATE ERROR: ', err );
+      res.json(updatedUser);
+    });
   });
 };
 
@@ -144,15 +141,12 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
   var userId = req.user._id;
-
   User.findOne({
     _id: userId
   }, '-salt -hashedPassword')
   .populate('plants')
   .exec(function (err, user) {
     if (err) return res.send("Could not populate!");
-    console.log("!!!!!!")
-    console.log(user);
     res.json(user);
   });
 };
