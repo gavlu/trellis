@@ -132,7 +132,7 @@ textarea {
   }
 }
 
-.profile-details {
+.profileDetails {
   font-size: 1.1em;
   margin-left: .5em;
   h3, h4, label {
@@ -142,7 +142,7 @@ textarea {
 
 // Single profile view
 
-.single-profile{
+.singleProfile{
   position: relative;
   padding: 3em 15%;
   margin: auto;
@@ -153,8 +153,8 @@ textarea {
   }
 }
 
-.single-profile,
-.new-plant-form {
+.singleProfile,
+.newPlantForm {
   ul {
     list-style-type: none;
     padding: 0;
@@ -164,7 +164,7 @@ textarea {
 // Max width input areas
 
 .modal,
-.single-profile,
+.singleProfile,
 .form {
   input[type=text],
   input[type=password],
@@ -176,7 +176,7 @@ textarea {
   }
 }
 
-.single-profile-photo {
+.singleProfile-photo {
   width: 16em;
   height: 16em;
   margin: auto;
@@ -186,7 +186,7 @@ textarea {
   transition: opacity 0.35s;
 }
 
-.photo-container {
+.photoContainer {
   position: relative;
   cursor: pointer;
   width: 16em;

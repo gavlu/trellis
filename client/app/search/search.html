@@ -1,32 +1,32 @@
 <div class="col-md-12 col-xs-12">
-	<div class="single-profile card" ng-if='!user'>
+	<div class="singleProfile card" ng-if='!user'>
 		<h3>No User Found</h3>
 	</div>
-	<div class="single-profile card" ng-if='user'>
+	<div class="singleProfile card" ng-if='user'>
 		<!-- NAME -->
 		<h2>{{user.name}}</h2>
 		<!-- IMAGE -->
-		<img ng-src="{{user.picture}}" alt="Profile Picture" class="single-profile-photo" />
+		<img ng-src="{{user.picture}}" alt="Profile Picture" class="singleProfile-photo" />
 		<!-- EMAIL -->
 		<h4>Email</h4>
-		<div class='profile-details'>{{user.email}}</div>
+		<div class='profileDetails'>{{user.email}}</div>
 		<!-- PHONE -->
 		<div class="phone" ng-if="user.phone">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'phone' )" ng-if="!noClone" checked>
 			<h4>Phone Number</h4>
-			<div class='profile-details'>{{user.phone}}</div>
+			<div class='profileDetails'>{{user.phone}}</div>
 		</div>
 		<!-- AGE -->
 		<div class="age" ng-if="user.age">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'age' )" ng-if="!noClone" checked>
 			<h4>Age</h4>
-			<div class='profile-details'>{{user.age}}</div>
+			<div class='profileDetails'>{{user.age}}</div>
 		</div>
 		<!-- RELATIONSHIP -->
 		<div class="relationship" ng-if="user.relationship">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'relationship' )" ng-if="!noClone" checked>
 			<h4>Relationship:</h4>
-			<div class="profile-details">{{user.relationship.partner}}</div>
+			<div class="profileDetails">{{user.relationship.partner}}</div>
 		</div>
 		<!-- FAMILY -->
 		<ul ng-if="user.family.length > 0">
@@ -34,26 +34,26 @@
 			<h4>Family</h4>
 			<li ng-repeat="member in user.family">
 				<h5>{{member.name}}</h5>
-				<div class='profile-details'>{{member.relation}}</div>
+				<div class='profileDetails'>{{member.relation}}</div>
 			</li>
 		</ul>
 		<!-- HOMETOWN -->
 		<div class="hometown" ng-if="user.hometown">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'hometown' )" ng-if="!noClone" checked>
 			<h4>Hometown</h4>
-			<div class='profile-details'>{{user.hometown}}</div>
+			<div class='profileDetails'>{{user.hometown}}</div>
 		</div>
 		<!-- CURRENT CITY -->
 		<div class="currentCity" ng-if="user.currentCity">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'currentCity' )" ng-if="!noClone" checked>
 			<h4>Current City</h4>
-			<div class='profile-details'>{{user.currentCity}}</div>
+			<div class='profileDetails'>{{user.currentCity}}</div>
 		</div>
 		<!-- EMPLOYER -->
 		<div class="employer" ng-if="user.employer">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'employer' )" ng-if="!noClone" checked>
 			<h4>Employer</h4>
-			<div class='profile-details'>{{user.employer}}</div>
+			<div class='profileDetails'>{{user.employer}}</div>
 		</div>
 		<!-- EDUCATION -->
 		<ul ng-if="user.education.length > 0">
@@ -61,7 +61,7 @@
 			<h4>Education</h4>
 			<li ng-repeat="school in user.education">
 				<h5>{{school.level}}</h5>
-				<div class='profile-details'>{{school.name}}</div>
+				<div class='profileDetails'>{{school.name}}</div>
 			</li>
 		</ul>
 		<!-- PROJECTS -->
@@ -79,7 +79,7 @@
 		<ul ng-if="user.interests.length > 0">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'interests' )" ng-if="!noClone" checked>
 			<h4>Interests</h4>
-			<li class="profile-details" ng-repeat="interest in user.interests">
+			<li class="profileDetails" ng-repeat="interest in user.interests">
 				<p>{{interest.type}}</p>
 				<span ng-repeat="tag in interest.tags">{{tag}}</p>
 			</li>
@@ -88,7 +88,7 @@
 		<div class="notes" ng-if="user.notes">
 			<input class="searchCheck" type="checkbox" ng-click="search.uncheck( 'notes' )" ng-if="!noClone" checked>
 			<h4>Notes</h4>
-			<p class="profile-details">{{user.notes.body}}</p>
+			<p class="profileDetails">{{user.notes.body}}</p>
 		</div>
 		<button class="button button--clone" ng-if="!noClone" ng-click="search.clone()">Clone</button>
 	</div>
