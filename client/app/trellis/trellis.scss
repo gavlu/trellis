@@ -1,6 +1,7 @@
 /**** FRAME ****/
 
-.sidebar, .window {
+.sidebar,
+.window {
 	height: 100vh;
 	margin-top: -71px;
 	padding-top: 71px;
@@ -40,7 +41,6 @@
 		border-radius: 3px;
 	}
 }
-
 
 .window {
 	position: relative;

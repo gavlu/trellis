@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<form novalidate class="editPlantForm" name="form">
-		<div class="card singleProfile">
+		<div class="card single-profile">
 			<button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
 				Action <span class="caret"></span>
 			</button>
@@ -11,8 +11,8 @@
 				</h2>
 			</div>
 			<!-- IMAGE -->
-			<div class="imageDiv" ng-click="epc.uploadImage()">
-				<img ng-src="{{editPlant.picture}}" alt="Profile Picture" class="singleProfilePhoto" />
+			<div class="photo-container" ng-click="epc.uploadImage()">
+				<img ng-src="{{editPlant.picture}}" alt="Profile Picture" class="single-profile-photo" />
 				<h3>UPLOAD<span class="glyphicon glyphicon-pencil"></span></h3>
 			</div>
 			<!-- EMAIL -->
@@ -43,8 +43,8 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Relation:&nbsp;</label><input type="text" ng-model="member.relation" name="memberRelation" placeholder="Brother">
 				</div>
 
-				<button class="button editButton" ng-click="epc.addField('family')"> + </button>
-				<button class="button deleteButton" ng-click="epc.deleteField('family')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField('family')"> + </button>
+				<button class="button button--delete" ng-click="epc.deleteField('family')"> - </button>
 
 			</div>
 			<!-- HOMETOWN -->
@@ -74,8 +74,8 @@
 					</div>
 
 				</div>
-				<button class="button editButton" ng-click="epc.addField('projects')"> + </button>
-				<button class="button deleteButton" ng-click="epc.deleteField('projects')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField('projects')"> + </button>
+				<button class="button button--delete" ng-click="epc.deleteField('projects')"> - </button>
 
 			</div>
 			<!-- EDUCATION -->
@@ -87,16 +87,16 @@
 					<select ng-model="school.level" name="levelSelect">
 						<option ng-repeat="level in edLevel" value="{{level}}" label='{{level[0] | uppercase }}{{level.slice(1)}}'></option>
 					</select>
-					<div ng-show="epc.showBox(school.level)" class='profileDetails'>
+					<div ng-show="epc.showBox(school.level)" class='profile-details'>
 						<input ng-model="school.level" type="text" name="customLevel" placeholder="Boating School">
 					</div>
-					<div class='profileDetails'>
+					<div class='profile-details'>
 						<label>School Name:</label>
 						<input type="text" ng-model="school.name" placeholder="Test University">
 					</div>
 				</li>
-				<button class="button editButton" ng-click="epc.addField( 'education', $index )">+</button>
-				<button class="button deleteButton" ng-click="epc.deleteField('education')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField( 'education', $index )">+</button>
+				<button class="button button--delete" ng-click="epc.deleteField('education')"> - </button>
 			</ul>
 			<!-- INTERESTS -->
 			<div class="interests" ng-if="epc.show('interests')">
@@ -107,12 +107,12 @@
 						<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="tag">
 					</span>
 
-					<button class="button editButton" ng-click="epc.addField('tags', outer)"> +tag </button>
-					<button class="button deleteButton" ng-click="epc.deleteField('tags', outer)"> - </button>
+					<button class="button button--edit" ng-click="epc.addField('tags', outer)"> +tag </button>
+					<button class="button button--delete" ng-click="epc.deleteField('tags', outer)"> - </button>
 
 				</div>
-				<button class="button editButton" ng-click="epc.addField('interests')"> + </button>
-				<button class="button deleteButton" ng-click="epc.deleteField('interests')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField('interests')"> + </button>
+				<button class="button button--delete" ng-click="epc.deleteField('interests')"> - </button>
 
 			</div>
 			<!-- IMPORTANT DATES -->
@@ -124,8 +124,8 @@
 					<input type="text" ng-model="date.description" placeholder="Graduation!">
 				</div>
 
-				<button class="button editButton" ng-click="epc.addField('importantDates')"> + </button>
-				<button class="button deleteButton" ng-click="epc.deleteField('importantDates')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField('importantDates')"> + </button>
+				<button class="button button--delete" ng-click="epc.deleteField('importantDates')"> - </button>
 
 			</div>
 			<!-- NOTES -->
@@ -140,8 +140,8 @@
 					<input type="text" class="reminders" ng-model="editPlant.reminders[$index]" placeholder="Remember to check in about his audition">
 				</span>
 
-				<button class="button editButton" ng-click="epc.addField('reminders')"> + </button>
-				<button class="button deleteButton" ng-click="epc.deleteField('reminders')"> - </button>
+				<button class="button button--edit" ng-click="epc.addField('reminders')"> + </button>
+				<button class="button button--delete" ng-click="epc.deleteField('reminders')"> - </button>
 			</div>
 			<div class="buttonBox">
 				<button class="flatButton" ui-sref="trellis.plants">Cancel</button>
@@ -150,7 +150,7 @@
 					<i class="fa fa-floppy-o"></i>
 					<i class="fa fa-check"></i>
 				</span>
-				<button class="button save" ng-click="epc.update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
+				<button class="button button--save" ng-click="epc.update('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			</div>
 		</div>
 	</form>

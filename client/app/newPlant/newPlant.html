@@ -4,36 +4,36 @@
 	  Action <span class="caret"></span>
 	</button>
 
-	<form novalidate class="newPlantForm card" name="form">
+	<form novalidate class="new-plant-form card" name="form">
 		<!-- NAME -->
-		<div class="name profileDetails">
+		<div class="name profile-details">
 			<h3 for="name">Name: </h3>
 			<input type="text" ng-model="newPlant.name" name="name" placeholder="James"/>
 		</div>
 		<!-- PICTURE -->
-		<div class="imageDiv" ng-click="npc.uploadImage()">
-			<img ng-src="{{newPlant.picture}}" alt="Profile Picture" class="singleProfilePhoto" />
+		<div class="photo-container" ng-click="npc.uploadImage()">
+			<img ng-src="{{newPlant.picture}}" alt="Profile Picture" class="single-profile-photo" />
 			<h3>UPLOAD<span class="glyphicon glyphicon-pencil"></span></h3>
 		</div>
 		<!-- EMAIL -->
-		<div class="email profileDetails" ng-if="npc.show('email')">
+		<div class="email profile-details" ng-if="npc.show('email')">
 			<label for="name">Email: </label>
 			<input type="text" ng-model="newPlant.email" name="email" placeholder="YourName@gmail.com">
 		</div>
 		<!-- PHONE -->
-		<div class="phone profileDetails" ng-if="npc.show('phone')">
+		<div class="phone profile-details" ng-if="npc.show('phone')">
 			<label for="name">Phone: </label>
 			<input type="text" ng-model="newPlant.phone" name="phone" placeholder="###-###-####">
 		</div>
 		<!-- AGE -->
-		<div class="age profileDetails" ng-if="npc.show('age')">
+		<div class="age profile-details" ng-if="npc.show('age')">
 			<label for="name">Age: </label>
 			<input type="text" ng-model="newPlant.age" name="age" placeholder="18">
 		</div>
 
 
 		<!-- CONTACT FREQUENCY -->
-		<div class="contactFrequency profileDetails" ng-if="npc.show('contactFrequency')">
+		<div class="contactFrequency profile-details" ng-if="npc.show('contactFrequency')">
 			<label for="contactFrequency">Contact Frequency: </label>
 			<input type="text" name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="!npc.frequencyShow('daily')" placeholder="# of">
 			<div name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="npc.frequencyShow('daily')">One</div>
@@ -56,7 +56,7 @@
 			     <span class="caret"></span>
 			</button>
 
-			<div class="timepicker">		
+			<div class="timepicker">
 				<label for="time">at:</label>
 				<input type="text" ng-model="timeOfDay" size="3" data-time-format="shortTime" data-length="3" data-minute-step="15" name="time" bs-timepicker>
 			</div>
@@ -75,41 +75,41 @@
 
 
 		<!-- RELATIONSHIP -->
-		<div class="relationship profileDetails" ng-if="npc.show('relationship')">
+		<div class="relationship profile-details" ng-if="npc.show('relationship')">
 			<label>Relationship: </label>
 			<input type="text" ng-model="newPlant.relationship.status">
 			<input type="text" ng-model="newPlant.relationship.partner" placeholder="Name">
 		</div>
-			
+
 		<!-- FAMILY -->
-		<div class="family profileDetails" ng-if="npc.show('family')">
+		<div class="family profile-details" ng-if="npc.show('family')">
 			<label for="name">Family: </label>
 			<div ng-repeat="member in newPlant.family track by $index">
 				<input type="text" ng-model="member.name" name="memberName" placeholder="Name">
 				<input type="text" ng-model="member.relation" name="memberRelation" placeholder="Relation">
 			</div>
-			<button class="button editButton" ng-click="npc.addField('family')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('family')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('family')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('family')"> - </button>
 		</div>
 		<!-- HOMETOWN -->
-		<div class="hometown profileDetails" ng-if="npc.show('hometown')">
+		<div class="hometown profile-details" ng-if="npc.show('hometown')">
 			<label for="name">Hometown: </label>
 			<input type="text" ng-model="newPlant.hometown" name="hometown" placeholder="Guam">
 		</div>
 		<!-- CURRENT CITY -->
-		<div class="currentCity profileDetails" ng-if="npc.show('currentCity')">
+		<div class="currentCity profile-details" ng-if="npc.show('currentCity')">
 			<label for="name">Current City: </label>
 			<input type="text" ng-model="newPlant.currentCity" name="currentCity" placeholder="New York City">
 		</div>
 
 		<!-- EMPLOYER -->
-		<div class="employment profileDetails" ng-if="npc.show('employment')">
+		<div class="employment profile-details" ng-if="npc.show('employment')">
 			<label for="name">Employment: </label>
 			<input type="text" ng-model="newPlant.employment.employer" name="employer" placeholder="Dunder Mifflin">
 			<input type="text" ng-model="newPlant.employment.position" name="position" placeholder="Asst to Regional Manager">
 		</div>
 		<!-- PROJECTS -->
-		<div class="projects profileDetails" ng-if="npc.show('projects')">
+		<div class="projects profile-details" ng-if="npc.show('projects')">
 			<label for="name">Projects: </label>
 			<div ng-repeat="project in newPlant.projects track by $index">
 				<input type="text" ng-model="project.name" name="projects" placeholder="Title/Goal">
@@ -119,11 +119,11 @@
 					<input type="text" ng-model="project.link" name="projects" placeholder="Link">
 				</div>
 			</div>
-			<button class="button editButton" ng-click="npc.addField('projects')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('projects')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('projects')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('projects')"> - </button>
 		</div>
 		<!-- EDUCATION -->
-		<ul class="profileDetails" ng-if="npc.show('education')">
+		<ul class="profile-details" ng-if="npc.show('education')">
 			<h4>Education</h4>
 			<li ng-repeat="school in newPlant.education track by $index" ng-init="edIndex = $index">
 				<!-- Education select boxes -->
@@ -131,19 +131,19 @@
 				<select ng-model="school.level" name="levelSelect">
 					<option ng-repeat="level in edLevel" value="{{level}}" label='{{level[0] | uppercase }}{{level.slice(1)}}'></option>
 				</select>
-				<div ng-show="npc.showBox(school.level)" class='profileDetails'>
+				<div ng-show="npc.showBox(school.level)" class='profile-details'>
 					<input ng-model="school.level" type="text" name="customLevel">
 				</div>
-				<div class='profileDetails'>
+				<div class='profile-details'>
 					<label>School Name:</label>
 					<input type="text" ng-model="school.name" placeholder="Test University">
 				</div>
 			</li>
-			<button class="button editButton" ng-click="npc.addField( 'education', $index )">+</button>
-			<button class="button deleteButton" ng-click="npc.deleteField('education')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField( 'education', $index )">+</button>
+			<button class="button button--delete" ng-click="npc.deleteField('education')"> - </button>
 		</ul>
 		<!-- INTERESTS -->
-		<div class="interests profileDetails" ng-if="npc.show('interests')">
+		<div class="interests profile-details" ng-if="npc.show('interests')">
 			<label for="name">Interests: </label>
 			<div ng-repeat="interest in newPlant.interests track by $index" ng-init="outer=$index">
 				<input type="text" ng-model="interest.type" name="interests" placeholder="Category/Name">
@@ -151,42 +151,42 @@
 					<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
 				</span>
 				<div>
-					<button class="button editButton" ng-click="npc.addField('tags', outer)"> +Tag </button>
-					<button class="button deleteButton" ng-click="npc.deleteField('tags', outer)"> -Tag </button>
+					<button class="button button--edit" ng-click="npc.addField('tags', outer)"> +Tag </button>
+					<button class="button button--delete" ng-click="npc.deleteField('tags', outer)"> -Tag </button>
 				</div>
 			</div>
-			<button class="button editButton" ng-click="npc.addField('interests')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('interests')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('interests')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('interests')"> - </button>
 		</div>
 		<!-- IMPORTANT DATES -->
-		<div class="importantDates profileDetails" ng-if="npc.show('importantDates')">
+		<div class="importantDates profile-details" ng-if="npc.show('importantDates')">
 			<label for="name">Important Dates: </label>
 			<div ng-repeat="date in newPlant.importantDates">
 				<input type="text" ng-model="date.eventName" name="importantDates" placeholder="Event">
 				<input type="text" ng-model="date.date" placeholder="Date">
 				<input type="text" ng-model="date.description" placeholder="Description/Notes">
 			</div>
-			<button class="button editButton" ng-click="npc.addField('importantDates')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('importantDates')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('importantDates')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('importantDates')"> - </button>
 		</div>
 		<!-- NOTES -->
-		<div class="notes profileDetails" ng-if="npc.show('notes')">
+		<div class="notes profile-details" ng-if="npc.show('notes')">
 			<label for="name">Notes: </label>
 			<textarea type="text" g-model="newPlant.notes" name="notes" placeholder="This person loves basejumping"></textarea>
 		</div>
 		<!-- REMINDERS -->
-		<div class="reminders profileDetails" ng-if="npc.show('reminders')">
+		<div class="reminders profile-details" ng-if="npc.show('reminders')">
 			<label for="name">Reminders: </label>
 			<span ng-repeat="reminder in newPlant.reminders track by $index">
 				<input type="text" class="reminders" ng-model="newPlant.reminders[$index]">
 			</span>
-			<button class="button editButton" ng-click="npc.addField('reminders')"> + </button>
-			<button class="button deleteButton" ng-click="npc.deleteField('reminders')"> - </button>
+			<button class="button button--edit" ng-click="npc.addField('reminders')"> + </button>
+			<button class="button button--delete" ng-click="npc.deleteField('reminders')"> - </button>
 		</div>
 
 		<div class="buttonBox">
 			<button class="flatButton" ng-click="npc.create('cancel')">Cancel</button>
-			<button class="button save" ng-click="npc.create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
+			<button class="button button--save" ng-click="npc.create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			<span class="updated" ng-if="npc.show()">
 				<i class="fa fa-floppy-o"></i>
 				<i class="fa fa-check"></i>

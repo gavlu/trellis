@@ -72,7 +72,7 @@ textarea[name='notes']{
 		width: 1em;
 		margin: .5em;
 	}
-	.addEvent {
+	.addEventButton {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -80,7 +80,7 @@ textarea[name='notes']{
 		font-weight: bold;
 		margin: 0 .1em -.2em 0;
 	}
-	.addEvent:hover{
+	.addEventButton:hover{
 		cursor: pointer;
 	}
 }
