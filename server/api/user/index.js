@@ -12,8 +12,8 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/clone/', auth.isAuthenticated(), controller.clone)
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+router.get('/userSearch/', auth.isAuthenticated(), controller.findUser);
 router.get('/:id', auth.isAuthenticated(), controller.show);
-router.post('/userSearch/', auth.isAuthenticated(), controller.findUser);
 router.post('/', controller.create);
 router.patch('/', auth.isAuthenticated(), controller.update);
 

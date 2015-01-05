@@ -9,7 +9,7 @@ angular.module('trellisApp')
         });
     	},
     	searchUserByPhoneOrEmail: function (search, cb) {
-    		$http.post('/api/users/userSearch/', search).success(cb);
+    		$http.get('/api/users/userSearch/', {params: search}).success(cb);
     	},
       addToPlants: function (plantId, cb) {
         $http.put('/api/users/clone/', plantId).success(cb);
