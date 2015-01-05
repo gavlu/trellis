@@ -1,5 +1,5 @@
 'use strict';
-
+// controller is too long and could benefit from putting some thing in factories
 angular.module('trellisApp')
 .controller('MyprofileCtrl', function ($scope, Auth, userService) {
 	/* jshint validthis: true */
@@ -37,6 +37,7 @@ angular.module('trellisApp')
 	};
 
 	$scope.me = angular.copy( Auth.getCurrentUser() );
+  // why
 	delete $scope.me.__v;
 	delete $scope.me._id;
 	delete $scope.me.$promise;

@@ -62,6 +62,7 @@ exports.clone = function (req, res, next) {
   });
 };
 
+//i'd make this route /api/users/:id/plants -- more restufl that way
 exports.populateTrellis = function (req, res, next) {
   console.log("populate, hit!!");
   var userId = req.user._id;
@@ -88,6 +89,7 @@ exports.findUser = function(req, res, next){
     role: 0,
     salt: 0
   }, function(err, user) {
+    //error check...
     res.json(user);
   });
 };
