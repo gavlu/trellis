@@ -50,11 +50,11 @@ var PlantSchema = new Schema({
   }],
 
   interests: [{
-    type: String,
+    type: { type: String },
     tags: [String]
   }],
   projects: [{
-    type: String,
+    type: { type: String },
     name: String,
     description: String,
     link: String
@@ -74,9 +74,8 @@ var PlantSchema = new Schema({
       default: Date.now()
     },
     recurrence_end: Date,
-    frequency: String,
-    timesPer: String,
-    days_of_week: [String]
+    schedule: Object,
+    // timesPer: String,
   },
 
   dateAdded: {

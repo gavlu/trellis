@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService) {
+  .controller('NewplantCtrl', function ($scope, $state, Auth, plantService, userService, contactFrequency) {
 
     var vm = this;
     $scope.newPlant = {
@@ -55,7 +55,7 @@ angular.module('trellisApp')
   			body: ""
   		}],
   		reminders: [],
-  		ownerId: Auth.getCurrentUser._id
+  		ownerId: Auth.getCurrentUser()._id
     };
 
     $scope.edLevel = ['high school', 'undergradate', 'graduate', 'other'];
@@ -151,18 +151,18 @@ angular.module('trellisApp')
 
   	vm.create = function (input) {
     	if(input === 'save'){
-
+        console.log("Function is functioning")
         // Add the contact frequency to newPlant
         $scope.newPlant.contactFrequency = {
-          recurrence_start: new Date(),
-          timesPer: $scope.dateObj.timesPer,
-          frequency: $scope.selectedFrequency,
-          days_of_week: $scope.selectedDays,
-          recurrence_end: $scope.dateObj.recurrence_end
+          recurrence_start: $scope.frequencyData.start,
+          schedule: contactFrequency.buildSchedule($scope.selectedWeeks, $scope.selectedDays, $scope.timeOfDay),
+          recurrence_end: $scope.frequencyData.end
         };
         console.log("contact frequency", $scope.newPlant.contactFrequency);
 
 	    	plantService.createPlant($scope.newPlant, function(created) {
+          console.log($scope.newPlant);
+          console.log(Auth.getCurrentUser());
 	    		userService.addToPlants(created, function(){
 	    			$state.go('trellis.plants');
 	    		});
@@ -184,66 +184,35 @@ angular.module('trellisApp')
       }
     };
 
-    // Create date object
-    $scope.dateObj = {}
-
-    vm.test = function () {
-      if($scope.selectedWeeks.length > 0 && $scope.selectedDays.length > 0){
-        console.log("Monthly", $scope.timeOfDay)
-        $scope.sched.schedules[0].dc = $scope.selectedWeeks;
-        $scope.sched.schedules[0].dw = $scope.selectedDays;
-        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
-      } 
-      else if ($scope.selectedDays.length > 0) {
-        console.log("Weekly", $scope.timeOfDay)
-        $scope.sched.schedules[0].dw = $scope.selectedDays;
-        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
-      } 
-      else {
-        $scope.sched.schedules[0].h = [$scope.timeOfDay.getHours()];
-      }
-
-      $scope.occurences = later.schedule($scope.sched).next($scope.dateObj.timesPer, Date.now());
-      console.log("Sched:", $scope.sched);
-      console.log($scope.occurences);
-    }
-    $scope.sched = {schedules: [{}]};
-
+    // CONTACT FREQUENCY
+    // Create frequency data
+    $scope.frequencyData = {}
     $scope.timeOfDay = new Date();
     $scope.timeOfDay.setMinutes(Math.ceil(($scope.timeOfDay.getMinutes())/15)*15);
 
-    // For contact frequency btns
-    $scope.selectedFrequency = "";
-    $scope.frequency = [
-      { value: 'daily', label: "Day" }, 
-      { value: 'weekly', label: "Week" }, 
-      { value: 'monthly', label: "Month" }, 
-      // { value: 'yearly', label: "Year" }
-    ];
+    later.date.localTime();
 
     vm.frequencyShow = function(input){
       return input == $scope.selectedFrequency;
     }
 
+    // For contact frequency btns
+    $scope.selectedFrequency = "";
+    $scope.frequency = contactFrequency.frequency
+
     $scope.selectedDays = [];
-    $scope.days = [
-      { value: 1, label: "Sunday" }, 
-      { value: 2, label: "Monday" }, 
-      { value: 3, label: "Tuesday" }, 
-      { value: 4, label: "Wednesday" }, 
-      { value: 5, label: "Thursday" },
-      { value: 6, label: "Friday" },
-      { value: 7, label: "Saturday" }, 
-    ];
+    $scope.days = contactFrequency.days
 
     $scope.selectedWeeks = [];
-    $scope.weeks = [
-      { value: 1, label: "First"},
-      { value: 2, label: "Second"},
-      { value: 3, label: "Third"},
-      { value: 4, label: "Fourth"},
-      { value: 0, label: "Last" }
-    ];
+    $scope.weeks = contactFrequency.weeks
+
+        // for testing
+        vm.buildSchedule = function() {
+          $scope.sched = contactFrequency.buildSchedule($scope.selectedWeeks, $scope.selectedDays, $scope.timeOfDay)
+          $scope.occurences = later.schedule($scope.sched).next(100, $scope.frequencyData.start, $scope.frequencyData.end)
+          console.log($scope.occurences);
+        }
+
 
     // FILEPICKER IMAGE UPLOAD CODE
 

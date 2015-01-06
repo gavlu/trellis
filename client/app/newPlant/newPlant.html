@@ -35,9 +35,9 @@
 		<!-- CONTACT FREQUENCY -->
 		<div class="contactFrequency profileDetails" ng-if="npc.show('contactFrequency')">
 			<label for="contactFrequency">Contact Frequency: </label>
-			<input type="text" name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="!npc.frequencyShow('daily')" placeholder="# of">
-			<div name="contactNumber" ng-model="$parent.dateObj.timesPer" ng-if="npc.frequencyShow('daily')">One</div>
-				<span>times per</span>
+			<!-- <input type="text" name="contactNumber" ng-model="$parent.frequencyData.timesPer" ng-if="!npc.frequencyShow('daily')" placeholder="# of">
+			<div name="contactNumber" ng-model="$parent.frequencyData.timesPer" ng-if="npc.frequencyShow('daily')">One</div>
+				<span>times per</span> -->
 
 			<!-- "Day", "Week", or "Month" -->
 			<button type="button" class="btn btn-default" ng-model="$parent.selectedFrequency" data-html="1" ng-options="choice.value as choice.label for choice in frequency" placeholder="Choose" bs-select>
@@ -51,7 +51,7 @@
 			</button>
 
 			<!-- Days of the week -->
-			<div ng-if="npc.frequencyShow('weekly') || npc.frequencyShow('monthly')"> (Which day(s)?)</div>
+			<div ng-if="npc.frequencyShow('weekly') || npc.frequencyShow('monthly')"> (Which day(s) of the week?)</div>
 			<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedDays" data-html="1" data-multiple="1" ng-options="day.value as day.label for day in days" ng-if="npc.frequencyShow('weekly') || npc.frequencyShow('monthly')" placeholder="Choose" bs-select>
 			     <span class="caret"></span>
 			</button>
@@ -63,14 +63,18 @@
 
 			<!-- Starting date -->
 
-			<div>from:</div>
-			<input type="text" name="startPoint" ng-model="$parent.dateObj.recurrence_start" placeholder="Start date">
+			<div class="form-group">
+			    <label class="control-label"> Date range: </label>
+			    <br>
+			    <div class="form-group col-xs-6">
+			      <input type="text" class="form-control" ng-model="frequencyData.start" data-max-date="{{dateObj.start}}" placeholder="From" bs-datepicker>
+			    </div>
+			    <div class="form-group col-xs-6">
+			      <input type="text" class="form-control" ng-model="frequencyData.end" data-min-date="{{dateObj.end}}" placeholder="Until" bs-datepicker>
+			    </div>
+			  </div>
 
-			<!-- End date / # of reps -->
-			<div>until:</div>
-			<input type="text" name="endPoint" ng-model="$parent.dateObj.recurrence_end" placeholder="End date">
-
-			<button class="btn btn-default" ng-click="npc.test(dateObj.timerPer)">Test</button>
+			<button class="btn btn-default" ng-click="npc.buildSchedule()">Test</button>
 		</div>
 
 
@@ -186,7 +190,7 @@
 
 		<div class="buttonBox">
 			<button class="flatButton" ng-click="npc.create('cancel')">Cancel</button>
-			<button class="button button--save" ng-click="npc.create('save'); form.$setPristine()"><span class="glyphicon glyphicon-ok-sign"></span></button>
+			<button class="button button--save" ng-click="npc.create('save')"><span class="glyphicon glyphicon-ok-sign"></span></button>
 			<span class="updated" ng-if="npc.show()">
 				<i class="fa fa-floppy-o"></i>
 				<i class="fa fa-check"></i>
