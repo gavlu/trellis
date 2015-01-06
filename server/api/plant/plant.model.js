@@ -50,11 +50,11 @@ var PlantSchema = new Schema({
   }],
 
   interests: [{
-    type: String,
+    type: { type: String },
     tags: [String]
   }],
   projects: [{
-    type: String,
+    type: { type: String },
     name: String,
     description: String,
     link: String
