@@ -35,11 +35,11 @@ var UserSchema = new Schema({
     notes: String
   }],
   interests: [{
-    type: String,
+    type: {type: String},
     tags: [String]
   }],
   projects: [{
-    type: String,
+    type: {type: String},
     name: String,
     description: String,
     link: String
