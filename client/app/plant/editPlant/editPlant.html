@@ -30,6 +30,54 @@
 				<label for="name">Age: </label>
 				<input type="text" ng-model="editPlant.age" name="age" placeholder="18">
 			</div>
+
+			<!-- CONTACT FREQUENCY -->
+			<div class="contactFrequency profileDetails" ng-if="epc.show('contactFrequency')">
+				<label for="contactFrequency">Contact Frequency: </label>
+				<span ng-if="editPlant.contactFrequency.schedule" name="contactFrequency">-- Set --</span>
+				<div ng-if="!editPlant.contactFrequency.schedule">
+					<!-- <input type="text" name="contactNumber" ng-model="$parent.frequencyData.timesPer" ng-if="!epc.frequencyShow('daily')" placeholder="# of">
+					<div name="contactNumber" ng-model="$parent.frequencyData.timesPer" ng-if="epc.frequencyShow('daily')">One</div>
+						<span>times per</span> -->
+
+					<!-- "Day", "Week", or "Month" -->
+					<button type="button" class="btn btn-default" ng-model="$parent.selectedFrequency" data-html="1" ng-options="choice.value as choice.label for choice in frequency" placeholder="Choose" bs-select>
+					     <span class="caret"></span>
+					</button>
+
+					<!-- Weeks in the month -->
+					<div ng-if="epc.frequencyShow('monthly')"> (Which week(s)?)</div>
+					<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedWeeks" data-html="1" data-multiple="1" ng-options="week.value as week.label for week in weeks" ng-if="epc.frequencyShow('monthly')" placeholder="Choose" bs-select>
+					     <span class="caret"></span>
+					</button>
+
+					<!-- Days of the week -->
+					<div ng-if="epc.frequencyShow('weekly') || epc.frequencyShow('monthly')"> (Which day(s) of the week?)</div>
+					<button type="button" class="btn btn-default" ng-model="$parent.$parent.selectedDays" data-html="1" data-multiple="1" ng-options="day.value as day.label for day in days" ng-if="epc.frequencyShow('weekly') || epc.frequencyShow('monthly')" placeholder="Choose" bs-select>
+					     <span class="caret"></span>
+					</button>
+
+					<div class="timepicker">
+						<label for="time">at:</label>
+						<input type="text" ng-model="timeOfDay" size="3" data-time-format="shortTime" data-length="3" data-minute-step="15" name="time" bs-timepicker>
+					</div>
+
+					<!-- Starting date -->
+
+					<div class="form-group">
+					    <label class="control-label"> Date range: </label>
+					    <br>
+					    <div class="form-group col-xs-6">
+					      <input type="text" class="form-control" ng-model="frequencyData.start" data-max-date="{{dateObj.start}}" placeholder="From" bs-datepicker>
+					    </div>
+					    <div class="form-group col-xs-6">
+					      <input type="text" class="form-control" ng-model="frequencyData.end" data-min-date="{{dateObj.end}}" placeholder="Until" bs-datepicker>
+					    </div>
+					</div>
+				<button class="btn btn-default" ng-click="epc.buildSchedule()">Test</button>
+				</div>
+			</div>
+
 			<!-- RELATIONSHIP -->
 			<div class="relationship" ng-if="epc.show('relationship')">
 				<label>Relationship: </label>

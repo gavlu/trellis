@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trellisApp')
-  .controller('EditplantCtrl', function ($scope, $stateParams, plantService, $state) {
+  .controller('EditplantCtrl', function ($scope, $stateParams, plantService, $state, contactFrequency) {
     var vm      = this,
         plantId = $stateParams.id;
     vm.addField    = addField;
@@ -44,6 +44,7 @@ angular.module('trellisApp')
     $scope.editPlant = {};
     plantService.getPlant(plantId, function(plant) {
     	$scope.editPlant = plant;
+      console.log(plant);
     	$scope.master = angular.copy(plant);
     });
 
@@ -55,7 +56,7 @@ angular.module('trellisApp')
       {value: 'email', label: '<i class="fa fa-send"></i> Email'},
       {value: 'phone', label: '<i class="fa fa-phone"></i> Phone'},
       {value: 'age', label: '<i class="fa fa-birthday-cake"></i> Age'},
-      {value: 'contactFrequency', label: '<i class="fa fa-clock-o"></i> Age'},
+      {value: 'contactFrequency', label: '<i class="fa fa-clock-o"></i> Contact Frequency'},
       {value: 'relationship', label: '<i class="fa fa-heart"></i> Relationship'},
       {value: 'family', label: '<i class="fa fa-sitemap"></i> Family'},
       {value: 'hometown', label: '<i class="fa fa-globe"></i> Hometown'},
@@ -104,6 +105,11 @@ angular.module('trellisApp')
 
     function update(input) {
     	if(input === 'save'){
+        $scope.editPlant.contactFrequency = {
+          recurrence_start: $scope.frequencyData.start,
+          schedule: contactFrequency.buildSchedule($scope.selectedWeeks, $scope.selectedDays, $scope.timeOfDay),
+          recurrence_end: $scope.frequencyData.end
+        };
 	    	plantService.updatePlant($scope.editPlant, function(updated) {
 	    		$scope.saved = true;
           $state.go('trellis.plants');
@@ -123,6 +129,38 @@ angular.module('trellisApp')
         return false;
       }
     };
+
+
+    /********* CONTACT FREQUENCY ********/
+
+    $scope.frequencyData = {}
+    $scope.timeOfDay = new Date();
+    $scope.timeOfDay.setMinutes(Math.ceil(($scope.timeOfDay.getMinutes())/15)*15);
+
+    later.date.localTime();
+
+    vm.frequencyShow = function(input){
+      return input == $scope.selectedFrequency;
+    }
+
+    // For contact frequency btns
+    $scope.selectedFrequency = "";
+    $scope.frequency = contactFrequency.frequency
+
+    $scope.selectedDays = [];
+    $scope.days = contactFrequency.days
+
+    $scope.selectedWeeks = [];
+    $scope.weeks = contactFrequency.weeks
+
+        // for testing
+        vm.buildSchedule = function() {
+          $scope.sched = contactFrequency.buildSchedule($scope.selectedWeeks, $scope.selectedDays, $scope.timeOfDay)
+          $scope.occurences = later.schedule($scope.sched).next(100, $scope.frequencyData.start, $scope.frequencyData.end)
+          console.log($scope.occurences);
+        }
+
+
 
     // FILEPICKER IMAGE UPLOAD CODE
 

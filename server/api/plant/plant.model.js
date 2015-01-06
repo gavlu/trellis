@@ -74,7 +74,7 @@ var PlantSchema = new Schema({
       default: Date.now()
     },
     recurrence_end: Date,
-    schedule: { type: Object },
+    schedule: Object,
     // timesPer: String,
   },
 
