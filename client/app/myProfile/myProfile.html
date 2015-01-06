@@ -1,56 +1,56 @@
 <div class="col-md-12">
-	<div class="single-profile card" ng-if="!editable">
+	<div class="singleProfile card" ng-if="!editable">
 		<!-- NAME -->
 		<h2>{{me.name}}</h2>
 		<!-- IMAGE -->
-		<img ng-src="{{me.picture}}" alt="Profile Picture" class="single-profile-photo" />
+		<img ng-src="{{me.picture}}" alt="Profile Picture" class="singleProfile-photo" />
 		<!-- EMAIL -->
 		<h4>Email</h4>
-		<div class='profile-details'>{{me.email}}</div>
+		<div class='profileDetails'>{{me.email}}</div>
 		<!-- PHONE -->
 		<div class="phone" ng-if="me.phone">
 			<h4>Phone Number</h4>
-			<div class='profile-details'>{{me.phone}}</div>
+			<div class='profileDetails'>{{me.phone}}</div>
 		</div>
 		<!-- AGE -->
 		<div class="age" ng-if="me.age">
 			<h4>Age</h4>
-			<div class='profile-details'>{{me.age}}</div>
+			<div class='profileDetails'>{{me.age}}</div>
 		</div>
 		<!-- RELATIONSHIP -->
 		<div class="relationship" ng-if="me.relationship">
 			<h4>Relationship:</h4>
-			<div class="profile-details">{{me.relationship.partner}}</div>
+			<div class="profileDetails">{{me.relationship.partner}}</div>
 		</div>
 		<!-- FAMILY -->
 		<ul ng-if="me.family.length > 0">
 			<h4>Family</h4>
 			<li ng-repeat="member in me.family">
 				<h5>{{member.name}}</h5>
-				<div class='profile-details'>{{member.relation}}</div>
+				<div class='profileDetails'>{{member.relation}}</div>
 			</li>
 		</ul>
 		<!-- HOMETOWN -->
 		<div class="hometown" ng-if="me.hometown">
 			<h4>Hometown</h4>
-			<div class='profile-details'>{{me.hometown}}</div>
+			<div class='profileDetails'>{{me.hometown}}</div>
 		</div>
 		<!-- CURRENT CITY -->
 		<div class="currentCity" ng-if="me.currentCity">
 			<h4>Current City</h4>
-			<div class='profile-details'>{{me.currentCity}}</div>
+			<div class='profileDetails'>{{me.currentCity}}</div>
 		</div>
 		<!-- EMPLOYER -->
 		<div class="employer" ng-if="me.employer">
 			<h4>Employer</h4>
-			<div class='profile-details'>{{me.employer}}</div>
+			<div class='profileDetails'>{{me.employer}}</div>
 		</div>
 		<!-- EDUCATION -->
 		<ul ng-if="me.education.length > 0">
 			<h4>Education</h4>
 			<li ng-repeat="school in me.education">
 				<h5>{{school.level}}</h5>
-				<div class='profile-details'>{{school.name}}</div>
+				<div class='profileDetails'>{{school.name}}</div>
 			</li>
 		</ul>
 		<!-- PROJECTS -->
@@ -66,7 +66,7 @@
 		<!-- INTERESTS -->
 		<ul ng-if="me.interests.length > 0">
 			<h4>Interests</h4>
-			<li class="profile-details" ng-repeat="interest in me.interests">
+			<li class="profileDetails" ng-repeat="interest in me.interests">
 				<p>{{interest.type}}</p>
 				<span ng-repeat="tag in interest.tags">{{tag}}</p>
 			</li>
@@ -74,7 +74,7 @@
 		<!-- NOTES -->
 		<div class="notes" ng-if="me.notes">
 			<h4>Notes</h4>
-			<p class="profile-details">{{me.notes}}</p>
+			<p class="profileDetails">{{me.notes}}</p>
 		</div>
 
 		<button class="floatButton edit" ng-click="mpc.setEditable()"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -82,7 +82,7 @@
 
 <!-- -------------------------------------- -->
 
-	<div class="single-profile card" ng-if="editable">
+	<div class="singleProfile card" ng-if="editable">
 	<button type="button" class="btn btn-default" ng-model="$parent.selectedIcons" data-html="1" data-multiple="1" data-animation="am-fade" data-all-none-buttons="1" ng-options="icon.value as icon.label for icon in icons" placeholder="Choose field" bs-select>
 		Action <span class="caret"></span>
 	</button>
@@ -91,22 +91,22 @@
 			<input type="text" ng-model="tempMe.name" placeholder="Ezekiel">
 		</h3>
 		<!-- IMAGE -->
-		<div class="photo-container" ng-click="mpc.uploadImage()">
-			<img ng-src="{{tempMe.picture}}" alt="Profile Picture" class="single-profile-photo" />
+		<div class="photoContainer" ng-click="mpc.uploadImage()">
+			<img ng-src="{{tempMe.picture}}" alt="Profile Picture" class="singleProfile-photo" />
 			<h3>UPLOAD<span class="glyphicon glyphicon-pencil"></span></h3>
 		</div>
 		<!-- EMAIL -->
-		<div class='profile-details'>
+		<div class='profileDetails'>
 			<h4>Email</h4>
 			<input type="text" ng-model="tempMe.email" placeholder="me@me.com">
 		</div>
 		<!-- PHONE -->
-		<div class='profile-details' ng-if="mpc.show('phone')">
+		<div class='profileDetails' ng-if="mpc.show('phone')">
 			<h4>Phone Number</h4>
 			<input type="text" ng-model="tempMe.phone" placeholder="555-555-5555">
 		</div>
 		<!-- AGE -->
-		<div class='profile-details' ng-if="mpc.show('age')">
+		<div class='profileDetails' ng-if="mpc.show('age')">
 			<h4>Age</h4>
 			<input type="number" min="0" max="120" ng-model="tempMe.age" placeholder="18">
 		</div>
@@ -114,11 +114,11 @@
 		<ul ng-if="mpc.show('family')">
 			<h4>Family</h4>
 			<li ng-repeat="member in tempMe.family">
-				<div class='profile-details'>
+				<div class='profileDetails'>
 					<label>Name:</label>
 					<input type="text" ng-model="member.name" placeholder="James">
 				</div>
-				<div class='profile-details'>
+				<div class='profileDetails'>
 					<label>Relation:</label>
 					<input type="text" ng-model="member.relation" placeholder="Cousin">
 				</div>
@@ -127,22 +127,22 @@
 			<button class="button button--delete" ng-click="mpc.deleteField('family')"> - </button>
 		</ul>
 		<!-- HOMETOWN -->
-		<div class='profile-details' ng-if="mpc.show('hometown')">
+		<div class='profileDetails' ng-if="mpc.show('hometown')">
 			<h4>Hometown</h4>
 			<input type="text" ng-model="tempMe.hometown" placeholder="Guam">
 		</div>
 		<!-- CURRENT CITY -->
-		<div class='profile-details' ng-if="mpc.show('currentCity')">
+		<div class='profileDetails' ng-if="mpc.show('currentCity')">
 			<h4>Current City</h4>
 			<input type="text" ng-model="tempMe.currentCity" placeholder="New York City">
 		</div>
 		<!-- EMPLOYER -->
-		<div class='profile-details' ng-if="mpc.show('employer')">
+		<div class='profileDetails' ng-if="mpc.show('employer')">
 			<h4>Employer</h4>
 			<input type="text" ng-model="tempMe.employer" placeholder="Dunder Mifflin">
 		</div>
 		<!-- PROJECTS -->
-		<div class="profile-details" ng-if="mpc.show('projects')">
+		<div class="profileDetails" ng-if="mpc.show('projects')">
 			<label for="name">Projects: </label>
 			<div ng-repeat="project in tempMe.projects track by $index">
 				<input type="text" ng-model="project.name" name="projects" placeholder="Name">
@@ -166,10 +166,10 @@
 				<select ng-model="school.level" name="levelSelect">
 					<option ng-repeat="level in edLevel" value="{{level}}" label='{{level[0] | uppercase }}{{level.slice(1)}}'></option>
 				</select>
-				<div ng-show="mpc.showBox(school.level)" class='profile-details'>
+				<div ng-show="mpc.showBox(school.level)" class='profileDetails'>
 					<input ng-model="school.level" type="text" name="customLevel" placeholder="Boating School">
 				</div>
-				<div class='profile-details'>
+				<div class='profileDetails'>
 					<label>School Name:</label>
 					<input type="text" ng-model="school.name" placeholder="Test University">
 				</div>
@@ -181,7 +181,7 @@
 		<ul ng-if="mpc.show('interests')">
 			<h4>Interests</h4>
 			<li ng-repeat="interest in tempMe.interests track by $index" ng-init="outer=$index">
-				<div class='profile-details'>
+				<div class='profileDetails'>
 					<input type="text" ng-model="interest.type" placeholder="interest">
 					<span ng-repeat="tag in interest.tags track by $index" ng-init="inner = $index">
 						<input type="text" ng-model="interest.tags[inner]" name="tags" placeholder="Tag">
@@ -196,7 +196,7 @@
 			<button class="button button--delete" ng-click="mpc.deleteField('interests')"> - </button>
 		</ul>
 		<!-- NOTES -->
-		<div class="notes profile-details" ng-if="mpc.show('notes')">
+		<div class="notes profileDetails" ng-if="mpc.show('notes')">
 			<label for="name">Notes: </label>
 			<textarea type="text" ng-model="tempMe.notes.body" name="notes" placeholder="This person loves basejumping"></textarea>
 		</div>

@@ -115,7 +115,7 @@ PlantSchema.post('save', function( plant ){
   if ( plant.wasNew ) {
     User.findById(plant.ownerId, function(err, user){
       if ( err ) throw err;
-      if (user){
+      if ( user ) {
         sendEmail(user.email,
           'You have a new plant to tend to!',
           'Tend to your plant and make sure it gets an adequate amount of attention so that ' + plant.name + ' can grow strong!'
