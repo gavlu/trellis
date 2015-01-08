@@ -8,14 +8,6 @@
 'use strict';
 
 var User = require('../api/user/user.model');
-var Plant = require('../api/plant/plant.model');
-
-Plant.find({}).remove(function(){
-  Plant.create({
-    name: 'Gavin',
-    hometown: 'Staten Island'
-  });
-});
 
 User.find({}).remove(function() {
   User.create({
@@ -37,7 +29,6 @@ User.find({}).remove(function() {
       description: "Makes movies",
       link: "none"
     }],
-
   }, {
     provider: 'local',
     name: 'Larry',
